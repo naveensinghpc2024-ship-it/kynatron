@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>GM-SCADA | Industrial Monitoring & Control</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%231e3a5f'/><text x='50' y='72' font-size='60' font-weight='800' fill='white' text-anchor='middle' font-family='Arial'>K</text></svg>">
+<script src="https://cdn.jsdelivr.net/npm/highcharts@12.1.2/highcharts.js">
+// Vendor preset loader
+function loadPreset(name) {
+    var info = document.getElementById('presetInfo');
+    var presets = {
+        pharma: '<b style="color:#3b82f6">Pharma (21 CFR Part 11)</b> loaded — Sample: 1s, Logging: Continuous, Audit trail: ON, e-Signatures: Required, Data format: CSV with checksum, Retention: 5 years min',
+        food: '<b style="color:#22c55e">Food & Beverage (HACCP)</b> loaded — Sample: 5s, Logging: Batch, HACCP points: Enabled, Alerts: SMS+Email, CCP monitoring: Active, Temp range: -40 to +120°C',
+        metal: '<b style="color:#f97316">Metal Processing</b> loaded — Sample: 1s, Range: 0-1200°C, K-Type TC priority, Rate-of-rise alarms: ON, High-temp cutoff: Enabled, Batch tracking: ON',
+        cold: '<b style="color:#8b5cf6">Cold Chain</b> loaded — Sample: 30s, Range: -80 to +25°C, PDF auto-report: ON, GPS tracking: Enabled, Breach alert: Immediate SMS, Single-use mode: Available',
+        custom: '<b style="color:#94a3b8">Custom Configuration</b> — All parameters unlocked. Configure manually or start from the Product Configuration Builder below.'
+    };
+    info.innerHTML = presets[name] || presets.custom;
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/highcharts@12.1.2/highcharts-more.js">
+// Vendor preset loader
+function loadPreset(name) {
+    var info = document.getElementById('presetInfo');
+    var presets = {
+        pharma: '<b style="color:#3b82f6">Pharma (21 CFR Part 11)</b> loaded — Sample: 1s, Logging: Continuous, Audit trail: ON, e-Signatures: Required, Data format: CSV with checksum, Retention: 5 years min',
+        food: '<b style="color:#22c55e">Food & Beverage (HACCP)</b> loaded — Sample: 5s, Logging: Batch, HACCP points: Enabled, Alerts: SMS+Email, CCP monitoring: Active, Temp range: -40 to +120°C',
+        metal: '<b style="color:#f97316">Metal Processing</b> loaded — Sample: 1s, Range: 0-1200°C, K-Type TC priority, Rate-of-rise alarms: ON, High-temp cutoff: Enabled, Batch tracking: ON',
+        cold: '<b style="color:#8b5cf6">Cold Chain</b> loaded — Sample: 30s, Range: -80 to +25°C, PDF auto-report: ON, GPS tracking: Enabled, Breach alert: Immediate SMS, Single-use mode: Available',
+        custom: '<b style="color:#94a3b8">Custom Configuration</b> — All parameters unlocked. Configure manually or start from the Product Configuration Builder below.'
+    };
+    info.innerHTML = presets[name] || presets.custom;
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/highcharts@12.1.2/modules/solid-gauge.js">
+// Vendor preset loader
+function loadPreset(name) {
+    var info = document.getElementById('presetInfo');
+    var presets = {
+        pharma: '<b style="color:#3b82f6">Pharma (21 CFR Part 11)</b> loaded — Sample: 1s, Logging: Continuous, Audit trail: ON, e-Signatures: Required, Data format: CSV with checksum, Retention: 5 years min',
+        food: '<b style="color:#22c55e">Food & Beverage (HACCP)</b> loaded — Sample: 5s, Logging: Batch, HACCP points: Enabled, Alerts: SMS+Email, CCP monitoring: Active, Temp range: -40 to +120°C',
+        metal: '<b style="color:#f97316">Metal Processing</b> loaded — Sample: 1s, Range: 0-1200°C, K-Type TC priority, Rate-of-rise alarms: ON, High-temp cutoff: Enabled, Batch tracking: ON',
+        cold: '<b style="color:#8b5cf6">Cold Chain</b> loaded — Sample: 30s, Range: -80 to +25°C, PDF auto-report: ON, GPS tracking: Enabled, Breach alert: Immediate SMS, Single-use mode: Available',
+        custom: '<b style="color:#94a3b8">Custom Configuration</b> — All parameters unlocked. Configure manually or start from the Product Configuration Builder below.'
+    };
+    info.innerHTML = presets[name] || presets.custom;
+}
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#080c16;color:#e2e8f0;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+/* TOPBAR */
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;background:#0c1020;border-bottom:1px solid#1a2040;flex-shrink:0}
+.tb-left{display:flex;align-items:center;gap:14px}
+.tb-back{color:#64748b;font-size:.7rem;text-decoration:none;padding:4px 8px;border:1px solid#2a3050;border-radius:4px}
+.tb-back:hover{color:#fff;border-color:#3b82f6}
+.tb-brand{font-size:.95rem;font-weight:700;color:#f8fafc;letter-spacing:2px}
+.tb-sub{font-size:.6rem;color:#475569}
+.tb-right{display:flex;align-items:center;gap:16px;font-size:.75rem}
+.tb-stat b{font-size:.95rem;display:block;text-align:center;color:#f8fafc;font-family:monospace}
+.tb-stat small{font-size:.55rem;color:#475569;text-transform:uppercase;letter-spacing:.5px}
+.live-badge{display:flex;align-items:center;gap:5px;background:rgba(34,197,94,.08);padding:3px 8px;border-radius:10px}
+.live-dot{width:7px;height:7px;background:#22c55e;border-radius:50%;animation:p 2s infinite;box-shadow:0 0 5px#22c55e}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.4}}
+.live-badge span{font-size:.6rem;color:#22c55e;font-weight:700;letter-spacing:1px}
+#clock{font-family:monospace;color:#94a3b8;font-size:.8rem}
+.tb-user{color:#64748b;font-size:.75rem}
+/* QUICK STATS BAR */
+.qbar{display:flex;gap:12px;padding:8px 16px;background:#0a0f1c;border-bottom:1px solid#1a2040;font-size:.7rem;color:#64748b;flex-shrink:0}
+.qbar-item{display:flex;align-items:center;gap:5px}
+.qbar-item b{color:#e2e8f0;font-family:monospace}
+.qbar-item.ok b{color:#22c55e}
+.qbar-item.warn b{color:#eab308}
+.qbar-item.crit b{color:#ef4444}
+#lastUpd{margin-left:auto;font-style:italic}
+/* LAYOUT */
+.app{display:flex;flex:1;overflow:hidden}
+/* SIDEBAR */
+.sb{width:190px;background:#0c1020;border-right:1px solid#1a2040;display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto}
+.sb-nav{padding:6px;flex:1}
+.sb-sec{font-size:.55rem;color:#3b4a6b;text-transform:uppercase;letter-spacing:1.5px;padding:10px 10px 4px;margin-top:4px}
+.ni{display:flex;align-items:center;gap:9px;padding:9px 12px;margin-bottom:2px;border-radius:7px;cursor:pointer;color:#7a8baa;font-size:.78rem;transition:all .15s}
+.ni:hover{background:#151c30;color:#cbd5e1}
+.ni.active{background:linear-gradient(135deg,#1e3a5f,#162d4a);color:#fff;font-weight:600;box-shadow:0 2px 8px rgba(30,58,95,.25)}
+.ni i{width:16px;text-align:center;font-size:.8rem}
+.ni .bdg{margin-left:auto;background:#ef4444;color:#fff;font-size:.55rem;padding:1px 5px;border-radius:6px;font-weight:700}
+.sb-ft{padding:10px;border-top:1px solid#1a2040;font-size:.6rem;color:#3b4a6b;text-align:center}
+/* MAIN */
+.mn{flex:1;overflow-y:auto;padding:16px}
+.pnl{display:none}.pnl.active{display:block}
+/* CARDS */
+.cd{background:rgba(15,20,40,0.9);backdrop-filter:blur(6px);border:1px solid#1f2844;border-radius:9px;padding:14px;position:relative;margin-bottom:14px;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.cd:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,0,0,0.3)}
+.cd::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#3b82f6,transparent);opacity:.3}
+.cd.alarm{border-color:#ef4444}.cd.alarm::before{background:linear-gradient(90deg,transparent,#ef4444,transparent);opacity:.8}
+.cd-title{font-size:.72rem;color:#7a8baa;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;font-weight:600}
+/* GRIDS */
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+.g2{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:14px}
+.g2e{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+/* SENSOR */
+.sv{font-size:1.9rem;font-weight:700;font-family:monospace;line-height:1}
+.su{font-size:.75rem;color:#64748b;font-weight:400}
+.sl{font-size:.6rem;color:#4a5a7a;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.sm{display:flex;justify-content:space-between;margin-top:7px;font-size:.65rem;color:#4a5a7a}
+.sb2{height:3px;background:#1a2040;border-radius:2px;margin-top:5px;overflow:hidden}
+.sb2-f{height:100%;border-radius:2px;transition:width .6s}
+/* BADGES */
+.b-ok{color:#22c55e}.b-w{color:#eab308}.b-c{color:#ef4444}.b-i{color:#3b82f6}
+.badge2{font-size:.55rem;padding:2px 7px;border-radius:8px;font-weight:600}
+.badge2-ok{background:rgba(34,197,94,.1);color:#22c55e}
+.badge2-w{background:rgba(234,179,8,.1);color:#eab308}
+.badge2-c{background:rgba(239,68,68,.1);color:#ef4444}
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:.75rem}
+.tbl th{text-align:left;padding:7px 8px;color:#4a5a7a;font-size:.6rem;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid#1a2040}
+.tbl td{padding:7px 8px;border-bottom:1px solid#0f1425;color:#b8c5db}
+.tbl tr:hover td{background:#151c30}
+/* TOGGLE */
+.tg-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid#1a2040}
+.tg-row:last-child{border-bottom:none}
+.tg-name{font-size:.8rem;color:#cbd5e1}.tg-sub{font-size:.6rem;color:#3b4a6b}
+.tg{width:38px;height:20px;background:#2a3350;border-radius:10px;position:relative;cursor:pointer;transition:background .3s}
+.tg.on{background:#22c55e}
+.tg::after{content:"";position:absolute;width:16px;height:16px;background:#fff;border-radius:50%;top:2px;left:2px;transition:transform .3s}
+.tg.on::after{transform:translateX(18px)}
+/* SP INPUT */
+.sp-in{background:#080c16;border:1px solid#2a3350;border-radius:5px;padding:3px 6px;color:#f8fafc;font-family:monospace;font-size:.78rem;width:58px;text-align:center}
+/* CFG ROW */
+.cfg-r{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid#131830;font-size:.78rem}
+.cfg-r:last-child{border-bottom:none}
+.cfg-k{color:#7a8baa}.cfg-v{color:#e2e8f0;font-family:monospace}
+/* ALARM */
+.al-item{display:flex;align-items:flex-start;gap:9px;padding:9px 0;border-bottom:1px solid#131830;font-size:.75rem}
+.al-item:last-child{border-bottom:none}
+.al-icon{width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.6rem;flex-shrink:0}
+.al-icon.c{background:rgba(239,68,68,.12);color:#ef4444}
+.al-icon.w{background:rgba(234,179,8,.12);color:#eab308}
+.al-icon.i{background:rgba(59,130,246,.12);color:#3b82f6}
+.al-icon.o{background:rgba(34,197,94,.12);color:#22c55e}
+.al-msg{font-size:.73rem;color:#cbd5e1}.al-time{font-size:.63rem;color:#3b4a6b;font-family:monospace}
+.al-ack{font-size:.6rem;padding:2px 7px;border-radius:4px;border:1px solid#2a3350;color:#7a8baa;cursor:pointer;background:transparent;margin-left:auto;flex-shrink:0}
+.al-ack:hover{border-color:#3b82f6;color:#3b82f6}
+/* STAT BOXES */
+.st-bar{display:flex;gap:10px;margin-bottom:14px}
+.st-box{background:#0f1425;border:1px solid#1f2844;border-radius:7px;padding:10px 14px;text-align:center;flex:1}
+.st-box b{display:block;font-size:1.2rem;font-family:monospace}
+.st-box small{font-size:.6rem;color:#4a5a7a;text-transform:uppercase}
+/* MIMIC DIAGRAM */
+.mimic{background:#0a0f1c;border:1px solid#1f2844;border-radius:9px;padding:16px;margin-bottom:14px}
+.mimic svg{width:100%;height:auto}
+.flow-line{stroke-dasharray:8 4;animation:flow 1.5s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-24}}
+/* HEATMAP */
+.hm-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin-bottom:14px}
+.hm-cell{aspect-ratio:1;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.6rem;font-weight:600;font-family:monospace;border:1px solid transparent}
+.hm-ok{background:rgba(34,197,94,.15);color:#22c55e;border-color:rgba(34,197,94,.3)}
+.hm-w{background:rgba(234,179,8,.15);color:#eab308;border-color:rgba(234,179,8,.3)}
+.hm-c{background:rgba(239,68,68,.15);color:#ef4444;border-color:rgba(239,68,68,.3)}
+.hm-off{background:rgba(100,116,139,.08);color:#475569;border-color:rgba(100,116,139,.15)}
+/* PID */
+.pid-card{background:#0f1425;border:1px solid#1f2844;border-radius:8px;padding:12px;text-align:center}
+.pid-mode{font-size:.55rem;padding:2px 6px;border-radius:4px;display:inline-block;margin-bottom:6px}
+.pid-auto{background:rgba(34,197,94,.12);color:#22c55e}
+.pid-man{background:rgba(234,179,8,.12);color:#eab308}
+.pid-val{font-size:1.1rem;font-weight:700;font-family:monospace;margin:4px 0}
+.pid-lbl{font-size:.6rem;color:#4a5a7a}
+/* BTN */
+.btn-s{padding:5px 12px;border-radius:5px;font-size:.7rem;font-weight:600;border:none;cursor:pointer;transition:all .15s}
+.btn-b{background:#3b82f6;color:#fff}.btn-b:hover{background:#2563eb}
+.btn-g{background:transparent;border:1px solid#2a3350;color:#7a8baa}.btn-g:hover{border-color:#3b82f6;color:#3b82f6}
+.btn-r{background:#ef4444;color:#fff}.btn-r:hover{background:#dc2626}
+
+/* WOW: Animated glow border */
+.glow-border::after{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;background:linear-gradient(45deg,#22c55e,#3b82f6,#8b5cf6,#ef4444,#eab308,#22c55e);background-size:400% 400%;border-radius:11px;z-index:-1;animation:glowRotate 8s linear infinite;opacity:.25}
+@keyframes glowRotate{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+/* Pulse dot for high-load gauges */
+.pulse-dot{position:absolute;top:10px;right:10px;width:8px;height:8px;border-radius:50%;animation:pulseDot 1.5s ease-in-out infinite}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(0.7)}}
+/* RESPONSIVE */
+@media(max-width:900px){.sb{width:50px}.ni span,.sb-sec,.sb-ft{display:none}.ni{justify-content:center;padding:9px}.g4{grid-template-columns:1fr 1fr}.g2,.g2e{grid-template-columns:1fr}.hm-grid{grid-template-columns:repeat(4,1fr)}}
+
+/* === WOW FACTOR CSS === */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* Premium Card Effects */
+
+.cd:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.35),inset 0 1px 0 rgba(59,130,246,0.2),0 0 20px rgba(59,130,246,0.03)}
+
+/* Sensor Value Glow */
+.sv{font-family:'JetBrains Mono',monospace}
+.cd:first-child .sv{text-shadow:0 0 25px rgba(34,197,94,0.4)}
+.cd.alarm .sv{text-shadow:0 0 30px rgba(239,68,68,0.5)}
+
+/* Value Update Pulse */
+@keyframes valPulse{0%{opacity:1}50%{opacity:.7}100%{opacity:1}}
+.val-flash{animation:valPulse .4s ease}
+
+/* Card Left Border Accents */
+.cd
+.cd
+.cd
+
+/* Enhanced Sidebar */
+.ni.active{border-left:3px solid #3b82f6;background:linear-gradient(135deg,rgba(30,58,95,0.9),rgba(22,45,74,0.7));box-shadow:0 2px 12px rgba(59,130,246,0.15),inset 0 1px 0 rgba(255,255,255,0.05)}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.ni.active::after{content:'';position:absolute;inset:0;border-radius:7px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.03),transparent);background-size:200% 100%;animation:shimmer 3s infinite}
+.ni{position:relative}
+.sb-sec{border-top:1px solid rgba(26,32,64,0.5);padding-top:10px}
+.sb-sec:first-child{border-top:none}
+
+/* Enhanced Topbar */
+.topbar{background:linear-gradient(180deg,#0f1528,#0a0e1a);border-bottom:1px solid rgba(59,130,246,0.1)}
+
+/* Quick Stats Enhancement */
+.qbar{background:linear-gradient(180deg,#0c1020,#080c16);border-bottom:1px solid rgba(26,32,64,0.8)}
+.qbar-item b{font-size:.8rem;font-family:'JetBrains Mono',monospace}
+
+/* Mimic Diagram Glow */
+.mimic{background:radial-gradient(ellipse at center,rgba(15,20,40,0.9),rgba(8,12,22,1));border:1px solid rgba(42,48,80,0.6)}
+.mimic svg rect[stroke="#22c55e"]{filter:drop-shadow(0 0 6px rgba(34,197,94,0.4))}
+.mimic svg rect[stroke="#ef4444"]{filter:drop-shadow(0 0 8px rgba(239,68,68,0.5))}
+.mimic svg rect[stroke="#3b82f6"]{filter:drop-shadow(0 0 6px rgba(59,130,246,0.4))}
+.flow-line{stroke-dasharray:8 4;animation:flow 1s linear infinite;opacity:.8}
+@keyframes flow{to{stroke-dashoffset:-24}}
+
+/* Gauge Container Enhancement */
+.gauge-wrap{text-align:center;position:relative;padding:14px 10px 8px;background:rgba(15,20,40,0.5);border:1px solid rgba(31,40,68,0.5);border-radius:12px;transition:all .3s}
+.gauge-wrap:hover{background:rgba(20,26,50,0.8);border-color:rgba(59,130,246,0.2);box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+.gauge-label{font-size:.72rem;color:#7a8baa;margin-top:4px;font-weight:500;letter-spacing:.3px}
+.gauge-sublabel{font-size:.55rem;color:#3b4a6b;margin-top:2px}
+
+/* Glow Border for Chart */
+.glow-border{position:relative}
+.glow-border::after{content:'';position:absolute;inset:-1px;border-radius:10px;background:linear-gradient(45deg,#3b82f6,#8b5cf6,#22c55e,#3b82f6);opacity:.15;z-index:-1;filter:blur(4px);animation:borderGlow 6s linear infinite}
+@keyframes borderGlow{0%{opacity:.1}50%{opacity:.25}100%{opacity:.1}}
+
+/* Sparkline SVG */
+.sparkline{margin-top:6px;opacity:.6}
+
+/* Pulse dots for high load */
+.pulse-dot{position:absolute;top:10px;right:10px;width:8px;height:8px;border-radius:50%;animation:pulseDot 1.5s ease infinite}
+@keyframes pulseDot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.5}}
+
+/* Table row hover glow */
+.tbl tr:hover td{background:rgba(59,130,246,0.04)}
+
+/* Monospace everywhere */
+.cfg-v,.sp-in,.al-time,#clock,.tb-stat b,.sv{font-family:'JetBrains Mono','SF Mono',Consolas,monospace}
+
+/* Button Enhancement */
+.btn-s{transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
+.btn-b:hover{box-shadow:0 4px 16px rgba(59,130,246,0.3);transform:translateY(-1px)}
+
+
+/* === PREMIUM CARD ENHANCEMENTS === */
+.cd{border-left:3px solid rgba(59,130,246,0.25);padding:16px 18px;transition:transform .2s,box-shadow .2s,border-left-color .2s}
+.cd:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,0.25);border-left-color:rgba(59,130,246,0.6)}
+.cd.alarm{border-left-color:#ef4444}
+.cd.alarm:hover{border-left-color:#ef4444}
+
+.cd-title{border-bottom:1px solid rgba(26,40,68,0.5);padding-bottom:8px;margin-bottom:12px}
+.cd-title i{color:#3b82f6;margin-right:4px}
+
+/* Config rows */
+.cfg-r{transition:padding .2s,background .2s;border-radius:4px}
+.cfg-r:hover{padding-left:6px;background:rgba(20,26,50,0.3)}
+
+/* Tables */
+.tbl thead{background:rgba(15,20,40,0.5)}
+.tbl tr:hover td{background:rgba(59,130,246,0.05);border-left:2px solid rgba(59,130,246,0.3)}
+.tbl td{border-left:2px solid transparent;transition:all .15s}
+
+/* Stat boxes */
+.st-box{border-top:2px solid rgba(59,130,246,0.25);transition:transform .2s,border-top-color .2s}
+.st-box:hover{border-top-color:#3b82f6;transform:translateY(-2px)}
+
+/* Alarm items */
+.al-item{padding:12px 8px;transition:background .2s;border-radius:6px;margin-bottom:2px}
+.al-item:hover{background:rgba(20,26,50,0.5)}
+
+/* Toggle rows */
+.tg-row{transition:background .2s,padding .2s;border-radius:4px}
+.tg-row:hover{background:rgba(20,26,50,0.3);padding-left:6px;padding-right:6px}
+
+/* Heatmap cells */
+.hm-cell{transition:transform .2s;cursor:pointer}
+.hm-cell:hover{transform:scale(1.08);z-index:2;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+
+/* Buttons */
+.btn-s{transition:transform .15s,box-shadow .15s}
+.btn-s:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,0.25)}
+
+/* Setpoint inputs */
+.sp-in{transition:border-color .2s,box-shadow .2s}
+.sp-in:focus{border-color:#3b82f6;box-shadow:0 0 0 2px rgba(59,130,246,0.2);outline:none}
+
+/* Value update flash */
+.val-flash{animation:valFlash .4s ease}
+@keyframes valFlash{0%{opacity:.6}100%{opacity:1}}
+
+/* Gauge wrap hover */
+.gauge-wrap{transition:transform .2s,border-color .2s}
+.gauge-wrap:hover{transform:translateY(-2px);border-color:rgba(59,130,246,0.4)}
+
+/* Info notes pulse on hover */
+div[style*="border-left:3px solid#3b82f6"]{transition:background .2s}
+div[style*="border-left:3px solid#3b82f6"]:hover{background:#0f1830 !important}
+
+/* Sidebar nav polish */
+.ni{transition:all .15s;border-left:3px solid transparent}
+.ni.active{border-left-color:#3b82f6}
+.ni:hover{border-left-color:rgba(59,130,246,0.3)}
+
+/* Scrollbar styling */
+.mn::-webkit-scrollbar{width:6px}
+.mn::-webkit-scrollbar-track{background:#080c16}
+.mn::-webkit-scrollbar-thumb{background:#1f2844;border-radius:3px}
+.mn::-webkit-scrollbar-thumb:hover{background:#2a3a5a}
+
+</style>
+</head>
+<body>
+<div class="topbar">
+<div class="tb-left"><a href="index.html" class="tb-back"><i class="fa-solid fa-arrow-left"></i> Site</a><div><div class="tb-brand">GM-SCADA</div><div class="tb-sub">Kynatron Technologies</div></div></div>
+<div class="tb-right">
+<div class="tb-stat"><b>16</b><small>Channels</small></div>
+<div class="tb-stat"><b style="color:#22c55e">14</b><small>Normal</small></div>
+<div class="tb-stat"><b style="color:#ef4444">2</b><small>Alarms</small></div>
+<div class="live-badge"><div class="live-dot"></div><span>LIVE</span></div>
+<div id="clock">00:00:00</div>
+<div class="tb-user"><i class="fa-solid fa-user-shield"></i> Admin</div>
+</div>
+</div>
+<!-- Quick Stats -->
+<div class="qbar">
+<div class="qbar-item"><i class="fa-solid fa-industry"></i> Batch <b>#2847</b></div>
+<div class="qbar-item ok"><i class="fa-solid fa-arrow-up"></i> Uptime <b>847d</b></div>
+<div class="qbar-item"><i class="fa-solid fa-hard-drive"></i> Storage <b>9.7%</b></div>
+<div class="qbar-item"><i class="fa-solid fa-microchip"></i> CPU <b>42°C</b></div>
+<div class="qbar-item"><i class="fa-solid fa-wifi"></i> <b>-42dBm</b></div>
+<div id="lastUpd"><i class="fa-solid fa-rotate"></i> Updated <b id="updSec">0</b>s ago</div>
+</div>
+<div class="app">
+<!-- SIDEBAR -->
+<div class="sb"><div class="sb-nav">
+<div class="sb-sec">Overview</div>
+<div class="ni active" onclick="sp('dash',this)"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></div>
+<div class="ni" onclick="sp('mon',this)"><i class="fa-solid fa-desktop"></i><span>Monitoring</span></div>
+<div class="ni" onclick="sp('alarm',this)"><i class="fa-solid fa-bell"></i><span>Alarms</span><span class="bdg">2</span></div>
+<div class="ni" onclick="sp('logs',this)"><i class="fa-solid fa-database"></i><span>Logs</span></div>
+<div class="sb-sec">Operations</div>
+<div class="ni" onclick="sp('ctrl',this)"><i class="fa-solid fa-sliders"></i><span>Control</span></div>
+<div class="ni" onclick="sp('rpt',this)"><i class="fa-solid fa-chart-column"></i><span>Reports</span></div>
+<div class="ni" onclick="sp('diag',this)"><i class="fa-solid fa-stethoscope"></i><span>Diagnostics</span></div>
+<div class="ni" onclick="sp('inv',this)"><i class="fa-solid fa-boxes-stacked"></i><span>Inventory</span></div>
+<div class="sb-sec">System</div>
+<div class="ni" onclick="sp('cfg',this)"><i class="fa-solid fa-gear"></i><span>Configuration</span></div>
+<div class="ni" onclick="sp('sched',this)"><i class="fa-solid fa-calendar"></i><span>Scheduler</span></div>
+<div class="ni" onclick="sp('cal',this)"><i class="fa-solid fa-certificate"></i><span>Calibration</span></div>
+<div class="ni" onclick="sp('adm',this)"><i class="fa-solid fa-shield-halved"></i><span>Admin</span></div>
+</div><div class="sb-ft">v2.1.0 | GM-DL Pro 16CH</div></div>
+<!-- MAIN -->
+<div class="mn">
+<!-- ===== DASHBOARD ===== -->
+<div class="pnl active" id="p-dash">
+<div style="background:#0c1424;border:1px solid#1a2040;border-left:3px solid#3b82f6;border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:.72rem;color:#7a8baa"><i class="fa-solid fa-circle-info" style="color:#3b82f6;margin-right:6px"></i>Real-time overview of all zones. Quickly spot anomalies and track production flow at a glance.</div>
+
+<!-- Sensor Cards -->
+<div class="g4">
+<div class="cd">
+<div class="sl"><i class="fa-solid fa-fire"></i> Zone 1 Furnace <span class="badge2 badge2-ok">OK</span></div>
+<div class="sv" id="s1">842<span class="su">&deg;C</span></div>
+<div class="sm"><span>CH-1 K-TC</span><span>SP 850&deg;C</span></div>
+<div class="sb2"><div class="sb2-f" style="width:82%;background:#22c55e"></div></div>
+</div>
+<div class="cd alarm">
+<div class="sl"><i class="fa-solid fa-temperature-high"></i> Zone 2 Kiln <span class="badge2 badge2-c">HIGH</span></div>
+<div class="sv" id="s2" style="color:#ef4444">1038<span class="su">&deg;C</span></div>
+<div class="sm"><span>CH-2 K-TC</span><span>SP 980&deg;C</span></div>
+<div class="sb2"><div class="sb2-f" style="width:95%;background:#ef4444"></div></div>
+</div>
+<div class="cd">
+<div class="sl"><i class="fa-solid fa-snowflake"></i> Zone 3 Cooling <span class="badge2 badge2-ok">OK</span></div>
+<div class="sv" id="s3">127<span class="su">&deg;C</span></div>
+<div class="sm"><span>CH-3 RTD</span><span>SP 130&deg;C</span></div>
+<div class="sb2"><div class="sb2-f" style="width:45%;background:#3b82f6"></div></div>
+</div>
+<div class="cd">
+<div class="sl"><i class="fa-solid fa-droplet"></i> RH Ambient <span class="badge2 badge2-w">WARN</span></div>
+<div class="sv" id="s4" style="color:#eab308">62<span class="su">%</span></div>
+<div class="sm"><span>CH-5 Cap</span><span>Limit &lt;55%</span></div>
+<div class="sb2"><div class="sb2-f" style="width:62%;background:#eab308"></div></div>
+</div>
+</div>
+
+<!-- Mimic Diagram -->
+<div class="mimic">
+<svg viewBox="0 0 800 120" fill="none">
+<text x="10" y="15" fill="#4a5a7a" font-size="9" font-family="sans-serif">PROCESS FLOW</text>
+<rect x="30" y="40" width="80" height="50" rx="6" fill="#131830" stroke="#2a3350"/><text x="70" y="62" fill="#94a3b8" font-size="8" text-anchor="middle">RAW</text><text x="70" y="75" fill="#cbd5e1" font-size="9" text-anchor="middle" font-weight="bold">INPUT</text>
+<rect x="180" y="40" width="90" height="50" rx="6" fill="#131830" stroke="#22c55e"/><text x="225" y="58" fill="#22c55e" font-size="8" text-anchor="middle">ZONE 1</text><text x="225" y="72" fill="#fff" font-size="11" text-anchor="middle" font-family="monospace" font-weight="bold" id="m1">842&deg;C</text><text x="225" y="84" fill="#4a5a7a" font-size="7" text-anchor="middle">FURNACE</text>
+<rect x="340" y="40" width="90" height="50" rx="6" fill="#131830" stroke="#ef4444"/><text x="385" y="58" fill="#ef4444" font-size="8" text-anchor="middle">ZONE 2</text><text x="385" y="72" fill="#ef4444" font-size="11" text-anchor="middle" font-family="monospace" font-weight="bold" id="m2">1038&deg;C</text><text x="385" y="84" fill="#4a5a7a" font-size="7" text-anchor="middle">KILN</text>
+<rect x="500" y="40" width="90" height="50" rx="6" fill="#131830" stroke="#3b82f6"/><text x="545" y="58" fill="#3b82f6" font-size="8" text-anchor="middle">ZONE 3</text><text x="545" y="72" fill="#fff" font-size="11" text-anchor="middle" font-family="monospace" font-weight="bold" id="m3">127&deg;C</text><text x="545" y="84" fill="#4a5a7a" font-size="7" text-anchor="middle">COOLING</text>
+<rect x="660" y="40" width="80" height="50" rx="6" fill="#131830" stroke="#2a3350"/><text x="700" y="62" fill="#94a3b8" font-size="8" text-anchor="middle">FINISHED</text><text x="700" y="75" fill="#cbd5e1" font-size="9" text-anchor="middle" font-weight="bold">OUTPUT</text>
+<line x1="110" y1="65" x2="180" y2="65" class="flow-line" stroke="#22c55e" stroke-width="2"/>
+<line x1="270" y1="65" x2="340" y2="65" class="flow-line" stroke="#ef4444" stroke-width="2"/>
+<line x1="430" y1="65" x2="500" y2="65" class="flow-line" stroke="#3b82f6" stroke-width="2"/>
+<line x1="590" y1="65" x2="660" y2="65" class="flow-line" stroke="#64748b" stroke-width="2"/>
+<text x="620" y="115" fill="#4a5a7a" font-size="8" text-anchor="end">Today:</text><text x="625" y="115" fill="#22c55e" font-size="9" font-weight="bold" font-family="monospace">1,247 units</text><text x="720" y="115" fill="#4a5a7a" font-size="8">/ 1,500 target (83%)</text>
+<circle r="3" fill="#22c55e" opacity=".8"><animateMotion dur="2s" repeatCount="indefinite" path="M110,65 L180,65"/></circle>
+<circle r="3" fill="#ef4444" opacity=".8"><animateMotion dur="2s" repeatCount="indefinite" path="M270,65 L340,65"/></circle>
+<circle r="3" fill="#3b82f6" opacity=".8"><animateMotion dur="2s" repeatCount="indefinite" path="M430,65 L500,65"/></circle>
+<circle r="3" fill="#64748b" opacity=".6"><animateMotion dur="2.5s" repeatCount="indefinite" path="M590,65 L660,65"/></circle>
+</svg>
+</div>
+
+<!-- Trend Chart -->
+<div class="cd" style="margin-bottom:16px">
+<div class="cd-title"><i class="fa-solid fa-chart-line"></i> Real-Time Process Trend <span style="float:right;font-size:.6rem;color:#3b4a6b">60 min &bull; 1s sample</span></div>
+<div id="ch1" style="height:220px"></div>
+</div>
+
+<!-- System Load Gauges -->
+<div class="cd">
+<div class="cd-title"><i class="fa-solid fa-circle-notch"></i> System Load</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:10px 0">
+<div style="text-align:center">
+<div id="g1" style="height:130px"></div>
+<div style="font-size:.75rem;color:#cbd5e1;margin-top:4px;font-weight:600">Zone 1</div>
+<div style="font-size:.6rem;color:#4a5a7a">Heater Output</div>
+</div>
+<div style="text-align:center">
+<div id="g2" style="height:130px"></div>
+<div style="font-size:.75rem;color:#cbd5e1;margin-top:4px;font-weight:600">Zone 2</div>
+<div style="font-size:.6rem;color:#ef4444">Critical</div>
+</div>
+<div style="text-align:center">
+<div id="g3" style="height:130px"></div>
+<div style="font-size:.75rem;color:#cbd5e1;margin-top:4px;font-weight:600">Fan Speed</div>
+<div style="font-size:.6rem;color:#4a5a7a">Cooling</div>
+</div>
+<div style="text-align:center">
+<div id="g4" style="height:130px"></div>
+<div style="font-size:.75rem;color:#cbd5e1;margin-top:4px;font-weight:600">Storage</div>
+<div style="font-size:.6rem;color:#4a5a7a">128 GB SD</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ===== MONITORING ===== -->
+<div class="pnl" id="p-mon">
+<div style="background:#0c1424;border:1px solid#1a2040;border-left:3px solid#3b82f6;border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:.72rem;color:#7a8baa"><i class="fa-solid fa-circle-info" style="color:#3b82f6;margin-right:6px"></i>Deep-dive into channel data. Use the trend chart to identify patterns and channel cards for instant status of each measurement point.</div>
+
+<!-- Channel Cards Grid -->
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px">
+
+<div class="cd" style="border-left:3px solid #22c55e;padding:14px 16px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+<div><div style="font-size:.6rem;color:#4a5a7a;text-transform:uppercase;letter-spacing:1px">CH-1 &bull; K-Type Thermocouple</div><div style="font-size:.95rem;font-weight:700;color:#e2e8f0;margin-top:2px">Zone 1 Furnace</div></div>
+<span class="badge2 badge2-ok">OK</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:6px;margin-bottom:8px"><span style="font-size:1.8rem;font-weight:700;font-family:monospace;color:#22c55e" id="mc1">842</span><span style="font-size:.8rem;color:#4a5a7a">&deg;C</span></div>
+<div style="display:flex;gap:16px;font-size:.65rem;color:#4a5a7a;margin-bottom:6px"><span><i class="fa-solid fa-crosshairs" style="color:#22c55e"></i> SP: 850&deg;C</span><span><i class="fa-solid fa-arrow-down"></i> Dev: -0.9%</span><span><i class="fa-solid fa-thermometer-half"></i> Temp</span></div>
+<div class="sb2"><div class="sb2-f" style="width:82%;background:linear-gradient(90deg,#22c55e,#16a34a)"></div></div>
+</div>
+
+<div class="cd alarm" style="border-left:3px solid #ef4444;padding:14px 16px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+<div><div style="font-size:.6rem;color:#4a5a7a;text-transform:uppercase;letter-spacing:1px">CH-2 &bull; K-Type Thermocouple</div><div style="font-size:.95rem;font-weight:700;color:#e2e8f0;margin-top:2px">Zone 2 Kiln</div></div>
+<span class="badge2 badge2-c"><i class="fa-solid fa-triangle-exclamation"></i> HIGH</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:6px;margin-bottom:8px"><span style="font-size:1.8rem;font-weight:700;font-family:monospace;color:#ef4444" id="mc2">1038</span><span style="font-size:.8rem;color:#4a5a7a">&deg;C</span></div>
+<div style="display:flex;gap:16px;font-size:.65rem;color:#4a5a7a;margin-bottom:6px"><span><i class="fa-solid fa-crosshairs" style="color:#ef4444"></i> SP: 980&deg;C</span><span style="color:#ef4444"><i class="fa-solid fa-arrow-up"></i> Dev: +5.9%</span><span><i class="fa-solid fa-thermometer-full"></i> Temp</span></div>
+<div class="sb2"><div class="sb2-f" style="width:95%;background:linear-gradient(90deg,#f97316,#ef4444)"></div></div>
+</div>
+
+<div class="cd" style="border-left:3px solid #3b82f6;padding:14px 16px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+<div><div style="font-size:.6rem;color:#4a5a7a;text-transform:uppercase;letter-spacing:1px">CH-3 &bull; RTD Pt100</div><div style="font-size:.95rem;font-weight:700;color:#e2e8f0;margin-top:2px">Zone 3 Cooling</div></div>
+<span class="badge2 badge2-ok">OK</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:6px;margin-bottom:8px"><span style="font-size:1.8rem;font-weight:700;font-family:monospace;color:#3b82f6" id="mc3">127</span><span style="font-size:.8rem;color:#4a5a7a">&deg;C</span></div>
+<div style="display:flex;gap:16px;font-size:.65rem;color:#4a5a7a;margin-bottom:6px"><span><i class="fa-solid fa-crosshairs" style="color:#3b82f6"></i> SP: 130&deg;C</span><span><i class="fa-solid fa-arrow-down"></i> Dev: -2.3%</span><span><i class="fa-solid fa-thermometer-quarter"></i> Temp</span></div>
+<div class="sb2"><div class="sb2-f" style="width:45%;background:linear-gradient(90deg,#3b82f6,#2563eb)"></div></div>
+</div>
+
+<div class="cd" style="border-left:3px solid #a855f7;padding:14px 16px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+<div><div style="font-size:.6rem;color:#4a5a7a;text-transform:uppercase;letter-spacing:1px">CH-4 &bull; K-Type Thermocouple</div><div style="font-size:.95rem;font-weight:700;color:#e2e8f0;margin-top:2px">Zone 4 Annealing</div></div>
+<span class="badge2 badge2-ok">OK</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:6px;margin-bottom:8px"><span style="font-size:1.8rem;font-weight:700;font-family:monospace;color:#a855f7">618</span><span style="font-size:.8rem;color:#4a5a7a">&deg;C</span></div>
+<div style="display:flex;gap:16px;font-size:.65rem;color:#4a5a7a;margin-bottom:6px"><span><i class="fa-solid fa-crosshairs" style="color:#a855f7"></i> SP: 600&deg;C</span><span style="color:#eab308"><i class="fa-solid fa-arrow-up"></i> Dev: +3.0%</span><span><i class="fa-solid fa-thermometer-half"></i> Temp</span></div>
+<div class="sb2"><div class="sb2-f" style="width:60%;background:linear-gradient(90deg,#a855f7,#7c3aed)"></div></div>
+</div>
+
+<div class="cd" style="border-left:3px solid #eab308;padding:14px 16px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+<div><div style="font-size:.6rem;color:#4a5a7a;text-transform:uppercase;letter-spacing:1px">CH-5 &bull; Capacitive Sensor</div><div style="font-size:.95rem;font-weight:700;color:#e2e8f0;margin-top:2px">Ambient Humidity</div></div>
+<span class="badge2 badge2-w">WARN</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:6px;margin-bottom:8px"><span style="font-size:1.8rem;font-weight:700;font-family:monospace;color:#eab308" id="mc4">62</span><span style="font-size:.8rem;color:#4a5a7a">%RH</span></div>
+<div style="display:flex;gap:16px;font-size:.65rem;color:#4a5a7a;margin-bottom:6px"><span><i class="fa-solid fa-crosshairs" style="color:#eab308"></i> Limit: &lt;55%</span><span style="color:#eab308"><i class="fa-solid fa-arrow-up"></i> +12.7%</span><span><i class="fa-solid fa-droplet"></i> Humidity</span></div>
+<div class="sb2"><div class="sb2-f" style="width:62%;background:linear-gradient(90deg,#eab308,#ca8a04)"></div></div>
+</div>
+
+<div class="cd" style="border-left:3px solid #06b6d4;padding:14px 16px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+<div><div style="font-size:.6rem;color:#4a5a7a;text-transform:uppercase;letter-spacing:1px">CH-6 &bull; NTC 10K Thermistor</div><div style="font-size:.95rem;font-weight:700;color:#e2e8f0;margin-top:2px">Ambient Temperature</div></div>
+<span class="badge2 badge2-ok">OK</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:6px;margin-bottom:8px"><span style="font-size:1.8rem;font-weight:700;font-family:monospace;color:#06b6d4">28</span><span style="font-size:.8rem;color:#4a5a7a">&deg;C</span></div>
+<div style="display:flex;gap:16px;font-size:.65rem;color:#4a5a7a;margin-bottom:6px"><span><i class="fa-solid fa-crosshairs" style="color:#06b6d4"></i> Limit: &lt;35&deg;C</span><span><i class="fa-solid fa-minus"></i> Normal</span><span><i class="fa-solid fa-temperature-low"></i> Temp</span></div>
+<div class="sb2"><div class="sb2-f" style="width:35%;background:linear-gradient(90deg,#06b6d4,#0891b2)"></div></div>
+</div>
+
+<div class="cd" style="border-left:3px solid #22c55e;padding:14px 16px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+<div><div style="font-size:.6rem;color:#4a5a7a;text-transform:uppercase;letter-spacing:1px">CH-7 &bull; 4-20mA Transmitter</div><div style="font-size:.95rem;font-weight:700;color:#e2e8f0;margin-top:2px">Line Pressure</div></div>
+<span class="badge2 badge2-ok">OK</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:6px;margin-bottom:8px"><span style="font-size:1.8rem;font-weight:700;font-family:monospace;color:#22c55e">4.2</span><span style="font-size:.8rem;color:#4a5a7a">bar</span></div>
+<div style="display:flex;gap:16px;font-size:.65rem;color:#4a5a7a;margin-bottom:6px"><span><i class="fa-solid fa-crosshairs" style="color:#22c55e"></i> SP: 4.5 bar</span><span><i class="fa-solid fa-arrow-down"></i> Dev: -6.7%</span><span><i class="fa-solid fa-gauge"></i> Pressure</span></div>
+<div class="sb2"><div class="sb2-f" style="width:42%;background:linear-gradient(90deg,#22c55e,#16a34a)"></div></div>
+</div>
+
+<div class="cd" style="border-left:3px solid #f97316;padding:14px 16px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+<div><div style="font-size:.6rem;color:#4a5a7a;text-transform:uppercase;letter-spacing:1px">CH-8 &bull; K-Type Thermocouple</div><div style="font-size:.95rem;font-weight:700;color:#e2e8f0;margin-top:2px">Preheat Chamber</div></div>
+<span class="badge2 badge2-ok">OK</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:6px;margin-bottom:8px"><span style="font-size:1.8rem;font-weight:700;font-family:monospace;color:#f97316">410</span><span style="font-size:.8rem;color:#4a5a7a">&deg;C</span></div>
+<div style="display:flex;gap:16px;font-size:.65rem;color:#4a5a7a;margin-bottom:6px"><span><i class="fa-solid fa-crosshairs" style="color:#f97316"></i> SP: 420&deg;C</span><span><i class="fa-solid fa-arrow-down"></i> Dev: -2.4%</span><span><i class="fa-solid fa-thermometer-half"></i> Temp</span></div>
+<div class="sb2"><div class="sb2-f" style="width:55%;background:linear-gradient(90deg,#f97316,#ea580c)"></div></div>
+</div>
+
+<div class="cd" style="border-left:3px solid #64748b;padding:14px 16px;opacity:.5">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+<div><div style="font-size:.6rem;color:#4a5a7a;text-transform:uppercase;letter-spacing:1px">CH-9 &bull; 0-10V Analog</div><div style="font-size:.95rem;font-weight:700;color:#e2e8f0;margin-top:2px">Motor Current</div></div>
+<span class="badge2" style="background:rgba(100,116,139,.1);color:#64748b">OFF</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:6px;margin-bottom:8px"><span style="font-size:1.8rem;font-weight:700;font-family:monospace;color:#64748b">—</span><span style="font-size:.8rem;color:#4a5a7a">A</span></div>
+<div style="display:flex;gap:16px;font-size:.65rem;color:#4a5a7a"><span><i class="fa-solid fa-bolt"></i> Voltage/Current</span><span>Disabled</span></div>
+</div>
+
+</div>
+
+<!-- Trend Chart -->
+<div class="cd"><div class="cd-title"><i class="fa-solid fa-chart-line"></i> Multi-Channel Trend <span style="float:right;font-size:.6rem;color:#4a5a7a;cursor:pointer">[1h] [6h] [12h] [24h]</span></div><div id="ch2" style="height:260px"></div></div>
+</div>
+
+<!-- ===== ALARMS ===== -->
+<div class="pnl" id="p-alarm">
+<div style="background:#0c1424;border:1px solid#1a2040;border-left:3px solid#3b82f6;border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:.72rem;color:#7a8baa"><i class="fa-solid fa-circle-info" style="color:#3b82f6;margin-right:6px"></i>All active and historical alarms. Acknowledge critical events to confirm operator awareness and maintain audit compliance.</div>
+<div class="st-bar"><div class="st-box"><b style="color:#ef4444">2</b><small>Active</small></div><div class="st-box"><b style="color:#eab308">1</b><small>Ack'd</small></div><div class="st-box"><b>23</b><small>Today</small></div><div class="st-box"><b style="color:#22c55e">20</b><small>Cleared</small></div></div>
+<div style="display:flex;gap:8px;margin-bottom:12px"><button class="btn-s btn-g" style="font-size:.65rem">All</button><button class="btn-s btn-g" style="font-size:.65rem;border-color:#ef4444;color:#ef4444">Critical</button><button class="btn-s btn-g" style="font-size:.65rem;border-color:#eab308;color:#eab308">Warning</button><button class="btn-s btn-g" style="font-size:.65rem">Info</button><span style="margin-left:auto;font-size:.7rem;color:#64748b;cursor:pointer"><i class="fa-solid fa-volume-high"></i> Sound ON</span><button class="btn-s btn-b" style="margin-left:8px"><i class="fa-solid fa-check-double"></i> Ack All</button></div>
+<div class="cd">
+<div class="al-item"><div class="al-icon c"><i class="fa-solid fa-triangle-exclamation"></i></div><div><div class="al-msg"><b>Zone 2 HIGH ALARM</b> — 1038°C > SP 980°C (+5.9%)</div><div class="al-time">14:32:08 | CH-2 | Unacknowledged</div></div><button class="al-ack">ACK</button></div>
+<div class="al-item"><div class="al-icon w"><i class="fa-solid fa-exclamation"></i></div><div><div class="al-msg"><b>Humidity Warning</b> — 62% RH > 55% limit</div><div class="al-time">14:28:45 | CH-5 | Acknowledged</div></div><button class="al-ack" style="color:#22c55e;border-color:#22c55e">✓</button></div>
+<div class="al-item"><div class="al-icon w"><i class="fa-solid fa-arrow-trend-up"></i></div><div><div class="al-msg">Rate-of-rise alarm — Zone 2 rising 2.1°C/min (limit 1.5)</div><div class="al-time">13:58:22 | CH-2 | Pre-alarm</div></div><button class="al-ack">ACK</button></div>
+<div class="al-item"><div class="al-icon i"><i class="fa-solid fa-circle-info"></i></div><div><div class="al-msg">Batch #2847 started — continuous logging active on 14 channels</div><div class="al-time">14:15:00 | System</div></div></div>
+<div class="al-item"><div class="al-icon o"><i class="fa-solid fa-check"></i></div><div><div class="al-msg">Zone 1 returned to normal — within ±1% of SP</div><div class="al-time">13:45:10 | Auto-cleared</div></div></div>
+<div class="al-item"><div class="al-icon i"><i class="fa-solid fa-wrench"></i></div><div><div class="al-msg">Calibration due: CH-5 in 48 hours</div><div class="al-time">13:30:00 | Maintenance</div></div></div>
+</div>
+</div>
+<!-- ===== LOGS ===== -->
+<div class="pnl" id="p-logs">
+<div style="background:#0c1424;border:1px solid#1a2040;border-left:3px solid#3b82f6;border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:.72rem;color:#7a8baa"><i class="fa-solid fa-circle-info" style="color:#3b82f6;margin-right:6px"></i>Complete audit trail of all recorded data. Filter by channel, export for analysis, and verify data integrity for regulatory compliance.</div>
+<div class="st-bar"><div class="st-box"><b>#2847</b><small>Batch</small></div><div class="st-box"><b>4h 32m</b><small>Duration</small></div><div class="st-box"><b>16,320</b><small>Samples</small></div><div class="st-box"><b style="color:#22c55e">OK</b><small>Integrity</small></div></div>
+<div style="display:flex;gap:8px;margin-bottom:10px;font-size:.7rem;align-items:center"><span style="color:#4a5a7a">Filter:</span><button class="btn-s btn-g">All Channels</button><button class="btn-s btn-g">Alarms Only</button><span style="margin-left:auto;color:#4a5a7a">Showing 1-20 of 16,320</span><button class="btn-s btn-g"><i class="fa-solid fa-download"></i> CSV</button></div>
+<div class="cd"><table class="tbl"><thead><tr><th>Time</th><th>Ch</th><th>Value</th><th>Unit</th><th>Status</th></tr></thead><tbody id="logTbl"></tbody></table></div>
+</div>
+<!-- ===== CONTROL ===== -->
+<div class="pnl" id="p-ctrl">
+<div style="background:#0c1424;border:1px solid#1a2040;border-left:3px solid#3b82f6;border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:.72rem;color:#7a8baa"><i class="fa-solid fa-circle-info" style="color:#3b82f6;margin-right:6px"></i>Operate equipment and tune process parameters. PID status shows closed-loop control health. Use setpoints to regulate temperatures.</div>
+<div class="g2e">
+<div class="cd"><div class="cd-title"><i class="fa-solid fa-power-off"></i> Relay Outputs</div>
+<div class="tg-row"><div><div class="tg-name">Furnace Heater</div><div class="tg-sub">R1 · 30A/240V</div></div><div class="tg on" onclick="this.classList.toggle('on')"></div></div>
+<div class="tg-row"><div><div class="tg-name">Cooling Fan Bank</div><div class="tg-sub">R2 · 15A/240V</div></div><div class="tg on" onclick="this.classList.toggle('on')"></div></div>
+<div class="tg-row"><div><div class="tg-name">Exhaust Damper</div><div class="tg-sub">R3 · Motorized</div></div><div class="tg" onclick="this.classList.toggle('on')"></div></div>
+<div class="tg-row"><div><div class="tg-name">Conveyor Belt</div><div class="tg-sub">R4 · VFD 50Hz</div></div><div class="tg on" onclick="this.classList.toggle('on')"></div></div>
+<div class="tg-row"><div><div class="tg-name">Gas Solenoid</div><div class="tg-sub">R5 · N/C Safety</div></div><div class="tg on" onclick="this.classList.toggle('on')"></div></div>
+<div class="tg-row"><div><div class="tg-name" style="color:#ef4444">E-STOP</div><div class="tg-sub">All OFF · Safety interlock</div></div><div class="tg" onclick="this.classList.toggle('on')"></div></div>
+</div>
+<div>
+<div class="cd" style="margin-bottom:14px"><div class="cd-title"><i class="fa-solid fa-crosshairs"></i> Setpoints</div>
+<div class="cfg-r"><span class="cfg-k">Zone 1</span><span><input class="sp-in" value="850"> °C</span></div>
+<div class="cfg-r"><span class="cfg-k">Zone 2</span><span><input class="sp-in" value="980"> °C</span></div>
+<div class="cfg-r"><span class="cfg-k">Zone 3</span><span><input class="sp-in" value="130"> °C</span></div>
+<div class="cfg-r"><span class="cfg-k">RH Limit</span><span><input class="sp-in" value="55"> %</span></div>
+<div class="cfg-r"><span class="cfg-k">Sample Rate</span><span><input class="sp-in" value="1"> sec</span></div>
+<div style="margin-top:8px"><button class="btn-s btn-b"><i class="fa-solid fa-paper-plane"></i> Apply</button></div>
+</div>
+<div class="cd"><div class="cd-title"><i class="fa-solid fa-gauge"></i> PID Loops</div>
+<div class="g3" style="margin-bottom:0">
+<div class="pid-card"><div class="pid-mode pid-auto">AUTO</div><div class="pid-lbl">Zone 1</div><div class="pid-val" style="color:#22c55e">82%</div><div class="pid-lbl">PV:842 SP:850</div></div>
+<div class="pid-card"><div class="pid-mode pid-man">MANUAL</div><div class="pid-lbl">Zone 2</div><div class="pid-val" style="color:#ef4444">96%</div><div class="pid-lbl">PV:1038 SP:980</div></div>
+<div class="pid-card"><div class="pid-mode pid-auto">AUTO</div><div class="pid-lbl">Zone 3</div><div class="pid-val" style="color:#3b82f6">45%</div><div class="pid-lbl">PV:127 SP:130</div></div>
+</div></div>
+</div>
+</div>
+</div>
+<!-- ===== REPORTS ===== -->
+<div class="pnl" id="p-rpt">
+<div style="background:#0c1424;border:1px solid#1a2040;border-left:3px solid#3b82f6;border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:.72rem;color:#7a8baa"><i class="fa-solid fa-circle-info" style="color:#3b82f6;margin-right:6px"></i>Shift summaries and OEE metrics. Generate reports for management review, quality audits, and regulatory submission.</div>
+<div class="g2e">
+<div class="cd"><div class="cd-title"><i class="fa-solid fa-chart-column"></i> Shift Summary (06:00–14:00)</div>
+<table class="tbl"><thead><tr><th>Channel</th><th>Min</th><th>Max</th><th>Avg</th><th>σ</th><th>Result</th></tr></thead><tbody>
+<tr><td>Zone 1</td><td>835°</td><td>862°</td><td>847°</td><td>±4.2</td><td><span class="badge2 badge2-ok">PASS</span></td></tr>
+<tr><td>Zone 2</td><td>965°</td><td>1042°</td><td>1005°</td><td>±18.7</td><td><span class="badge2 badge2-c">FAIL</span></td></tr>
+<tr><td>Zone 3</td><td>118°</td><td>134°</td><td>126°</td><td>±3.1</td><td><span class="badge2 badge2-ok">PASS</span></td></tr>
+<tr><td>RH</td><td>52%</td><td>67%</td><td>59%</td><td>±4.5</td><td><span class="badge2 badge2-w">WARN</span></td></tr>
+</tbody></table>
+<div style="margin-top:10px"><button class="btn-s btn-b"><i class="fa-solid fa-file-pdf"></i> PDF</button> <button class="btn-s btn-g"><i class="fa-solid fa-download"></i> CSV</button></div>
+</div>
+<div><div class="cd" style="margin-bottom:14px"><div class="cd-title"><i class="fa-solid fa-trophy"></i> OEE</div><div style="text-align:center;padding:10px"><div style="font-size:2.5rem;font-weight:700;color:#eab308;font-family:monospace">78.4%</div><div style="font-size:.7rem;color:#4a5a7a;margin-top:4px">Availability 92% × Performance 89% × Quality 96%</div></div></div>
+<div class="cd"><div class="cd-title"><i class="fa-solid fa-clock-rotate-left"></i> Downtime Events</div>
+<div class="cfg-r"><span class="cfg-k">13:58 – Zone 2 high (4m)</span><span class="cfg-v" style="color:#ef4444">Unplanned</span></div>
+<div class="cfg-r"><span class="cfg-k">10:30 – Conveyor jam (8m)</span><span class="cfg-v" style="color:#ef4444">Unplanned</span></div>
+<div class="cfg-r"><span class="cfg-k">09:00 – Shift change (15m)</span><span class="cfg-v" style="color:#3b82f6">Planned</span></div>
+</div></div>
+</div>
+</div>
+<!-- ===== DIAGNOSTICS ===== -->
+<div class="pnl" id="p-diag">
+<div style="background:#0c1424;border:1px solid#1a2040;border-left:3px solid#3b82f6;border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:.72rem;color:#7a8baa"><i class="fa-solid fa-circle-info" style="color:#3b82f6;margin-right:6px"></i>Sensor health and connectivity checks. Identify degrading sensors before they cause measurement errors or production losses.</div>
+<div class="cd-title"><i class="fa-solid fa-stethoscope"></i> System Diagnostics</div>
+<div class="g3">
+<div class="cd"><div class="cd-title">Sensor Health</div>
+<div class="cfg-r"><span class="cfg-k">CH-1 K-TC</span><span class="cfg-v" style="color:#22c55e">● Healthy</span></div>
+<div class="cfg-r"><span class="cfg-k">CH-2 K-TC</span><span class="cfg-v" style="color:#22c55e">● Healthy</span></div>
+<div class="cfg-r"><span class="cfg-k">CH-3 RTD</span><span class="cfg-v" style="color:#22c55e">● Healthy</span></div>
+<div class="cfg-r"><span class="cfg-k">CH-5 RH</span><span class="cfg-v" style="color:#eab308">● Cal Due</span></div>
+<div class="cfg-r"><span class="cfg-k">CH-15</span><span class="cfg-v" style="color:#64748b">● Disabled</span></div>
+<div class="cfg-r"><span class="cfg-k">CH-16</span><span class="cfg-v" style="color:#64748b">● Disabled</span></div>
+</div>
+<div class="cd"><div class="cd-title">Signal Quality</div>
+<div class="cfg-r"><span class="cfg-k">CH-1 Noise</span><span class="cfg-v">0.02°C RMS</span></div>
+<div class="cfg-r"><span class="cfg-k">CH-2 Noise</span><span class="cfg-v">0.04°C RMS</span></div>
+<div class="cfg-r"><span class="cfg-k">CH-3 Noise</span><span class="cfg-v">0.01°C RMS</span></div>
+<div class="cfg-r"><span class="cfg-k">CH-5 Noise</span><span class="cfg-v">0.3% RMS</span></div>
+<div class="cfg-r"><span class="cfg-k">Input Impedance</span><span class="cfg-v">>10 MΩ (all)</span></div>
+</div>
+<div class="cd"><div class="cd-title">Connectivity</div>
+<div class="cfg-r"><span class="cfg-k">WiFi</span><span class="cfg-v" style="color:#22c55e">Connected</span></div>
+<div class="cfg-r"><span class="cfg-k">MQTT Broker</span><span class="cfg-v" style="color:#22c55e">Connected</span></div>
+<div class="cfg-r"><span class="cfg-k">NTP Sync</span><span class="cfg-v" style="color:#22c55e">±12ms</span></div>
+<div class="cfg-r"><span class="cfg-k">Cloud Latency</span><span class="cfg-v">48ms</span></div>
+<div class="cfg-r"><span class="cfg-k">Last Packet</span><span class="cfg-v">2s ago</span></div>
+</div>
+</div>
+</div>
+<!-- ===== CONFIG ===== -->
+<div class="pnl" id="p-cfg">
+<div style="background:#0c1424;border:1px solid#1a2040;border-left:3px solid#3b82f6;border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:.72rem;color:#7a8baa"><i class="fa-solid fa-circle-info" style="color:#3b82f6;margin-right:6px"></i>Load vendor presets or build custom configurations. Ensure compliance with industry-specific standards (Pharma, Food, Metal, Cold Chain).</div>
+<div class="cd-title"><i class="fa-solid fa-gear"></i> Configuration</div>
+<!-- Vendor Presets Selector -->
+<div class="cd" style="margin-bottom:14px">
+<div class="cd-title"><i class="fa-solid fa-building"></i> Vendor Presets <span style="float:right;font-size:.65rem;color:#3b82f6;cursor:pointer"><i class="fa-solid fa-plus"></i> Add Vendor</span></div>
+<div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+<button class="btn-s btn-b" onclick="loadPreset('pharma')"><i class="fa-solid fa-pills"></i> Pharma (21 CFR)</button>
+<button class="btn-s btn-g" onclick="loadPreset('food')"><i class="fa-solid fa-utensils"></i> Food & Bev (HACCP)</button>
+<button class="btn-s btn-g" onclick="loadPreset('metal')"><i class="fa-solid fa-industry"></i> Metal Processing</button>
+<button class="btn-s btn-g" onclick="loadPreset('cold')"><i class="fa-solid fa-snowflake"></i> Cold Chain</button>
+<button class="btn-s btn-g" onclick="loadPreset('custom')"><i class="fa-solid fa-pen"></i> Custom</button>
+</div>
+<div id="presetInfo" style="background:#0a0f1c;border:1px solid#1f2844;border-radius:6px;padding:10px;font-size:.72rem;color:#94a3b8">
+<b style="color:#3b82f6">Pharma (21 CFR Part 11)</b> loaded — Sample: 1s, Logging: Continuous, Audit trail: ON, e-Signatures: Required, Data format: CSV with checksum, Retention: 5 years min
+</div>
+</div>
+<!-- Channel Config with loaded values -->
+<div class="g2e">
+<div class="cd"><div class="cd-title"><i class="fa-solid fa-sliders"></i> Channel Config <span style="float:right;font-size:.6rem;color:#22c55e">● Pharma preset active</span></div>
+<table class="tbl"><thead><tr><th>Ch</th><th>Name</th><th>Type</th><th>Range</th><th>Hi</th><th>Lo</th><th>Deadband</th><th>Log</th></tr></thead><tbody>
+<tr><td>1</td><td><input class="sp-in" value="Furnace" style="width:80px;text-align:left"></td><td>K-TC</td><td>0–1024°C</td><td><input class="sp-in" value="900"></td><td><input class="sp-in" value="750"></td><td><input class="sp-in" value="2"></td><td><span class="badge2 badge2-ok">ON</span></td></tr>
+<tr><td>2</td><td><input class="sp-in" value="Kiln" style="width:80px;text-align:left"></td><td>K-TC</td><td>0–1024°C</td><td><input class="sp-in" value="1000"></td><td><input class="sp-in" value="900"></td><td><input class="sp-in" value="3"></td><td><span class="badge2 badge2-ok">ON</span></td></tr>
+<tr><td>3</td><td><input class="sp-in" value="Cooling" style="width:80px;text-align:left"></td><td>RTD</td><td>-200–500°C</td><td><input class="sp-in" value="150"></td><td><input class="sp-in" value="80"></td><td><input class="sp-in" value="1"></td><td><span class="badge2 badge2-ok">ON</span></td></tr>
+<tr><td>5</td><td><input class="sp-in" value="RH" style="width:80px;text-align:left"></td><td>Cap</td><td>0–100%</td><td><input class="sp-in" value="55"></td><td><input class="sp-in" value="30"></td><td><input class="sp-in" value="2"></td><td><span class="badge2 badge2-ok">ON</span></td></tr>
+</tbody></table>
+<div style="margin-top:10px;display:flex;gap:6px"><button class="btn-s btn-b"><i class="fa-solid fa-save"></i> Save Config</button><button class="btn-s btn-g"><i class="fa-solid fa-rotate-left"></i> Reset to Preset</button></div>
+</div>
+<div class="cd"><div class="cd-title"><i class="fa-solid fa-network-wired"></i> Network</div>
+<div class="cfg-r"><span class="cfg-k">IP</span><span class="cfg-v">192.168.1.100</span></div>
+<div class="cfg-r"><span class="cfg-k">Gateway</span><span class="cfg-v">192.168.1.1</span></div>
+<div class="cfg-r"><span class="cfg-k">SSID</span><span class="cfg-v">KT-FACTORY-5G</span></div>
+<div class="cfg-r"><span class="cfg-k">MQTT</span><span class="cfg-v">mqtt.kynatron.com:8883</span></div>
+<div class="cfg-r"><span class="cfg-k">NTP</span><span class="cfg-v">pool.ntp.org</span></div>
+<div class="cfg-r"><span class="cfg-k">Web HMI</span><span class="cfg-v">:80 (HTTP)</span></div>
+</div>
+</div>
+<!-- Product Configuration Builder -->
+<div class="cd"><div class="cd-title"><i class="fa-solid fa-wand-magic-sparkles"></i> New Product Configuration Builder</div>
+<p style="font-size:.72rem;color:#7a8baa;margin-bottom:12px">Create a custom configuration for a new product/deployment</p>
+<div class="g3" style="margin-bottom:0">
+<div>
+<div style="font-size:.7rem;color:#7a8baa;margin-bottom:4px">Product Name</div>
+<input class="sp-in" style="width:100%;text-align:left;padding:6px 10px" placeholder="e.g., Steel Kiln Monitor v2">
+</div>
+<div>
+<div style="font-size:.7rem;color:#7a8baa;margin-bottom:4px">Base Preset</div>
+<select class="sp-in" style="width:100%;text-align:left;padding:6px 10px"><option>Metal Processing</option><option>Pharma (21 CFR)</option><option>Food & Bev</option><option>Cold Chain</option><option>Blank</option></select>
+</div>
+<div>
+<div style="font-size:.7rem;color:#7a8baa;margin-bottom:4px">Channel Count</div>
+<select class="sp-in" style="width:100%;text-align:left;padding:6px 10px"><option>4 Channels</option><option>8 Channels</option><option selected>16 Channels</option></select>
+</div>
+</div>
+<div class="g3" style="margin-top:12px;margin-bottom:0">
+<div>
+<div style="font-size:.7rem;color:#7a8baa;margin-bottom:4px">Sample Rate</div>
+<select class="sp-in" style="width:100%;text-align:left;padding:6px 10px"><option selected>1 sec</option><option>5 sec</option><option>10 sec</option><option>30 sec</option><option>1 min</option></select>
+</div>
+<div>
+<div style="font-size:.7rem;color:#7a8baa;margin-bottom:4px">Connectivity</div>
+<select class="sp-in" style="width:100%;text-align:left;padding:6px 10px"><option selected>WiFi + MQTT</option><option>Ethernet</option><option>4G LTE</option><option>USB Only</option></select>
+</div>
+<div>
+<div style="font-size:.7rem;color:#7a8baa;margin-bottom:4px">Compliance</div>
+<select class="sp-in" style="width:100%;text-align:left;padding:6px 10px"><option>None</option><option selected>21 CFR Part 11</option><option>HACCP</option><option>ISO 17025</option></select>
+</div>
+</div>
+<div style="margin-top:14px;display:flex;gap:8px"><button class="btn-s btn-b"><i class="fa-solid fa-plus"></i> Create Configuration</button><button class="btn-s btn-g"><i class="fa-solid fa-file-export"></i> Export Template</button></div>
+</div>
+</div>
+
+<!-- ===== SCHEDULER ===== -->
+<div class="pnl" id="p-sched">
+<div style="background:#0c1424;border:1px solid#1a2040;border-left:3px solid#3b82f6;border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:.72rem;color:#7a8baa"><i class="fa-solid fa-circle-info" style="color:#3b82f6;margin-right:6px"></i>Plan batches and maintenance windows. Stay ahead of calibration deadlines to avoid compliance gaps or unplanned downtime.</div>
+<div class="cd-title"><i class="fa-solid fa-calendar"></i> Schedule & Maintenance</div>
+<div class="g2e">
+<div class="cd"><div class="cd-title">Batch Schedule</div>
+<table class="tbl"><thead><tr><th>Batch</th><th>Start</th><th>End</th><th>Product</th><th>Status</th></tr></thead><tbody>
+<tr><td>#2847</td><td>10:00</td><td>—</td><td>Steel Rod A</td><td><span class="badge2 badge2-ok">Running</span></td></tr>
+<tr><td>#2848</td><td>15:00</td><td>22:00</td><td>Steel Rod B</td><td><span class="badge2" style="background:rgba(100,116,139,.1);color:#94a3b8">Scheduled</span></td></tr>
+<tr><td>#2849</td><td>Tomorrow 06:00</td><td>—</td><td>Alloy Mix C</td><td><span class="badge2" style="background:rgba(100,116,139,.1);color:#94a3b8">Pending</span></td></tr>
+</tbody></table></div>
+<div class="cd"><div class="cd-title">Calibration Schedule</div>
+<div class="cfg-r"><span class="cfg-k">CH-5 Humidity</span><span class="cfg-v" style="color:#eab308">Due in 48h</span></div>
+<div class="cfg-r"><span class="cfg-k">CH-1 K-TC</span><span class="cfg-v">Due Jul 28</span></div>
+<div class="cfg-r"><span class="cfg-k">CH-2 K-TC</span><span class="cfg-v">Due Jul 28</span></div>
+<div class="cfg-r"><span class="cfg-k">CH-3 RTD</span><span class="cfg-v">Due Aug 05</span></div>
+<div class="cfg-r"><span class="cfg-k">All Channels</span><span class="cfg-v">Annual: Jan 2027</span></div>
+</div>
+</div>
+</div>
+<!-- ===== INVENTORY ===== -->
+<div class="pnl" id="p-inv">
+<div style="background:#0c1424;border:1px solid#1a2040;border-left:3px solid#3b82f6;border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:.72rem;color:#7a8baa"><i class="fa-solid fa-circle-info" style="color:#3b82f6;margin-right:6px"></i>Track spare parts and consumables. Avoid unplanned production stops due to unavailable replacement sensors or components.</div>
+<div class="cd-title"><i class="fa-solid fa-boxes-stacked"></i> Inventory Management</div>
+<div class="st-bar">
+<div class="st-box"><b style="color:#22c55e">142</b><small>In Stock</small></div>
+<div class="st-box"><b style="color:#eab308">18</b><small>Low Stock</small></div>
+<div class="st-box"><b style="color:#ef4444">3</b><small>Out of Stock</small></div>
+<div class="st-box"><b>23</b><small>On Order</small></div>
+</div>
+<div class="g2e">
+<div class="cd"><div class="cd-title"><i class="fa-solid fa-warehouse"></i> Spare Parts & Sensors</div>
+<table class="tbl"><thead><tr><th>Item</th><th>Part No.</th><th>Stock</th><th>Min Qty</th><th>Status</th><th>Reorder</th></tr></thead><tbody>
+<tr><td>K-Type Thermocouple Probe</td><td>KT-TC-K100</td><td>24</td><td>10</td><td><span class="badge2 badge2-ok">OK</span></td><td>—</td></tr>
+<tr><td>RTD Pt100 Sensor</td><td>KT-RTD-P100</td><td>8</td><td>5</td><td><span class="badge2 badge2-ok">OK</span></td><td>—</td></tr>
+<tr><td>Capacitive RH Probe</td><td>KT-RH-C200</td><td>3</td><td>5</td><td><span class="badge2 badge2-w">LOW</span></td><td><button class="btn-s btn-b" style="padding:2px 8px;font-size:.6rem">Order</button></td></tr>
+<tr><td>SD Card 128GB Industrial</td><td>KT-SD-128I</td><td>12</td><td>5</td><td><span class="badge2 badge2-ok">OK</span></td><td>—</td></tr>
+<tr><td>Relay Module 30A</td><td>KT-RLY-30A</td><td>2</td><td>4</td><td><span class="badge2 badge2-w">LOW</span></td><td><button class="btn-s btn-b" style="padding:2px 8px;font-size:.6rem">Order</button></td></tr>
+<tr><td>Terminal Block 16-pos</td><td>KT-TB-16P</td><td>0</td><td>6</td><td><span class="badge2 badge2-c">OUT</span></td><td><button class="btn-s btn-r" style="padding:2px 8px;font-size:.6rem">Urgent</button></td></tr>
+<tr><td>IP66 Cable Gland M20</td><td>KT-CG-M20</td><td>45</td><td>20</td><td><span class="badge2 badge2-ok">OK</span></td><td>—</td></tr>
+<tr><td>Fuse 5A/250V (pack 10)</td><td>KT-F-5A10</td><td>6</td><td>5</td><td><span class="badge2 badge2-ok">OK</span></td><td>—</td></tr>
+</tbody></table>
+</div>
+<div class="cd"><div class="cd-title"><i class="fa-solid fa-truck-fast"></i> Pending Orders</div>
+<div class="cfg-r"><span class="cfg-k">PO-2847-01</span><span class="cfg-v">Terminal Blocks x20 <span style="color:#eab308;font-size:.6rem">● In Transit</span></span></div>
+<div class="cfg-r"><span class="cfg-k">PO-2847-02</span><span class="cfg-v">RH Probes x10 <span style="color:#3b82f6;font-size:.6rem">● Ordered</span></span></div>
+<div class="cfg-r"><span class="cfg-k">PO-2846-05</span><span class="cfg-v">Relay Modules x10 <span style="color:#3b82f6;font-size:.6rem">● Ordered</span></span></div>
+<div class="cd-title" style="margin-top:14px"><i class="fa-solid fa-chart-pie"></i> Consumption (This Month)</div>
+<div class="cfg-r"><span class="cfg-k">Thermocouples</span><span class="cfg-v">6 used / 4 replaced</span></div>
+<div class="cfg-r"><span class="cfg-k">SD Cards</span><span class="cfg-v">2 rotated</span></div>
+<div class="cfg-r"><span class="cfg-k">Fuses</span><span class="cfg-v">3 blown (Zone 2)</span></div>
+<div class="cfg-r"><span class="cfg-k">Total Cost</span><span class="cfg-v" style="color:#f8fafc">₹14,250</span></div>
+</div>
+</div>
+</div>
+
+<!-- ===== CALIBRATION ===== -->
+<div class="pnl" id="p-cal">
+<div style="background:#0c1424;border:1px solid#1a2040;border-left:3px solid#3b82f6;border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:.72rem;color:#7a8baa"><i class="fa-solid fa-circle-info" style="color:#3b82f6;margin-right:6px"></i>Track calibration status of all measurement channels and reference standards. Ensures traceability, accuracy, and regulatory compliance.</div>
+<div class="cd-title"><i class="fa-solid fa-certificate"></i> Calibration Management</div>
+<div class="st-bar">
+<div class="st-box"><b>16</b><small>Total Sensors</small></div>
+<div class="st-box"><b style="color:#22c55e">11</b><small>Calibrated OK</small></div>
+<div class="st-box"><b style="color:#eab308">3</b><small>Due Soon</small></div>
+<div class="st-box"><b style="color:#ef4444">2</b><small>Overdue</small></div>
+</div>
+<div class="cd" style="margin-bottom:14px"><div class="cd-title"><i class="fa-solid fa-table"></i> Calibration Schedule</div>
+<table class="tbl"><thead><tr><th>Part / Sensor</th><th>Ch</th><th>Type</th><th>Last Calibrated</th><th>Next Due</th><th>Status</th><th>Action</th></tr></thead><tbody>
+<tr><td>Zone 1 Furnace Probe</td><td>CH-1</td><td>K-TC</td><td>2026-06-15</td><td>2026-09-15</td><td><span class="badge2 badge2-ok">OK</span></td><td><button class="btn-s btn-g" style="padding:2px 6px;font-size:.55rem">Schedule</button></td></tr>
+<tr><td>Zone 2 Kiln Probe</td><td>CH-2</td><td>K-TC</td><td>2026-06-15</td><td>2026-09-15</td><td><span class="badge2 badge2-ok">OK</span></td><td><button class="btn-s btn-g" style="padding:2px 6px;font-size:.55rem">Schedule</button></td></tr>
+<tr><td>Zone 3 Cooling RTD</td><td>CH-3</td><td>RTD Pt100</td><td>2026-05-20</td><td>2026-08-20</td><td><span class="badge2 badge2-ok">OK</span></td><td><button class="btn-s btn-g" style="padding:2px 6px;font-size:.55rem">Schedule</button></td></tr>
+<tr><td>Zone 4 Annealing Probe</td><td>CH-4</td><td>K-TC</td><td>2026-06-15</td><td>2026-09-15</td><td><span class="badge2 badge2-ok">OK</span></td><td><button class="btn-s btn-g" style="padding:2px 6px;font-size:.55rem">Schedule</button></td></tr>
+<tr><td>Humidity Sensor</td><td>CH-5</td><td>Capacitive</td><td>2026-04-10</td><td>2026-07-10</td><td><span class="badge2 badge2-c">OVERDUE</span></td><td><button class="btn-s btn-r" style="padding:2px 6px;font-size:.55rem">Urgent</button></td></tr>
+<tr><td>Ambient Temp NTC</td><td>CH-6</td><td>NTC 10K</td><td>2026-05-01</td><td>2026-08-01</td><td><span class="badge2 badge2-w">DUE SOON</span></td><td><button class="btn-s btn-b" style="padding:2px 6px;font-size:.55rem">Schedule</button></td></tr>
+<tr><td>Pressure Transmitter</td><td>CH-7</td><td>4-20mA</td><td>2026-03-22</td><td>2026-06-22</td><td><span class="badge2 badge2-c">OVERDUE</span></td><td><button class="btn-s btn-r" style="padding:2px 6px;font-size:.55rem">Urgent</button></td></tr>
+<tr><td>Preheat Zone Probe</td><td>CH-8</td><td>K-TC</td><td>2026-06-01</td><td>2026-09-01</td><td><span class="badge2 badge2-w">DUE SOON</span></td><td><button class="btn-s btn-b" style="padding:2px 6px;font-size:.55rem">Schedule</button></td></tr>
+<tr><td>Reference Std (Ice Point)</td><td>REF-1</td><td>Standard</td><td>2026-01-15</td><td>2027-01-15</td><td><span class="badge2 badge2-ok">OK</span></td><td>—</td></tr>
+<tr><td>Reference Std (1000°C)</td><td>REF-2</td><td>Standard</td><td>2026-01-15</td><td>2027-01-15</td><td><span class="badge2 badge2-ok">OK</span></td><td>—</td></tr>
+<tr><td>System RTC Clock</td><td>SYS</td><td>RTC/NTP</td><td>2026-07-01</td><td>2026-10-01</td><td><span class="badge2 badge2-ok">OK</span></td><td>—</td></tr>
+<tr><td>Cold Junction Comp.</td><td>INT</td><td>Internal</td><td>2026-06-15</td><td>2026-09-15</td><td><span class="badge2 badge2-w">DUE SOON</span></td><td><button class="btn-s btn-b" style="padding:2px 6px;font-size:.55rem">Schedule</button></td></tr>
+</tbody></table>
+</div>
+<!-- Requires Replacement -->
+<div class="cd" style="margin-bottom:14px"><div class="cd-title" style="color:#ef4444"><i class="fa-solid fa-triangle-exclamation"></i> Requires Replacement</div>
+<table class="tbl"><thead><tr><th>Part</th><th>Ch</th><th>Service Life</th><th>Issue</th><th>Recommendation</th></tr></thead><tbody>
+<tr><td>Humidity Probe (Cap.)</td><td>CH-5</td><td>18 months</td><td style="color:#ef4444">Accuracy drift detected (±4.2% vs spec ±2%)</td><td>Replace immediately — order KT-RH-C200</td></tr>
+<tr><td>Pressure Transmitter</td><td>CH-7</td><td>24 months</td><td style="color:#eab308">Zero offset +0.3 bar (recal attempted, persists)</td><td>Schedule replacement within 30 days</td></tr>
+<tr><td>Zone 2 Thermocouple</td><td>CH-2</td><td>14 months</td><td style="color:#eab308">Insulation resistance degrading (2.1 MΩ, spec >5 MΩ)</td><td>Monitor closely — replace at next shutdown</td></tr>
+</tbody></table>
+</div>
+<div style="display:flex;gap:8px"><button class="btn-s btn-b"><i class="fa-solid fa-calendar-plus"></i> Schedule Calibration</button><button class="btn-s btn-g"><i class="fa-solid fa-file-export"></i> Export Calibration Report</button><button class="btn-s btn-g"><i class="fa-solid fa-print"></i> Print Certificate</button></div>
+</div>
+
+<!-- ===== ADMIN ===== -->
+<div class="pnl" id="p-adm">
+<div style="background:#0c1424;border:1px solid#1a2040;border-left:3px solid#3b82f6;border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:.72rem;color:#7a8baa"><i class="fa-solid fa-circle-info" style="color:#3b82f6;margin-right:6px"></i>System management, user access control, and full audit trail. Ensures accountability and security across all operator actions.</div>
+<div class="g2e">
+<div class="cd"><div class="cd-title"><i class="fa-solid fa-microchip"></i> System</div>
+<div class="cfg-r"><span class="cfg-k">Model</span><span class="cfg-v">GM-DL Pro 16CH</span></div>
+<div class="cfg-r"><span class="cfg-k">Serial</span><span class="cfg-v">KT-2026-PRO-00142</span></div>
+<div class="cfg-r"><span class="cfg-k">Firmware</span><span class="cfg-v">v2.1.0 <span style="color:#22c55e;font-size:.6rem">● Up to date</span></span></div>
+<div class="cfg-r"><span class="cfg-k">Uptime</span><span class="cfg-v" style="color:#22c55e">847d 14h 32m</span></div>
+<div class="cfg-r"><span class="cfg-k">CPU</span><span class="cfg-v">48°C | 12% load</span></div>
+<div class="cfg-r"><span class="cfg-k">RAM</span><span class="cfg-v">124 / 512 MB</span></div>
+<div class="cfg-r"><span class="cfg-k">License</span><span class="cfg-v">Pro (Exp: Dec 2027)</span></div>
+<div class="cfg-r"><span class="cfg-k">Last Backup</span><span class="cfg-v">Today 06:00</span></div>
+<div style="margin-top:10px;display:flex;gap:6px"><button class="btn-s btn-g"><i class="fa-solid fa-rotate"></i> Restart</button><button class="btn-s btn-g"><i class="fa-solid fa-download"></i> Backup Now</button><button class="btn-s btn-r"><i class="fa-solid fa-trash"></i> Factory Reset</button></div>
+</div>
+<div class="cd"><div class="cd-title"><i class="fa-solid fa-users"></i> User Management <span style="float:right;font-size:.65rem;color:#3b82f6;cursor:pointer" onclick="document.getElementById('addUserForm').style.display='block'"><i class="fa-solid fa-user-plus"></i> Add User</span></div>
+<table class="tbl"><thead><tr><th>User</th><th>Role</th><th>Last Login</th><th>Status</th><th>Action</th></tr></thead><tbody>
+<tr><td>admin</td><td>Administrator</td><td>Today 08:00</td><td><span class="badge2 badge2-ok">Active</span></td><td style="color:#64748b;font-size:.65rem">—</td></tr>
+<tr><td>operator1</td><td>Operator</td><td>Today 06:15</td><td><span class="badge2 badge2-ok">Active</span></td><td><button class="btn-s btn-g" style="padding:1px 6px;font-size:.55rem">Edit</button></td></tr>
+<tr><td>operator2</td><td>Operator</td><td>Jul 12</td><td><span class="badge2" style="background:rgba(100,116,139,.1);color:#94a3b8">Inactive</span></td><td><button class="btn-s btn-g" style="padding:1px 6px;font-size:.55rem">Edit</button></td></tr>
+<tr><td>viewer_mgmt</td><td>Viewer</td><td>Yesterday</td><td><span class="badge2 badge2-ok">Active</span></td><td><button class="btn-s btn-g" style="padding:1px 6px;font-size:.55rem">Edit</button></td></tr>
+<tr><td>maint_team</td><td>Maintenance</td><td>Jul 10</td><td><span class="badge2 badge2-ok">Active</span></td><td><button class="btn-s btn-g" style="padding:1px 6px;font-size:.55rem">Edit</button></td></tr>
+</tbody></table>
+<!-- Add User Form (hidden by default) -->
+<div id="addUserForm" style="display:none;margin-top:14px;background:#0a0f1c;border:1px solid#1f2844;border-radius:8px;padding:14px">
+<div class="cd-title"><i class="fa-solid fa-user-plus"></i> Add New User</div>
+<div class="g3" style="margin-bottom:8px">
+<div><div style="font-size:.65rem;color:#7a8baa;margin-bottom:3px">Username</div><input class="sp-in" style="width:100%;text-align:left" placeholder="e.g., operator3"></div>
+<div><div style="font-size:.65rem;color:#7a8baa;margin-bottom:3px">Full Name</div><input class="sp-in" style="width:100%;text-align:left" placeholder="e.g., Rahul Sharma"></div>
+<div><div style="font-size:.65rem;color:#7a8baa;margin-bottom:3px">Role</div><select class="sp-in" style="width:100%;text-align:left"><option>Operator</option><option>Viewer</option><option>Maintenance</option><option>Administrator</option></select></div>
+</div>
+<div class="g3" style="margin-bottom:0">
+<div><div style="font-size:.65rem;color:#7a8baa;margin-bottom:3px">Email</div><input class="sp-in" style="width:100%;text-align:left" placeholder="user@kynatron.com"></div>
+<div><div style="font-size:.65rem;color:#7a8baa;margin-bottom:3px">Access Level</div><select class="sp-in" style="width:100%;text-align:left"><option>View + Control</option><option>View Only</option><option>Full Access</option><option>Config + View</option></select></div>
+<div><div style="font-size:.65rem;color:#7a8baa;margin-bottom:3px">Temp Password</div><input class="sp-in" type="password" style="width:100%;text-align:left" value="temp1234"></div>
+</div>
+<div style="margin-top:10px;display:flex;gap:6px"><button class="btn-s btn-b"><i class="fa-solid fa-check"></i> Create User</button><button class="btn-s btn-g" onclick="document.getElementById('addUserForm').style.display='none'"><i class="fa-solid fa-xmark"></i> Cancel</button></div>
+</div>
+</div>
+</div>
+<!-- Audit + Permissions -->
+<div class="g2e">
+<div class="cd"><div class="cd-title"><i class="fa-solid fa-clock-rotate-left"></i> Audit Trail</div>
+<table class="tbl"><thead><tr><th>Time</th><th>User</th><th>Action</th><th>Detail</th></tr></thead><tbody>
+<tr><td style="font-family:monospace">08:00:12</td><td>admin</td><td>Login</td><td>WiFi (192.168.1.45)</td></tr>
+<tr><td style="font-family:monospace">06:15:30</td><td>operator1</td><td>Login</td><td>Front Panel</td></tr>
+<tr><td style="font-family:monospace">06:00:00</td><td>SYSTEM</td><td>Batch Start</td><td>#2847 auto-trigger</td></tr>
+<tr><td style="font-family:monospace">05:55:00</td><td>SYSTEM</td><td>NTP Sync</td><td>Drift ±8ms corrected</td></tr>
+<tr><td style="font-family:monospace">02:00:00</td><td>SYSTEM</td><td>Backup</td><td>12.4 GB → SD card</td></tr>
+<tr><td style="font-family:monospace">Yesterday 22:00</td><td>admin</td><td>Config Change</td><td>Zone 2 SP: 950→980°C</td></tr>
+<tr><td style="font-family:monospace">Yesterday 17:30</td><td>viewer_mgmt</td><td>Login</td><td>Web HMI (10.0.0.5)</td></tr>
+</tbody></table>
+</div>
+<div class="cd"><div class="cd-title"><i class="fa-solid fa-lock"></i> Role Permissions</div>
+<table class="tbl"><thead><tr><th>Permission</th><th>Admin</th><th>Operator</th><th>Maint.</th><th>Viewer</th></tr></thead><tbody>
+<tr><td>View Dashboard</td><td class="b-ok">●</td><td class="b-ok">●</td><td class="b-ok">●</td><td class="b-ok">●</td></tr>
+<tr><td>Control Equipment</td><td class="b-ok">●</td><td class="b-ok">●</td><td style="color:#64748b">—</td><td style="color:#64748b">—</td></tr>
+<tr><td>Change Setpoints</td><td class="b-ok">●</td><td class="b-ok">●</td><td style="color:#64748b">—</td><td style="color:#64748b">—</td></tr>
+<tr><td>Acknowledge Alarms</td><td class="b-ok">●</td><td class="b-ok">●</td><td class="b-ok">●</td><td style="color:#64748b">—</td></tr>
+<tr><td>Edit Configuration</td><td class="b-ok">●</td><td style="color:#64748b">—</td><td style="color:#64748b">—</td><td style="color:#64748b">—</td></tr>
+<tr><td>Manage Users</td><td class="b-ok">●</td><td style="color:#64748b">—</td><td style="color:#64748b">—</td><td style="color:#64748b">—</td></tr>
+<tr><td>Factory Reset</td><td class="b-ok">●</td><td style="color:#64748b">—</td><td style="color:#64748b">—</td><td style="color:#64748b">—</td></tr>
+</tbody></table>
+</div>
+</div>
+</div>
+
+</div><!-- mn -->
+</div><!-- app -->
+<script>
+function sp(id,el){var ps=document.querySelectorAll('.pnl'),ns=document.querySelectorAll('.ni');for(var i=0;i<ps.length;i++)ps[i].classList.remove('active');for(var i=0;i<ns.length;i++)ns[i].classList.remove('active');document.getElementById('p-'+id).classList.add('active');el.classList.add('active');if(id==='mon'&&!window._fc){initFC();window._fc=1}}
+function genD(b,v,n){var d=[],now=Date.now();for(var i=n;i>0;i--)d.push([now-i*60000,b+(Math.random()-.5)*v]);return d}
+function R(a,b){return Math.floor(Math.random()*(b-a+1))+a}
+// Mini chart — Areaspline with neon glow
+var mc=Highcharts.chart('ch1',{
+chart:{type:'areaspline',backgroundColor:'transparent',animation:false,style:{fontFamily:'inherit'}},
+title:{text:null},
+legend:{align:'center',verticalAlign:'bottom',itemStyle:{color:'#7a8baa',fontSize:'10px',fontWeight:'400'},itemHoverStyle:{color:'#f8fafc'},symbolRadius:4},
+xAxis:{type:'datetime',lineColor:'#1a2040',tickColor:'#1a2040',labels:{style:{color:'#3b4a6b',fontSize:'9px'}},gridLineWidth:0,crosshair:{width:1,color:'rgba(255,255,255,0.1)',dashStyle:'Dot'}},
+yAxis:{title:{text:null},labels:{style:{color:'#3b4a6b',fontSize:'9px'}},gridLineColor:'#1a2040',gridLineWidth:1,min:0,max:1100},
+tooltip:{backgroundColor:'rgba(13,16,32,0.95)',borderColor:'#3b82f6',borderRadius:8,style:{color:'#f8fafc',fontSize:'11px'},shared:true,shadow:{color:'#3b82f6',width:4,opacity:0.1},useHTML:true,headerFormat:'<span style="font-size:10px;color:#64748b">{point.key}</span><br/>',pointFormat:'<span style="color:{series.color}">●</span> {series.name}: <b style="font-family:monospace">{point.y:.0f}</b><br/>'},
+plotOptions:{areaspline:{lineWidth:3,marker:{enabled:false},states:{hover:{lineWidth:4}},fillOpacity:1}},
+series:[
+{name:'Zone 1 Furnace',data:genD(845,20,60),color:'#22c55e',fillColor:{linearGradient:{x1:0,y1:0,x2:0,y2:1},stops:[[0,Highcharts.color('#22c55e').setOpacity(0.35).get('rgba')],[1,Highcharts.color('#22c55e').setOpacity(0).get('rgba')]]},shadow:{color:'#22c55e',width:6,opacity:0.12}},
+{name:'Zone 2 Kiln',data:genD(1000,80,60),color:'#ef4444',fillColor:{linearGradient:{x1:0,y1:0,x2:0,y2:1},stops:[[0,Highcharts.color('#ef4444').setOpacity(0.3).get('rgba')],[1,Highcharts.color('#ef4444').setOpacity(0).get('rgba')]]},shadow:{color:'#ef4444',width:6,opacity:0.12}},
+{name:'Zone 3 Cooling',data:genD(128,8,60),color:'#3b82f6',fillColor:{linearGradient:{x1:0,y1:0,x2:0,y2:1},stops:[[0,Highcharts.color('#3b82f6').setOpacity(0.3).get('rgba')],[1,Highcharts.color('#3b82f6').setOpacity(0).get('rgba')]]},shadow:{color:'#3b82f6',width:6,opacity:0.12}}
+],
+credits:{enabled:false}
+});
+// Activity Ring Gauges (full 360°)
+function mkG(id,v,mx,c){
+Highcharts.chart(id,{
+chart:{type:'solidgauge',backgroundColor:'transparent',margin:[0,0,0,0]},
+title:null,
+pane:{startAngle:0,endAngle:360,background:[{backgroundColor:'rgba(26,32,64,0.6)',innerRadius:'72%',outerRadius:'100%',borderWidth:0,shape:'arc'}],center:['50%','50%'],size:'70%'},
+yAxis:{min:0,max:mx,lineWidth:0,tickWidth:0,minorTickInterval:null,labels:{enabled:false},stops:[[0.6,c],[0.85,'#eab308'],[0.95,'#ef4444']]},
+plotOptions:{solidgauge:{linecap:'round'}},
+series:[{data:[v],color:c,rounded:true,innerRadius:'72%',outerRadius:'100%',dataLabels:{format:'{y}%',style:{fontSize:'16px',color:'#ffffff',fontWeight:'700',fontFamily:'monospace',textOutline:'none'},borderWidth:0,y:0}}],
+tooltip:{enabled:false},credits:{enabled:false}
+})}
+mkG('g1',82,100,'#22c55e');mkG('g2',96,100,'#ef4444');mkG('g3',78,100,'#3b82f6');mkG('g4',10,100,'#8b5cf6');
+// Full chart (lazy)
+var fc;function initFC(){fc=Highcharts.chart('ch2',{chart:{type:'spline',backgroundColor:'transparent',animation:false},title:{text:null},legend:{itemStyle:{color:'#7a8baa',fontSize:'9px'}},xAxis:{type:'datetime',lineColor:'#1a2040',tickColor:'#1a2040',labels:{style:{color:'#3b4a6b',fontSize:'9px'}},gridLineWidth:0},yAxis:[{title:{text:'°C',style:{color:'#4a5a7a',fontSize:'9px'}},labels:{style:{color:'#3b4a6b',fontSize:'9px'}},gridLineColor:'#131830',min:0,max:1100},{title:{text:'%RH',style:{color:'#4a5a7a',fontSize:'9px'}},labels:{style:{color:'#3b4a6b',fontSize:'9px'}},opposite:true,min:0,max:100}],tooltip:{backgroundColor:'#131830',borderColor:'#1f2844',style:{color:'#e2e8f0'},shared:true},plotOptions:{spline:{lineWidth:2,marker:{enabled:false}}},series:[{name:'Zone 1',data:genD(845,20,60),color:'#22c55e'},{name:'Zone 2',data:genD(1000,80,60),color:'#ef4444'},{name:'Zone 3',data:genD(128,8,60),color:'#3b82f6'},{name:'Zone 4',data:genD(610,30,60),color:'#a855f7'},{name:'RH',data:genD(60,10,60),color:'#eab308',yAxis:1,dashStyle:'ShortDash'}],credits:{enabled:false}})}
+// Logs
+function fillLogs(){var b=document.getElementById('logTbl'),h='',now=new Date();for(var i=0;i<20;i++){var t=new Date(now-i*1000),ts=t.toLocaleTimeString('en-GB'),ch=R(1,6),v=ch<=4?R(100,1050):R(25,70),u=ch<=4?'°C':'%RH',st=ch===2&&v>980?'<span class="badge2 badge2-c">HIGH</span>':'<span class="badge2 badge2-ok">OK</span>';h+='<tr><td style="font-family:monospace">'+ts+'</td><td>CH-'+ch+'</td><td style="font-family:monospace">'+v+'</td><td>'+u+'</td><td>'+st+'</td></tr>'}b.innerHTML=h}
+fillLogs();
+
+function flashEl(id){var el=document.getElementById(id);if(el){el.style.opacity='0.7';setTimeout(function(){el.style.opacity='1'},150)}}
+// Live updates
+var updCounter=0;
+setInterval(function(){var v1=R(838,855),v2=R(1030,1048),v3=R(123,133),v4=R(58,66);
+document.getElementById('s1').innerHTML=v1+'<span class="su">°C</span>';flashEl('s1');document.getElementById('s1').classList.add('val-flash');setTimeout(function(){document.getElementById('s1').classList.remove('val-flash')},400);document.getElementById('s2').innerHTML=v2+'<span class="su">°C</span>';flashEl('s2');document.getElementById('s3').innerHTML=v3+'<span class="su">°C</span>';document.getElementById('s4').innerHTML=v4+'<span class="su">%</span>';
+document.getElementById('m1').textContent=v1+'°C';document.getElementById('m2').textContent=v2+'°C';document.getElementById('m3').textContent=v3+'°C';
+if(document.getElementById('t1')){document.getElementById('t1').textContent=v1+'°C';document.getElementById('t2').textContent=v2+'°C';document.getElementById('t3').textContent=v3+'°C';document.getElementById('t4').textContent=v4+'%'}
+if(document.getElementById('mc1')){document.getElementById('mc1').textContent=v1;document.getElementById('mc2').textContent=v2;document.getElementById('mc3').textContent=v3;document.getElementById('mc4').textContent=v4}
+var now=Date.now();mc.series[0].addPoint([now,v1],false,true);mc.series[1].addPoint([now,v2],false,true);mc.series[2].addPoint([now,v3],true,true);
+if(fc){fc.series[0].addPoint([now,v1],false,true);fc.series[1].addPoint([now,v2],false,true);fc.series[2].addPoint([now,v3],false,true);fc.series[3].addPoint([now,R(595,625)],false,true);fc.series[4].addPoint([now,v4],true,true)}
+updCounter=0},2000);
+setInterval(function(){document.getElementById('clock').textContent=new Date().toLocaleTimeString('en-GB');updCounter++;document.getElementById('updSec').textContent=updCounter},1000);
+
+// Vendor preset loader
+function loadPreset(name) {
+    var info = document.getElementById('presetInfo');
+    var presets = {
+        pharma: '<b style="color:#3b82f6">Pharma (21 CFR Part 11)</b> loaded — Sample: 1s, Logging: Continuous, Audit trail: ON, e-Signatures: Required, Data format: CSV with checksum, Retention: 5 years min',
+        food: '<b style="color:#22c55e">Food & Beverage (HACCP)</b> loaded — Sample: 5s, Logging: Batch, HACCP points: Enabled, Alerts: SMS+Email, CCP monitoring: Active, Temp range: -40 to +120°C',
+        metal: '<b style="color:#f97316">Metal Processing</b> loaded — Sample: 1s, Range: 0-1200°C, K-Type TC priority, Rate-of-rise alarms: ON, High-temp cutoff: Enabled, Batch tracking: ON',
+        cold: '<b style="color:#8b5cf6">Cold Chain</b> loaded — Sample: 30s, Range: -80 to +25°C, PDF auto-report: ON, GPS tracking: Enabled, Breach alert: Immediate SMS, Single-use mode: Available',
+        custom: '<b style="color:#94a3b8">Custom Configuration</b> — All parameters unlocked. Configure manually or start from the Product Configuration Builder below.'
+    };
+    info.innerHTML = presets[name] || presets.custom;
+}
+</script>
+</body>
+</html>

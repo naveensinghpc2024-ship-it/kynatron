@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kynatron Technologies | Cloud-Connected Industrial Automation, Data Loggers &amp; SCADA — Made in India</title>
+<meta name="description" content="Kynatron designs and manufactures industrial data loggers, monitoring and control systems and the cloud platform that connects them. IP66 rated, 21 CFR Part 11 compliant. Based in Hyderabad and Bangalore, India.">
+<meta name="keywords" content="industrial automation India, cloud SCADA, industrial IoT, data logger, temperature monitoring system, cleanroom monitoring, 21 CFR Part 11, Hyderabad, Bangalore">
+<meta property="og:title" content="Kynatron Technologies | From Sensor to Cloud">
+<meta property="og:description" content="Field devices, loggers, control systems and a cloud platform, designed and built together in India.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.kynatron.com">
+<meta property="og:image" content="https://www.kynatron.com/images/gm-dl-pro.jpg">
+<meta name="theme-color" content="#1e3a5f">
+<link rel="canonical" href="https://www.kynatron.com/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%231e3a5f'/><text x='50' y='72' font-size='60' font-weight='800' fill='white' text-anchor='middle' font-family='Arial'>K</text></svg>">
+
+<!-- Mono font for technical/telemetry labels -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Structured Data -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Kynatron Technologies","url":"https://www.kynatron.com","email":"sales@kynatron.com","telephone":"+919343509732","address":[{"@type":"PostalAddress","addressLocality":"Hyderabad","addressCountry":"IN"},{"@type":"PostalAddress","addressLocality":"Bangalore","addressCountry":"IN"}]}</script>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['"Segoe UI"', 'system-ui', '-apple-system', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+        sans: ['"Segoe UI"', 'system-ui', '-apple-system', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
+      },
+      colors: {
+        navy: { 50: '#eef3f9', 100: '#dbe7f3', 500: '#2b5480', 700: '#1e3a5f', 900: '#0f2137' },
+        obsidian: '#ffffff',
+        carbon: '#f9fafb',
+        cyanx: '#1e3a5f',
+        emeraldx: '#16a34a',
+        copper: '#ea580c',
+        titanium: '#111827',
+        slatex: '#6b7280'
+      }
+    }
+  }
+}
+</script>
+<script>document.documentElement.classList.add('js');</script>
+
+<style>
+/* ==========================================================================
+   LIGHT NAVY / ORANGE DESIGN SYSTEM (aligned with s.html)
+   ========================================================================== */
+:root {
+  /* palette */
+  --navy: #1e3a5f;
+  --navy-900: #0f2137;
+  --navy-700: #2b5480;
+  --navy-50: #eef3f9;
+  --orange: #ea580c;
+  --orange-500: #f97316;
+  --orange-50: #fff7ed;
+  --blue: #3b82f6;
+  --blue-50: #eff6ff;
+  --green: #16a34a;
+  --green-50: #dcfce7;
+  --purple: #7c3aed;
+  --purple-50: #f3e8ff;
+
+  --ink: #111827;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --bg: #ffffff;
+  --bg-gray: #f9fafb;
+  --card: #ffffff;
+
+  /* component aliases */
+  --surface: #ffffff;
+  --surface-strong: #f9fafb;
+  --border: #e5e7eb;
+  --border-bright: rgba(30, 58, 95, 0.35);
+  --cyan: #1e3a5f;
+  --emerald: #16a34a;
+  --copper: #ea580c;
+  --copper-deep: #c2410c;
+  --titanium: #111827;
+  --slate: #6b7280;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 2px rgba(17, 24, 39, .06), 0 4px 12px -8px rgba(17, 24, 39, .15);
+  --shadow-md: 0 2px 4px rgba(17, 24, 39, .06), 0 16px 32px -18px rgba(17, 24, 39, .30);
+  --shadow-lg: 0 24px 48px -24px rgba(17, 24, 39, .45);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { background-color: var(--bg); color: var(--ink); overflow-x: hidden; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  position: relative;
+}
+
+:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+/* Soft page wash + faint dot grid */
+.ambient-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(59, 130, 246, 0.07), transparent 42%),
+    radial-gradient(circle at 88% 4%, rgba(234, 88, 12, 0.05), transparent 40%),
+    radial-gradient(rgba(17, 24, 39, 0.045) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 32px 32px;
+}
+.aurora-orb {
+  position: fixed;
+  border-radius: 9999px;
+  filter: blur(120px);
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: -1;
+  animation: auroraFloat 22s ease-in-out infinite alternate;
+}
+.aurora-orb.a { width: 520px; height: 520px; top: -160px; right: -120px; background: radial-gradient(circle, #3b82f6, transparent 70%); }
+.aurora-orb.b { width: 460px; height: 460px; bottom: 8%; left: -160px; background: radial-gradient(circle, #ea580c, transparent 70%); animation-delay: -8s; }
+@keyframes auroraFloat {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(-45px, 55px, 0) scale(1.12); }
+}
+
+/* Luminous top scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  z-index: 120;
+  background: linear-gradient(90deg, var(--orange), var(--navy));
+  box-shadow: 0 0 10px rgba(234, 88, 12, 0.35);
+  transition: width .12s linear;
+}
+
+/* Cards — clean white surfaces with soft elevation */
+.glass-card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  transition: border-color .22s ease, box-shadow .22s ease, transform .22s ease;
+}
+.glass-card:hover {
+  border-color: #cfdcea;
+  box-shadow: var(--shadow-md);
+}
+.home-finder-section {
+  padding-block: clamp(44px, 7vw, 88px);
+  background: linear-gradient(145deg, #eef4fa 0%, #f8fafc 58%, #fff7ed 100%);
+}
+.home-finder-card {
+  background: rgba(255, 255, 255, .9);
+  border-color: rgba(203, 213, 225, .8);
+  box-shadow: 0 24px 60px -38px rgba(15, 33, 55, .4);
+  backdrop-filter: blur(12px);
+}
+.home-finder-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(24px, 3vw, 40px);
+  border-radius: 24px;
+  background: linear-gradient(145deg, #102944, #1e3a5f 65%, #2b5480);
+  box-shadow: 0 18px 34px -24px rgba(15, 33, 55, .65);
+  color: #fff;
+}
+.home-finder-intro > span { color: #fdba74; }
+.home-finder-intro h2 { color: #fff; }
+.home-finder-intro p { color: rgba(255, 255, 255, .78); }
+.home-finder-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.home-finder-options .finder-btn {
+  min-height: 44px;
+  padding-inline: 10px;
+  border-radius: 12px;
+}
+.home-finder-result {
+  background: #fff;
+  box-shadow: 0 14px 34px -28px rgba(15, 33, 55, .55);
+}
+
+/* ==========================================================================
+   FEATURED HARDWARE SHOWCASE (KynaLog & KynaSense)
+   ========================================================================== */
+.hw-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.35s ease;
+}
+.hw-card:hover {
+  transform: translateY(-6px);
+  border-color: #bfdbfe;
+  box-shadow: 0 28px 54px -28px rgba(15, 33, 55, 0.32);
+}
+
+.hw-stage {
+  position: relative;
+  height: 290px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 50% 45%, rgba(59, 130, 246, 0.12), transparent 62%),
+    linear-gradient(155deg, #ffffff 0%, #f1f5f9 100%);
+  perspective: 900px;
+}
+.hw-stage.is-sense {
+  background:
+    radial-gradient(circle at 50% 45%, rgba(22, 163, 74, 0.12), transparent 62%),
+    linear-gradient(155deg, #ffffff 0%, #f0fdf4 55%, #f8fafc 100%);
+}
+
+/* Light sweep shimmer across the image box on hover */
+.hw-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.65) 50%, transparent 70%);
+  transform: translateX(-130%);
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.hw-card:hover .hw-stage::after {
+  transform: translateX(130%);
+}
+
+/* Floating product image */
+.hw-img {
+  position: relative;
+  z-index: 2;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 22px rgba(15, 33, 55, 0.18));
+  animation: hwFloat 5.5s ease-in-out infinite;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), filter 0.45s ease;
+  will-change: transform;
+}
+.hw-stage.is-sense .hw-img {
+  animation-delay: -2.4s;
+}
+.hw-card:hover .hw-img {
+  animation-play-state: paused;
+  transform: translateY(-8px) scale(1.06) rotateY(-4deg);
+  filter: drop-shadow(0 26px 28px rgba(15, 33, 55, 0.24));
+}
+
+/* Synced soft floor shadow beneath each floating device */
+.hw-shadow {
+  position: absolute;
+  bottom: 18px;
+  width: 52%;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(15, 33, 55, 0.22), transparent 72%);
+  z-index: 1;
+  animation: hwShadowPulse 5.5s ease-in-out infinite;
+  pointer-events: none;
+}
+.hw-stage.is-sense .hw-shadow {
+  animation-delay: -2.4s;
+}
+.hw-card:hover .hw-shadow {
+  animation-play-state: paused;
+  transform: scale(0.88);
+  opacity: 0.45;
+}
+
+@keyframes hwFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes hwShadowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50%      { transform: scale(0.86); opacity: 0.38; }
+}
+
+/* ==========================================================================
+   PLATFORM SECTION — wrapped in a light rounded card.
+   The Kyna Cloud editorial column gets its own strong navy gradient card
+   with animated ambient orbs + a subtle pulsing border.
+   ========================================================================== */
+.home-platform-section {
+  padding-block: clamp(44px, 7vw, 88px);
+}
+
+/* Outer card — matches the #cloud and #finder panels */
+.home-platform-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(145deg, #eef4fa 0%, #f8fafc 55%, #fff7ed 100%);
+  box-shadow: 0 24px 60px -40px rgba(15, 33, 55, 0.4);
+}
+.home-platform-card::before {
+  content: "";
+  position: absolute;
+  inset: -35% -10%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 22% 52%, rgba(234, 88, 12, .14), transparent 30%),
+    radial-gradient(ellipse at 76% 44%, rgba(59, 130, 246, .16), transparent 34%);
+  filter: blur(24px);
+  animation: platformAmbient 20s ease-in-out infinite alternate;
+}
+.home-platform-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .14;
+  background-image:
+    linear-gradient(rgba(30, 58, 95, .08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 58, 95, .08) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+}
+@keyframes platformAmbient {
+  from { transform: translate3d(-2%, -1%, 0) scale(.96); }
+  to { transform: translate3d(2%, 1.5%, 0) scale(1.05); }
+}
+
+/* Right column — Kyna Cloud editorial: STRONG navy gradient card */
+.home-platform-copy {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(20px, 3vw, 36px);
+  border-radius: 24px;
+  background: linear-gradient(145deg, #0f2137 0%, #1e3a5f 52%, #2b5480 100%);
+  color: #ffffff;
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  box-shadow: 0 24px 60px -28px rgba(15, 33, 55, 0.6);
+  animation: copyBorderPulse 5s ease-in-out infinite;
+}
+.home-platform-copy::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 25% 25%, rgba(96, 165, 250, 0.4), transparent 40%),
+    radial-gradient(circle at 78% 78%, rgba(249, 115, 22, 0.28), transparent 42%);
+  filter: blur(28px);
+  animation: kynaCopyOrbit 18s ease-in-out infinite alternate;
+}
+.home-platform-copy::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .12;
+  background-image:
+    linear-gradient(rgba(191, 219, 254, .22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(191, 219, 254, .22) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse at center, #000 20%, transparent 78%);
+}
+@keyframes kynaCopyOrbit {
+  0%   { transform: translate3d(-3%, -2%, 0) scale(1); }
+  100% { transform: translate3d(3%, 2%, 0) scale(1.08); }
+}
+@keyframes copyBorderPulse {
+  0%, 100% { border-color: rgba(96, 165, 250, 0.20); }
+  50%      { border-color: rgba(96, 165, 250, 0.48); }
+}
+
+/* Text colour overrides so the editorial column reads cleanly on dark */
+.home-platform-copy .text-titanium { color: #f8fafc; }
+.home-platform-copy .text-slatex   { color: #c1ccda; }
+.home-platform-copy ol > li        { border-color: rgba(191, 219, 254, .22); }
+.home-platform-copy ol h3          { color: #f8fafc; }
+
+.platform-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 16px;
+  color: #bfdbfe;
+  font: 700 11px/1.3 "JetBrains Mono", ui-monospace, monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.platform-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 12px rgba(52, 211, 153, .8);
+  animation: platformPulse 1.8s ease-in-out infinite;
+}
+@keyframes platformPulse {
+  50% { opacity: .45; box-shadow: 0 0 4px rgba(52, 211, 153, .45); }
+}
+
+.tilt-3d { transform-style: preserve-3d; will-change: transform; }
+.z-lift { transform: translateZ(34px); }
+.z-lift-sm { transform: translateZ(18px); }
+
+/* Buttons */
+.btn-copper {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, var(--orange-500), var(--orange));
+  color: #ffffff;
+  box-shadow: 0 12px 24px -14px rgba(234, 88, 12, .95);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.btn-copper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 25%, rgba(255, 255, 255, 0.28) 50%, transparent 75%);
+  transform: translateX(-120%);
+  transition: transform .65s ease;
+}
+.btn-copper:hover::after { transform: translateX(120%); }
+.btn-copper:hover { transform: translateY(-2px); box-shadow: 0 18px 30px -14px rgba(234, 88, 12, 1); }
+
+.btn-cyan-outline {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: var(--navy);
+  transition: all .2s ease;
+}
+.btn-cyan-outline:hover {
+  background: var(--navy-50);
+  border-color: var(--navy);
+  box-shadow: 0 12px 24px -18px rgba(30, 58, 95, .75);
+  transform: translateY(-2px);
+}
+
+/* Outline button used on the dark hero / dark CTA band */
+.btn-hero-outline {
+  background: rgba(255, 255, 255, .06);
+  border: 1px solid rgba(255, 255, 255, .45);
+  color: #ffffff;
+  transition: all .2s ease;
+}
+.btn-hero-outline:hover {
+  background: rgba(255, 255, 255, .14);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Navbar */
+.site-nav {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
+  background: rgba(255, 255, 255, .92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 2px rgba(17, 24, 39, .04);
+}
+.site-nav.nav-hidden { transform: translateY(-115%); }
+
+/* Dark hero band shared with the other site pages */
+.custom-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0 90px;
+  color: #ffffff;
+  background-color: #16233a;
+  background-image:
+    radial-gradient(circle at 80% 20%, rgba(59, 130, 246, .25) 0%, transparent 50%),
+    radial-gradient(rgba(255, 255, 255, .06) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px;
+}
+.custom-hero::after {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(90deg, #16233a 20%, transparent 80%);
+}
+.custom-hero-content {
+  position: relative;
+  z-index: 1;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, .15);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .08);
+  color: #d1d5db;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+.hero-badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 8px rgba(52, 211, 153, .6);
+}
+.hero-title {
+  margin: 0 0 20px;
+  color: #ffffff;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -.02em;
+}
+#home-hero .hero-title {
+  white-space: nowrap;
+  text-wrap: nowrap;
+}
+.gradient-text {
+  background: linear-gradient(90deg, #60a5fa, #93c5fd);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-p {
+  max-width: 780px;
+  margin: 0;
+  color: #cbd5e1;
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.65;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+/* ==========================================================================
+   DUAL-TRACK COUNTER-SCROLLING KINETIC MARQUEE
+   ========================================================================== */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+}
+.marquee-track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: marqueeLeft 44s linear infinite;
+}
+.marquee-track.reverse {
+  animation: marqueeRight 50s linear infinite;
+}
+.marquee-mask:hover .marquee-track { animation-play-state: paused; }
+@keyframes marqueeLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes marqueeRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+/* ==========================================================================
+   3D ISOMETRIC CLOUD ARCHITECTURE STACK (#cloud)
+   ========================================================================== */
+.iso-stage {
+  perspective: 1500px;
+  height: 440px;
+  display: grid;
+  place-items: center;
+  --layer-gap: 72px;
+  cursor: pointer;
+  position: relative;
+}
+.iso-stage:hover { --layer-gap: 94px; }
+
+.iso-stack {
+  position: relative;
+  width: 270px;
+  height: 270px;
+  transform-style: preserve-3d;
+  transform: rotateX(58deg) rotateZ(-36deg);
+  transition: transform 0.25s ease-out;
+  animation: isoOrbit 15s ease-in-out infinite alternate;
+}
+.iso-stage:hover .iso-stack { animation-play-state: paused; }
+
+@keyframes isoOrbit {
+  0% { transform: rotateX(59deg) rotateZ(-42deg); }
+  100% { transform: rotateX(54deg) rotateZ(-20deg); }
+}
+
+.iso-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 26px;
+  border: 1.5px solid rgba(30, 58, 95, 0.30);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(238, 243, 249, 0.94));
+  backdrop-filter: blur(8px);
+  transform: translateZ(calc(var(--i) * var(--layer-gap) - 108px + var(--lift, 0px)));
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.4s ease, filter 0.35s ease;
+  box-shadow: 0 20px 40px -20px rgba(15, 33, 55, 0.35), inset 0 0 0 1px #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px 20px;
+}
+.iso-layer::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 18px;
+  background-image:
+    linear-gradient(rgba(30, 58, 95, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 58, 95, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+.iso-layer.is-cloud {
+  border-color: rgba(234, 88, 12, 0.65);
+  background: linear-gradient(135deg, rgba(255, 247, 237, 0.98), rgba(234, 88, 12, 0.12));
+  box-shadow: 0 0 40px -10px rgba(234, 88, 12, 0.35), inset 0 0 0 1px #ffffff;
+}
+.iso-layer.on {
+  --lift: 28px;
+  border-color: var(--navy);
+  filter: brightness(1.01);
+  box-shadow: 0 0 0 2px rgba(30, 58, 95, 0.12), 0 24px 46px -18px rgba(30, 58, 95, 0.45);
+}
+.iso-layer.is-cloud.on {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.14), 0 24px 46px -16px rgba(234, 88, 12, 0.55);
+}
+
+#cloud .cloud-panel {
+  isolation: isolate;
+  background: linear-gradient(135deg, #eaf3ff 0%, #ffffff 48%, #fff3e8 100%);
+}
+
+#cloud .cloud-panel::before {
+  position: absolute;
+  inset: -35%;
+  z-index: 0;
+  content: "";
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 18% 30%, rgba(96, 165, 250, 0.20), transparent 42%),
+    radial-gradient(ellipse at 82% 68%, rgba(249, 115, 22, 0.14), transparent 40%),
+    radial-gradient(ellipse at 70% 10%, rgba(45, 212, 191, 0.12), transparent 38%);
+  background-size: 130% 130%;
+  animation: cloudAmbient 20s ease-in-out infinite alternate;
+}
+
+@keyframes cloudAmbient {
+  0% { transform: translate3d(-2%, -1%, 0) scale(1); }
+  100% { transform: translate3d(2%, 1%, 0) scale(1.05); }
+}
+
+/* Rising vertical data-beam pulses piercing the 3D isometric stack */
+.data-beam-wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 15;
+}
+.data-beam {
+  position: absolute;
+  width: 2px;
+  height: 290px;
+  background: linear-gradient(to top, transparent, rgba(30, 58, 95, 0.35), rgba(234, 88, 12, 0.45), transparent);
+  overflow: hidden;
+  border-radius: 99px;
+}
+.data-beam::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  width: 6px;
+  height: 54px;
+  border-radius: 99px;
+  background: linear-gradient(to top, transparent, #3b82f6, #ffffff);
+  box-shadow: 0 0 14px rgba(59, 130, 246, .8);
+  animation: beamPulse 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.data-beam.b2 { transform: translateX(-44px) translateY(14px); opacity: 0.7; }
+.data-beam.b2::after { animation-delay: -0.9s; background: linear-gradient(to top, transparent, #ea580c, #ffffff); box-shadow: 0 0 14px rgba(234, 88, 12, .8); }
+.data-beam.b3 { transform: translateX(46px) translateY(-10px); opacity: 0.7; }
+.data-beam.b3::after { animation-delay: -1.6s; background: linear-gradient(to top, transparent, #16a34a, #ffffff); box-shadow: 0 0 14px rgba(22, 163, 74, .8); }
+
+@keyframes beamPulse {
+  0% { transform: translateY(290px); opacity: 0; }
+  20% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateY(-60px); opacity: 0; }
+}
+
+/* ==========================================================================
+   PROCESS PIPELINE BEAM & 3D ORBS
+   ========================================================================== */
+.proc-grid { position: relative; }
+.proc-rail {
+  position: absolute;
+  left: 10%; right: 10%;
+  top: 32px;
+  height: 3px;
+  background: rgba(229, 231, 235, 1);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.proc-beam {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--orange), var(--navy), var(--green));
+  box-shadow: 0 0 12px rgba(30, 58, 95, 0.35);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1.8s 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.proc-grid.in .proc-beam { transform: scaleX(1); }
+.proc-orb {
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
+  transform-style: preserve-3d;
+}
+.proc-grid.in .proc-orb {
+  transform: rotateY(360deg);
+  border-color: var(--navy);
+  background: linear-gradient(135deg, rgba(30, 58, 95, 0.10), #ffffff);
+  color: var(--navy);
+  box-shadow: 0 14px 26px -16px rgba(30, 58, 95, 0.65);
+  transition-delay: calc(var(--k) * 0.28s + 0.2s);
+}
+
+/* ==========================================================================
+   KINETIC WORD-BY-WORD 3D FLIP-IN HEADINGS & SCROLL REVEALS
+   ========================================================================== */
+.js .word-split .w-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+  perspective: 700px;
+}
+.js .word-split .w-inner {
+  display: inline-block;
+  transform: translateY(115%) rotateX(-55deg);
+  transform-origin: bottom center;
+  opacity: 0;
+  transition: transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--wi) * 0.055s), opacity 0.6s ease calc(var(--wi) * 0.055s);
+}
+.js .word-split.in .w-inner {
+  transform: translateY(0) rotateX(0deg);
+  opacity: 1;
+}
+
+.js .rv-3d {
+  opacity: 0;
+  transform: perspective(1000px) rotateX(12deg) translateY(34px) scale(0.98);
+  transition: opacity 0.75s ease var(--d, 0s), transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) var(--d, 0s);
+}
+.js .rv-3d.in {
+  opacity: 1;
+  transform: none;
+}
+.js .rv-3d.settled {
+  transition: border-color 0.3s ease, box-shadow 0.35s ease, transform 0.16s ease-out;
+}
+
+/* FAQ Smooth Accordion */
+.faq-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.faq-item[data-open="true"] .faq-body { grid-template-rows: 1fr; }
+.faq-item[data-open="true"] .faq-plus { transform: rotate(45deg); color: var(--navy); }
+.faq-item[data-open="true"] { border-color: rgba(30, 58, 95, 0.35); }
+
+/* Stack selector tabs */
+.stack-tab {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 9px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #ffffff;
+  color: #475569;
+  cursor: pointer;
+  transition: all .18s ease;
+}
+.stack-tab:hover { border-color: rgba(30, 58, 95, 0.4); color: var(--navy); }
+.stack-tab.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #ffffff;
+  box-shadow: 0 10px 22px -14px rgba(30, 58, 95, .85);
+}
+.stack-tab.active[data-idx="2"] {
+  background: var(--orange);
+  border-color: var(--orange);
+  box-shadow: 0 10px 22px -14px rgba(234, 88, 12, .9);
+}
+
+/* Solution configurator buttons & chips */
+.finder-btn {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #ffffff;
+  color: #374151;
+  cursor: pointer;
+  transition: all .18s ease;
+}
+.finder-btn:hover { border-color: #cbd5e1; background: var(--navy-50); color: var(--navy); }
+.finder-btn.active { background: var(--navy); border-color: var(--navy); color: #ffffff; }
+
+.finder-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #ffffff;
+  color: #334155;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all .18s ease;
+}
+.finder-chip:hover { border-color: rgba(30, 58, 95, 0.35); background: var(--navy-50); color: var(--navy); }
+
+/* SCADA site buttons */
+.scada-site-btn {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  transition: all .18s ease;
+}
+.scada-site-btn:hover { color: var(--navy-900); }
+.scada-site-btn.active {
+  background: var(--navy-50);
+  color: var(--navy);
+  border-color: rgba(30, 58, 95, 0.25);
+}
+
+/* Swap fade for industry configurator */
+@keyframes swapIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.swap-anim { animation: swapIn 0.38s cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* Back to top */
+.back-to-top {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 90;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #ffffff;
+  border: 0;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  box-shadow: 0 12px 24px -12px rgba(30, 58, 95, .9);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity .25s, transform .25s, visibility .25s, background .2s;
+}
+.back-to-top.show { opacity: 1; visibility: visible; transform: none; }
+.back-to-top:hover { background: var(--navy-900); }
+
+/* Reduced Motion Accessibility */
+@media (max-width: 640px) {
+  .custom-hero { padding: 60px 0 70px; }
+  .home-finder-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .rv-3d, .js .word-split .w-inner { opacity: 1 !important; transform: none !important; }
+  .iso-stack { transform: rotateX(58deg) rotateZ(-32deg) !important; }
+  .marquee-track { flex-wrap: wrap; width: auto; justify-content: center; }
+  .proc-beam { transform: scaleX(1) !important; }
+}
+</style>
+<link rel="stylesheet" href="css/site-shell.css">
+</head>
+<body class="kt-page selection:bg-cyanx/15 selection:text-titanium">
+
+<!-- Ambient Background Layers -->
+<div class="ambient-backdrop" aria-hidden="true"></div>
+<div class="aurora-orb a" aria-hidden="true"></div>
+<div class="aurora-orb b" aria-hidden="true"></div>
+
+<!-- Accessibility Skip Link -->
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-5 focus:py-2.5 focus:rounded-full focus:bg-cyanx focus:text-white focus:font-semibold">Skip to content</a>
+
+<!-- Luminous Scroll Progress Bar -->
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+<!-- ========================================================================
+     STICKY NAVIGATION
+     ======================================================================== -->
+<header class="kt-site-header">
+  <nav class="kt-nav-inner" aria-label="Main navigation">
+    <a href="index.html" class="kt-brand" aria-label="Kynatron Technologies home">
+      <span class="kt-brand-mark" aria-hidden="true">K</span>
+      <span class="kt-brand-name">KYNATRON</span>
+    </a>
+    <div class="kt-nav-links" id="nav-links">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="services.html">Services</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html">Contact</a>
+      <a href="dashboard-demo.html">Demo</a>
+    </div>
+    <button class="kt-menu-toggle" id="mobile-menu-btn" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">&#9776;</button>
+  </nav>
+</header>
+
+<!-- ============ CUSTOM HERO ============ -->
+<header class="custom-hero" id="home-hero">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 custom-hero-content" style="max-width: 80rem !important;">
+    <div class="hero-badge">
+      <span class="dot" aria-hidden="true"></span>
+      Industrial automation, connected by cloud
+    </div>
+    <h1 class="hero-title">
+      From sensor to cloud, <span class="gradient-text">one connected plant</span>
+    </h1>
+    <p class="hero-p">
+      We engineer rugged data acquisition, monitoring and control systems, and the cloud platform that ties them together. Start with a single machine and grow to plant-wide SCADA.
+    </p>
+    <div class="hero-actions">
+      <a href="products.html" class="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-full font-semibold text-sm sm:text-base btn-copper">
+        <span>Explore products</span>
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+      <a href="contact.html" class="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-full font-semibold text-sm sm:text-base btn-hero-outline">
+        Talk to an engineer
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<!-- ========================================================================
+     SECTION 1: CAPABILITIES
+     ======================================================================== -->
+<section class="py-20 sm:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <h2 class="word-split font-display font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-titanium">A clearer view starts at the source</h2>
+      <p class="rv-3d mt-4 text-base sm:text-lg text-slatex">When a reading matters, every step behind it matters too. We bring measurement, monitoring and engineering together so your data has a clear path from the machine to the people who need it.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <article class="glass-card tilt-3d rounded-[28px] p-8 flex flex-col">
+        <div class="z-lift w-14 h-14 rounded-2xl bg-navy-50 border border-navy-700/20 flex items-center justify-center font-mono font-bold text-xl text-navy-700 mb-6">1</div>
+        <h3 class="z-lift-sm font-display font-semibold text-2xl text-titanium mb-3">Data acquisition</h3>
+        <p class="text-slatex leading-relaxed flex-1">Start with dependable measurements: multi-channel thermocouple and RTD logging with 24-bit resolution, ±0.1% accuracy and 1-second sampling.</p>
+        <a href="services.html" class="mt-6 inline-flex items-center gap-2 font-mono text-sm font-semibold text-navy-700 hover:text-copper transition-colors">Explore services →</a>
+      </article>
+
+      <article class="glass-card tilt-3d rounded-[28px] p-8 flex flex-col">
+        <div class="z-lift w-14 h-14 rounded-2xl bg-orange-50 border border-copper/30 flex items-center justify-center font-mono font-bold text-xl text-copper mb-6">2</div>
+        <h3 class="z-lift-sm font-display font-semibold text-2xl text-titanium mb-3">Monitoring and control</h3>
+        <p class="text-slatex leading-relaxed flex-1">Turn those readings into timely decisions with web-based SCADA, real-time trends, programmable alarms and relay-based equipment control.</p>
+        <a href="services.html" class="mt-6 inline-flex items-center gap-2 font-mono text-sm font-semibold text-navy-700 hover:text-copper transition-colors">Explore services →</a>
+      </article>
+
+      <article class="glass-card tilt-3d rounded-[28px] p-8 flex flex-col">
+        <div class="z-lift w-14 h-14 rounded-2xl bg-emerald-50 border border-emeraldx/30 flex items-center justify-center font-mono font-bold text-xl text-emeraldx mb-6">3</div>
+        <h3 class="z-lift-sm font-display font-semibold text-2xl text-titanium mb-3">Design and manufacturing</h3>
+        <p class="text-slatex leading-relaxed flex-1">And when the standard answer does not fit, our team can design, build and calibrate the hardware and firmware around your process.</p>
+        <a href="services.html" class="mt-6 inline-flex items-center gap-2 font-mono text-sm font-semibold text-navy-700 hover:text-copper transition-colors">Explore services →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     FEATURED HARDWARE: KYNALOG & KYNASENSE
+     ======================================================================== -->
+<section id="featured-hardware" class="pb-20 sm:pb-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-12">
+      <div class="max-w-2xl">
+        <span class="inline-block font-mono text-xs uppercase tracking-widest text-copper mb-3">Flagship Hardware</span>
+        <h2 class="word-split font-display font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-titanium">Engineered for the floor, built to connect</h2>
+        <p class="rv-3d mt-4 text-base sm:text-lg text-slatex">Start with industrial data acquisition or GMP-compliant environmental monitoring—both ready for Kyna Cloud out of the box.</p>
+      </div>
+      <a href="products.html" class="rv-3d inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm btn-cyan-outline">
+        View all products →
+      </a>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-7">
+      <!-- KynaLog Series -->
+      <article class="glass-card hw-card rv-3d rounded-[30px] p-6 sm:p-8 flex flex-col">
+        <div class="hw-stage mb-7">
+          <span class="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-white/90 border border-navy-700/15 font-mono text-[11px] font-semibold uppercase tracking-wider text-navy-700">Data Logger</span>
+          <span class="absolute top-4 right-4 z-10 px-2.5 py-1 rounded-full bg-navy-50 font-mono text-[11px] font-semibold text-navy-700">4 / 8 / 16 CH</span>
+          <img src="images/gm-dl-pro.png" alt="KynaLog Series industrial multi-channel data logger" class="hw-img" loading="lazy">
+          <span class="hw-shadow" aria-hidden="true"></span>
+        </div>
+
+        <div class="flex-1 flex flex-col">
+          <h3 class="font-display font-bold text-2xl text-titanium">KynaLog Series</h3>
+          <p class="mt-1 font-mono text-xs font-semibold uppercase tracking-wider text-navy-700">Scalable Multi-Channel Data Acquisition</p>
+          <p class="mt-3 text-slatex leading-relaxed">Precision multi-channel data acquisition in 4-, 8-, and 16-channel configurations, built for industrial panels and plant floors.</p>
+
+          <ul class="mt-5 pt-5 border-t border-slate-200 space-y-2 text-sm text-slate-600 flex-1">
+            <li class="flex items-start gap-2.5"><span class="text-emeraldx font-bold">✓</span><span>Universal RTD, PT100, thermocouple, 4–20 mA, and 0–10 V inputs</span></li>
+            <li class="flex items-start gap-2.5"><span class="text-emeraldx font-bold">✓</span><span>7-inch or 10-inch high-resolution touchscreen with customizable UI</span></li>
+            <li class="flex items-start gap-2.5"><span class="text-emeraldx font-bold">✓</span><span>Precision 16-bit ADCs and high-stability real-time clocks</span></li>
+          </ul>
+
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="products.html#kynalog-series" class="inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold text-sm btn-copper">Explore KynaLog →</a>
+            <a href="contact.html" class="inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold text-sm btn-cyan-outline">Request quote</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- KynaSense -->
+      <article class="glass-card hw-card rv-3d rounded-[30px] p-6 sm:p-8 flex flex-col" style="--d: 0.12s;">
+        <div class="hw-stage is-sense mb-7">
+          <span class="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-white/90 border border-emeraldx/25 font-mono text-[11px] font-semibold uppercase tracking-wider text-emeraldx">Environmental Monitoring</span>
+          <span class="absolute top-4 right-4 z-10 px-2.5 py-1 rounded-full bg-emerald-50 font-mono text-[11px] font-semibold text-emeraldx">±0.2 °C · ±1.8% RH</span>
+          <img src="images/Kynasense.jpg" alt="KynaSense GMP-compliant temperature and humidity monitoring device" class="hw-img" loading="lazy">
+          <span class="hw-shadow" aria-hidden="true"></span>
+        </div>
+
+        <div class="flex-1 flex flex-col">
+          <h3 class="font-display font-bold text-2xl text-titanium">KynaSense</h3>
+          <p class="mt-1 font-mono text-xs font-semibold uppercase tracking-wider text-emeraldx">GMP-Compliant Environmental Monitoring</p>
+          <p class="mt-3 text-slatex leading-relaxed">Environmental monitoring for cleanrooms, print facilities, warehouses, and laboratories, protecting critical spaces continuously.</p>
+
+          <ul class="mt-5 pt-5 border-t border-slate-200 space-y-2 text-sm text-slate-600 flex-1">
+            <li class="flex items-start gap-2.5"><span class="text-emeraldx font-bold">✓</span><span>Sensirion SHT4x probe with ±0.2 °C and ±1.8% RH accuracy</span></li>
+            <li class="flex items-start gap-2.5"><span class="text-emeraldx font-bold">✓</span><span>Up to 32 battery-powered wireless nodes across 300 m line-of-sight</span></li>
+            <li class="flex items-start gap-2.5"><span class="text-emeraldx font-bold">✓</span><span>7-inch touchscreen, Wi-Fi/USB sync, and up to 5 years MicroSD storage</span></li>
+          </ul>
+
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="products.html#kynasense" class="inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold text-sm btn-copper">Explore KynaSense →</a>
+            <a href="contact.html" class="inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold text-sm btn-cyan-outline">Request quote</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     SECTION 2: KYNA CLOUD & 3D ISOMETRIC STACK (#cloud)
+     ======================================================================== -->
+<section id="cloud" class="pb-20 sm:pb-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="cloud-panel relative rounded-[32px] sm:rounded-[40px] border border-slate-200 bg-gradient-to-br from-[#f3f7fc] via-white to-[#fff7ed] p-7 sm:p-12 lg:p-16 overflow-hidden shadow-[0_24px_60px_-40px_rgba(15,33,55,0.35)]">
+      <div class="relative z-10 max-w-2xl">
+        <span class="inline-block font-mono text-xs uppercase tracking-widest text-navy-700 mb-3">Full-Stack Architecture</span>
+        <h2 class="word-split font-display font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-titanium">Kyna Cloud is what ties it together</h2>
+        <p class="rv-3d mt-4 text-base sm:text-lg text-slate-600">Once your equipment is connected, Kyna Cloud brings readings, trends and alarms into one place—so a team can move from a local signal to a shared view across sites.</p>
+      </div>
+
+      <div class="relative z-10 mt-12 grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <!-- Feature Grid -->
+        <div class="lg:col-span-6 grid sm:grid-cols-2 gap-4">
+          <div class="glass-card rounded-2xl p-5 hover:-translate-y-1 transition-transform">
+            <h3 class="font-display font-semibold text-lg text-titanium mb-1.5">Live view of every site</h3>
+            <p class="text-sm text-slatex leading-relaxed">Real-time readings and trends on phone, tablet or control room screen.</p>
+          </div>
+          <div class="glass-card rounded-2xl p-5 hover:-translate-y-1 transition-transform">
+            <h3 class="font-display font-semibold text-lg text-titanium mb-1.5">Alarms that reach people</h3>
+            <p class="text-sm text-slatex leading-relaxed">Per-channel thresholds with notifications to the right team.</p>
+          </div>
+          <div class="glass-card rounded-2xl p-5 hover:-translate-y-1 transition-transform">
+            <h3 class="font-display font-semibold text-lg text-titanium mb-1.5">Audit-ready records</h3>
+            <p class="text-sm text-slatex leading-relaxed">Tamper-evident history to support 21 CFR Part 11 and ISO 9001 reviews.</p>
+          </div>
+          <div class="glass-card rounded-2xl p-5 hover:-translate-y-1 transition-transform">
+            <h3 class="font-display font-semibold text-lg text-titanium mb-1.5">Open integration</h3>
+            <p class="text-sm text-slatex leading-relaxed">MQTT, REST and Modbus to sit alongside your PLC, SCADA and ERP.</p>
+          </div>
+          <div class="glass-card rounded-2xl p-5 hover:-translate-y-1 transition-transform">
+            <h3 class="font-display font-semibold text-lg text-titanium mb-1.5">Fleet management</h3>
+            <p class="text-sm text-slatex leading-relaxed">Group devices by site and track device health from one console.</p>
+          </div>
+          <div class="glass-card rounded-2xl p-5 hover:-translate-y-1 transition-transform">
+            <h3 class="font-display font-semibold text-lg text-titanium mb-1.5">Local-first devices</h3>
+            <p class="text-sm text-slatex leading-relaxed">Loggers store data on the device and auto-save on power failure.</p>
+          </div>
+        </div>
+
+        <!-- 3D Isometric Interactive Cloud Stack -->
+        <div class="lg:col-span-6 flex flex-col items-center">
+          <div class="iso-stage w-full" id="iso-stage" role="img" aria-label="Four connected layers: field devices, edge and control, Kyna Cloud, and apps and insights">
+            <div class="data-beam-wrap" aria-hidden="true">
+              <div class="data-beam"></div>
+              <div class="data-beam b2"></div>
+              <div class="data-beam b3"></div>
+            </div>
+
+            <div class="iso-stack" id="iso-stack">
+              <div class="iso-layer" data-layer="0" style="--i: 0">
+                <div class="flex items-center justify-between">
+                  <span class="w-3 h-3 rounded-full bg-navy-700 shadow-[0_0_10px_rgba(30,58,95,0.6)]"></span>
+                  <span class="font-mono text-[11px] text-navy-700/80">L01</span>
+                </div>
+                <span class="self-start font-mono text-xs sm:text-sm font-semibold text-navy-900 bg-white border border-navy-700/25 px-3.5 py-1.5 rounded-full shadow-sm">Field devices</span>
+              </div>
+
+              <div class="iso-layer" data-layer="1" style="--i: 1">
+                <div class="flex items-center justify-between">
+                  <span class="w-3 h-3 rounded-full bg-emeraldx shadow-[0_0_10px_rgba(22,163,74,0.6)]"></span>
+                  <span class="font-mono text-[11px] text-emeraldx/80">L02</span>
+                </div>
+                <span class="self-start font-mono text-xs sm:text-sm font-semibold text-navy-900 bg-white border border-emeraldx/30 px-3.5 py-1.5 rounded-full shadow-sm">Edge and control</span>
+              </div>
+
+              <div class="iso-layer is-cloud" data-layer="2" style="--i: 2">
+                <div class="flex items-center justify-between">
+                  <span class="w-3 h-3 rounded-full bg-copper shadow-[0_0_12px_rgba(234,88,12,0.7)]"></span>
+                  <span class="font-mono text-[11px] text-copper">L03</span>
+                </div>
+                <span class="self-start font-mono text-xs sm:text-sm font-semibold text-white bg-copper px-3.5 py-1.5 rounded-full shadow-[0_8px_18px_-8px_rgba(234,88,12,0.9)]">Kyna Cloud</span>
+              </div>
+
+              <div class="iso-layer" data-layer="3" style="--i: 3">
+                <div class="flex items-center justify-between">
+                  <span class="w-3 h-3 rounded-full bg-navy-700 shadow-[0_0_10px_rgba(30,58,95,0.6)]"></span>
+                  <span class="font-mono text-[11px] text-navy-700/80">L04</span>
+                </div>
+                <span class="self-start font-mono text-xs sm:text-sm font-semibold text-navy-900 bg-white border border-navy-700/25 px-3.5 py-1.5 rounded-full shadow-sm">Dashboards and alerts</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stack Selector Tabs -->
+          <div class="flex flex-wrap justify-center gap-2 mt-2" id="stack-tabs" role="tablist" aria-label="Stack layers">
+            <button type="button" role="tab" data-idx="0" class="stack-tab">Field</button>
+            <button type="button" role="tab" data-idx="1" class="stack-tab">Edge</button>
+            <button type="button" role="tab" data-idx="2" class="stack-tab">Cloud</button>
+            <button type="button" role="tab" data-idx="3" class="stack-tab">Apps</button>
+          </div>
+
+          <p id="stack-info" class="mt-4 text-center text-sm sm:text-base text-slate-600 max-w-md min-h-[3.5rem]" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <div class="relative z-10 mt-10 flex flex-wrap gap-3.5">
+        <a href="contact.html" class="inline-flex items-center justify-center px-7 py-4 rounded-full font-semibold text-sm sm:text-base btn-copper">Request a cloud demo</a>
+        <a href="products.html#kynacloud" class="inline-flex items-center justify-center px-7 py-4 rounded-full font-semibold text-sm sm:text-base btn-cyan-outline">See the platform</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     SECTION 3: INTERACTIVE INDUSTRY CONFIGURATOR (#finder)
+     ======================================================================== -->
+<section id="finder" class="home-finder-section">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="glass-card home-finder-card rounded-[32px] sm:rounded-[40px] p-5 sm:p-8 lg:p-10 grid lg:grid-cols-12 gap-6 lg:gap-10 items-stretch">
+      <div class="home-finder-intro lg:col-span-5">
+        <span class="inline-block font-mono text-xs uppercase tracking-widest text-copper mb-3">Solution Configurator</span>
+        <h2 class="word-split font-display font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-titanium">Find your starting point</h2>
+        <p class="rv-3d mt-4 text-slatex text-base sm:text-lg">Every process has its own starting point. Choose an industry to explore a few products that may fit the job.</p>
+      </div>
+
+      <div class="lg:col-span-7">
+        <div id="finder-opts" class="home-finder-options" role="tablist" aria-label="Industry"></div>
+        <div id="finder-res" class="home-finder-result rounded-3xl border border-slate-200 p-6 sm:p-8" aria-live="polite">
+          <h3 id="finder-title" class="font-display font-semibold text-2xl text-titanium mb-2"></h3>
+          <p id="finder-desc" class="text-slate-600 leading-relaxed"></p>
+          <div id="finder-links" class="flex flex-wrap gap-2.5 my-6"></div>
+          <a id="finder-cta" href="contact.html" class="inline-flex items-center justify-center px-7 py-3.5 rounded-full font-semibold text-sm btn-copper">Discuss this setup</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     SECTION 4: INTERACTIVE LIVE SCADA PLATFORM (#platform)
+     ======================================================================== -->
+<section id="platform" class="home-platform-section">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="home-platform-card rounded-[32px] sm:rounded-[40px] border border-slate-200 p-5 sm:p-8 lg:p-10 grid lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+
+      <!-- Interactive Live SCADA Preview (white inner card) -->
+      <div class="lg:col-span-7 rv-3d">
+        <div class="home-platform-dashboard rounded-[28px] border border-slate-200 bg-white p-3 shadow-[0_30px_70px_-40px_rgba(15,33,55,0.45)]">
+          <!-- Browser Chrome -->
+          <div class="flex items-center justify-between gap-3 px-3 py-2.5 border-b border-slate-200 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-400/90"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-400/90"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-400/90"></span>
+            </div>
+            <div class="flex-1 max-w-xs mx-auto px-3 py-1 rounded-full bg-slate-100 border border-slate-200 font-mono text-[11px] text-slate-500 text-center truncate">
+              dashboard.kynatron.com / live
+            </div>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-emerald-50 text-emeraldx border border-emeraldx/25">LIVE</span>
+          </div>
+
+          <!-- Live SCADA Dashboard Application -->
+          <div class="rounded-2xl bg-slate-50 border border-slate-200 p-4 sm:p-5 space-y-4">
+            <!-- Site Selector Header -->
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emeraldx pulse-dot"></span>
+                <span class="font-mono text-xs font-semibold text-titanium">GM-SCADA Console</span>
+              </div>
+              <div class="flex items-center gap-1.5 bg-white p-1 rounded-full border border-slate-200" id="scada-sites" role="tablist" aria-label="SCADA Site Selector">
+                <button type="button" data-site="0" class="scada-site-btn active">Plant Alpha</button>
+                <button type="button" data-site="1" class="scada-site-btn">Cleanroom B</button>
+                <button type="button" data-site="2" class="scada-site-btn">Kiln Complex</button>
+              </div>
+            </div>
+
+            <!-- KPI Tiles -->
+            <div class="grid grid-cols-3 gap-2.5">
+              <div class="rounded-xl bg-white border border-slate-200 p-3">
+                <span id="kpi-1-label" class="block font-mono text-[10px] text-slatex uppercase">Primary Temp</span>
+                <strong id="kpi-1-val" class="block mt-1 font-mono text-base sm:text-xl font-bold text-copper tabular-nums">1,284 °C</strong>
+              </div>
+              <div class="rounded-xl bg-white border border-slate-200 p-3">
+                <span id="kpi-2-label" class="block font-mono text-[10px] text-slatex uppercase">Secondary Line</span>
+                <strong id="kpi-2-val" class="block mt-1 font-mono text-base sm:text-xl font-bold text-navy-700 tabular-nums">962 °C</strong>
+              </div>
+              <div class="rounded-xl bg-white border border-slate-200 p-3">
+                <span id="kpi-3-label" class="block font-mono text-[10px] text-slatex uppercase">Humidity / DP</span>
+                <strong id="kpi-3-val" class="block mt-1 font-mono text-base sm:text-xl font-bold text-emeraldx tabular-nums">45.2 %</strong>
+              </div>
+            </div>
+
+            <!-- Real-Time Multi-Channel Chart -->
+            <div class="rounded-xl bg-white border border-slate-200 p-3">
+              <div class="flex items-center justify-between mb-2 font-mono text-[10px] text-slate-500">
+                <span>REAL-TIME TELEMETRY TREND (1s)</span>
+                <div class="flex items-center gap-3">
+                  <span class="flex items-center gap-1"><i class="w-2 h-2 rounded-full bg-copper inline-block"></i>CH1</span>
+                  <span class="flex items-center gap-1"><i class="w-2 h-2 rounded-full bg-navy-700 inline-block"></i>CH2</span>
+                  <span class="flex items-center gap-1"><i class="w-2 h-2 rounded-full bg-emeraldx inline-block"></i>CH3</span>
+                </div>
+              </div>
+              <div class="w-full h-44 sm:h-48 relative">
+                <canvas id="scada-chart" class="w-full h-full block"></canvas>
+              </div>
+            </div>
+
+            <!-- Live Alarm Log -->
+            <div class="rounded-xl bg-white border border-slate-200 p-3">
+              <div class="flex items-center justify-between font-mono text-[10px] text-slate-500 mb-2">
+                <span>AUDIT &amp; EVENT STREAM</span>
+                <span class="text-emeraldx">21 CFR PART 11 VERIFIED</span>
+              </div>
+              <div id="scada-log" class="space-y-1.5 font-mono text-[11px] min-h-[5.5rem]"></div>
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-4 text-sm text-slatex">Interactive demo with simulated data. A production system connects to your own sensors.</p>
+        <div class="mt-5">
+          <a href="dashboard-demo.html" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm btn-cyan-outline">
+            <span>Open full dashboard</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Editorial Copy — STRONG navy card with animated orbs -->
+      <div class="home-platform-copy lg:col-span-5 rv-3d" style="--d: 0.15s;">
+        <div class="platform-eyebrow"><span class="platform-live-dot" aria-hidden="true"></span>Kyna Cloud · Connected monitoring</div>
+        <h2 class="word-split font-display font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-titanium">See the signal. Understand the change. Respond.</h2>
+        <p class="rv-3d mt-4 text-base sm:text-lg text-slatex leading-relaxed">A reading is only useful when it reaches the right person in context. Explore how connected monitoring can bring your equipment data, trends and alerts together.</p>
+
+        <div class="flex flex-wrap gap-2 mt-6 mb-4" aria-label="Measure, understand, respond">
+          <span class="px-4 py-1.5 rounded-full font-mono text-xs font-semibold bg-navy-50 border border-navy-700/20 text-navy-700">Measure</span>
+          <span class="px-4 py-1.5 rounded-full font-mono text-xs font-semibold bg-emerald-50 border border-emeraldx/25 text-emeraldx">Understand</span>
+          <span class="px-4 py-1.5 rounded-full font-mono text-xs font-semibold bg-copper text-white">Respond</span>
+        </div>
+
+        <ol class="divide-y">
+          <li class="py-4">
+            <h3 class="font-display font-semibold text-lg text-titanium mb-1">Connected data acquisition</h3>
+            <p class="text-sm sm:text-base text-slatex">Bring readings from compatible sensors, loggers and equipment into one reviewable data stream.</p>
+          </li>
+          <li class="py-4">
+            <h3 class="font-display font-semibold text-lg text-titanium mb-1">Remote monitoring</h3>
+            <p class="text-sm sm:text-base text-slatex">Give authorised users dashboards for current readings and historical trends from any device.</p>
+          </li>
+          <li class="py-4">
+            <h3 class="font-display font-semibold text-lg text-titanium mb-1">Alerts and notifications</h3>
+            <p class="text-sm sm:text-base text-slatex">Set thresholds and notification paths so deviations get investigated promptly.</p>
+          </li>
+          <li class="py-4">
+            <h3 class="font-display font-semibold text-lg text-titanium mb-1">Integration and deployment</h3>
+            <p class="text-sm sm:text-base text-slatex">Plan gateways, communication paths and interfaces around your existing equipment.</p>
+          </li>
+        </ol>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     SECTION 5: PROCESS PIPELINE
+     ======================================================================== -->
+<section class="pb-20 sm:pb-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <h2 class="word-split font-display font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-titanium">A practical path from question to connection</h2>
+      <p class="rv-3d mt-4 text-base sm:text-lg text-slatex">We start by understanding your process, then shape, build and support a system that fits the way your team works.</p>
+    </div>
+
+    <div id="proc-grid" class="proc-grid grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+      <div class="proc-rail hidden lg:block" aria-hidden="true"><div class="proc-beam"></div></div>
+
+      <div class="relative z-10 text-center px-2" style="--k: 0">
+        <div class="proc-orb w-16 h-16 mx-auto mb-5 rounded-full bg-white border-2 border-slate-300 flex items-center justify-center font-mono font-bold text-xl text-navy-900">1</div>
+        <h3 class="font-display font-semibold text-lg text-titanium mb-2">Consult</h3>
+        <p class="text-sm text-slatex leading-relaxed">We study your process, environment and compliance needs.</p>
+      </div>
+
+      <div class="relative z-10 text-center px-2" style="--k: 1">
+        <div class="proc-orb w-16 h-16 mx-auto mb-5 rounded-full bg-white border-2 border-slate-300 flex items-center justify-center font-mono font-bold text-xl text-navy-900">2</div>
+        <h3 class="font-display font-semibold text-lg text-titanium mb-2">Design</h3>
+        <p class="text-sm text-slatex leading-relaxed">We pick or tailor the devices, channels and cloud setup.</p>
+      </div>
+
+      <div class="relative z-10 text-center px-2" style="--k: 2">
+        <div class="proc-orb w-16 h-16 mx-auto mb-5 rounded-full bg-white border-2 border-slate-300 flex items-center justify-center font-mono font-bold text-xl text-navy-900">3</div>
+        <h3 class="font-display font-semibold text-lg text-titanium mb-2">Build and calibrate</h3>
+        <p class="text-sm text-slatex leading-relaxed">Manufactured in-house, calibrated and documented.</p>
+      </div>
+
+      <div class="relative z-10 text-center px-2" style="--k: 3">
+        <div class="proc-orb w-16 h-16 mx-auto mb-5 rounded-full bg-white border-2 border-slate-300 flex items-center justify-center font-mono font-bold text-xl text-navy-900">4</div>
+        <h3 class="font-display font-semibold text-lg text-titanium mb-2">Deploy and connect</h3>
+        <p class="text-sm text-slatex leading-relaxed">Installed on site and brought online in Kyna Cloud.</p>
+      </div>
+
+      <div class="relative z-10 text-center px-2" style="--k: 4">
+        <div class="proc-orb w-16 h-16 mx-auto mb-5 rounded-full bg-white border-2 border-slate-300 flex items-center justify-center font-mono font-bold text-xl text-navy-900">5</div>
+        <h3 class="font-display font-semibold text-lg text-titanium mb-2">Support</h3>
+        <p class="text-sm text-slatex leading-relaxed">Local service from Hyderabad and Bangalore, with same-week calibration and replacement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     SECTION 6: WHY KYNATRON + NABL
+     ======================================================================== -->
+<section class="py-20 sm:py-28 border-t border-slate-200 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <h2 class="word-split font-display font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-titanium">Designed for the conditions your team works in</h2>
+      <p class="rv-3d mt-4 text-base sm:text-lg text-slatex">Reliability is earned on the factory floor and in the records you rely on. These are the details we design around.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="glass-card tilt-3d rounded-[28px] p-8">
+        <h3 class="font-display font-semibold text-xl text-titanium mb-2.5">Built for Indian conditions</h3>
+        <p class="text-slatex leading-relaxed">Handles −40 °C to +85 °C ambient, 207–253 V AC supply fluctuation and IP66 ingress protection as standard.</p>
+      </div>
+      <div class="glass-card tilt-3d rounded-[28px] p-8">
+        <h3 class="font-display font-semibold text-xl text-titanium mb-2.5">50+ year data retention</h3>
+        <p class="text-slatex leading-relaxed">Non-overwriting industrial storage with auto-save on power failure and checksum verification.</p>
+      </div>
+      <div class="glass-card tilt-3d rounded-[28px] p-8">
+        <h3 class="font-display font-semibold text-xl text-titanium mb-2.5">Zero-install remote access</h3>
+        <p class="text-slatex leading-relaxed">A built-in HTML5 web server lets you monitor from a phone, tablet or control room with no software.</p>
+      </div>
+      <div class="glass-card tilt-3d rounded-[28px] p-8">
+        <h3 class="font-display font-semibold text-xl text-titanium mb-2.5">Local support and service</h3>
+        <p class="text-slatex leading-relaxed">Technical support from Hyderabad and Bangalore, with same-week calibration and replacement. No overseas RMAs.</p>
+      </div>
+      <div class="glass-card tilt-3d rounded-[28px] p-8">
+        <h3 class="font-display font-semibold text-xl text-titanium mb-2.5">Compliance ready</h3>
+        <p class="text-slatex leading-relaxed">21 CFR Part 11 compliant, with audit trails, tamper-evident logging and calibration certificates included.</p>
+      </div>
+      <div class="glass-card tilt-3d rounded-[28px] p-8">
+        <h3 class="font-display font-semibold text-xl text-titanium mb-2.5">Full stack, one accountable vendor</h3>
+        <p class="text-slatex leading-relaxed">Hardware, firmware, cloud platform and dashboard are all designed and manufactured by us.</p>
+      </div>
+    </div>
+
+    <!-- NABL Calibration Banner -->
+    <div class="rv-3d mt-6 rounded-[28px] border border-navy-700/20 bg-gradient-to-r from-[#eef3f9] via-white to-[#fff7ed] p-7 sm:p-9 flex flex-wrap items-center justify-between gap-6">
+      <div class="max-w-3xl">
+        <h3 class="font-display font-semibold text-2xl text-titanium">NABL calibration and certification</h3>
+        <p class="mt-2 text-slate-600 leading-relaxed">Support for NABL-accredited calibration of eligible measurement instruments, with certificates and documentation for quality and compliance records. Scope is confirmed for each instrument.</p>
+      </div>
+      <a href="services.html" class="inline-flex items-center justify-center px-7 py-3.5 rounded-full font-semibold text-sm btn-cyan-outline">Learn more</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     SECTION 7: TESTIMONIALS
+     ======================================================================== -->
+<section class="py-20 sm:py-28 border-b border-slate-200 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <h2 class="word-split font-display font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-titanium">The difference, in our customers’ words</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <blockquote class="glass-card tilt-3d rounded-[28px] p-8 flex flex-col">
+        <span class="font-display text-5xl leading-none text-copper mb-3" aria-hidden="true">“</span>
+        <p class="text-slate-700 text-base leading-relaxed flex-1">Kynatron’s data loggers have reduced our compliance reporting time by 60%. The 21 CFR Part 11 compliance was seamless — rock-solid reliability.</p>
+        <footer class="mt-6 pt-5 border-t border-slate-200 flex items-center gap-3.5">
+          <i class="not-italic w-11 h-11 rounded-full bg-navy-50 border border-navy-700/20 text-navy-700 font-mono text-sm font-bold flex items-center justify-center shrink-0">RP</i>
+          <div>
+            <b class="block text-titanium font-display text-base">Rajesh Patel</b>
+            <span class="text-xs text-slatex">Operations Head, Pharma Manufacturing</span>
+          </div>
+        </footer>
+      </blockquote>
+
+      <blockquote class="glass-card tilt-3d rounded-[28px] p-8 flex flex-col">
+        <span class="font-display text-5xl leading-none text-navy-700 mb-3" aria-hidden="true">“</span>
+        <p class="text-slate-700 text-base leading-relaxed flex-1">We deployed 200 units across 3 plants. Zero failures in 18 months. Their after-sales support is what truly sets them apart.</p>
+        <footer class="mt-6 pt-5 border-t border-slate-200 flex items-center gap-3.5">
+          <i class="not-italic w-11 h-11 rounded-full bg-orange-50 border border-copper/30 text-copper font-mono text-sm font-bold flex items-center justify-center shrink-0">AK</i>
+          <div>
+            <b class="block text-titanium font-display text-base">Anil Kumar</b>
+            <span class="text-xs text-slatex">Plant Manager, Steel Manufacturing</span>
+          </div>
+        </footer>
+      </blockquote>
+
+      <blockquote class="glass-card tilt-3d rounded-[28px] p-8 flex flex-col">
+        <span class="font-display text-5xl leading-none text-emeraldx mb-3" aria-hidden="true">“</span>
+        <p class="text-slate-700 text-base leading-relaxed flex-1">Their team understands manufacturing. They don’t just sell hardware — they design the entire monitoring solution around your process.</p>
+        <footer class="mt-6 pt-5 border-t border-slate-200 flex items-center gap-3.5">
+          <i class="not-italic w-11 h-11 rounded-full bg-emerald-50 border border-emeraldx/30 text-emeraldx font-mono text-sm font-bold flex items-center justify-center shrink-0">SM</i>
+          <div>
+            <b class="block text-titanium font-display text-base">Sunita Mehta</b>
+            <span class="text-xs text-slatex">QA Director, Food Processing</span>
+          </div>
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     SECTION 8: FAQ
+     ======================================================================== -->
+<section class="py-20 sm:py-28">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12">
+      <h2 class="word-split font-display font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-titanium">Before you take the next step</h2>
+    </div>
+
+    <div class="space-y-3.5" id="faq-list">
+      <div class="faq-item glass-card rounded-2xl overflow-hidden" data-open="false">
+        <button type="button" class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-display font-semibold text-lg text-titanium" aria-expanded="false">
+          <span>Can Kynatron systems work with my existing PLC or SCADA?</span>
+          <span class="faq-plus font-mono text-2xl text-copper transition-transform duration-300 shrink-0">+</span>
+        </button>
+        <div class="faq-body">
+          <div class="overflow-hidden">
+            <p class="px-6 pb-6 text-slatex leading-relaxed">Yes. Our instruments and loggers support Modbus RTU/TCP, RS-485, MQTT and REST, so they can sit alongside the equipment you already run. We plan gateways and interfaces around your setup.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item glass-card rounded-2xl overflow-hidden" data-open="false">
+        <button type="button" class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-display font-semibold text-lg text-titanium" aria-expanded="false">
+          <span>Can I monitor from outside the plant?</span>
+          <span class="faq-plus font-mono text-2xl text-copper transition-transform duration-300 shrink-0">+</span>
+        </button>
+        <div class="faq-body">
+          <div class="overflow-hidden">
+            <p class="px-6 pb-6 text-slatex leading-relaxed">Yes. Devices have a built-in web server, so you can view readings on a phone, tablet or control room screen without installing software. Kyna Cloud extends this to every site from one console.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item glass-card rounded-2xl overflow-hidden" data-open="false">
+        <button type="button" class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-display font-semibold text-lg text-titanium" aria-expanded="false">
+          <span>What happens to my data if power fails?</span>
+          <span class="faq-plus font-mono text-2xl text-copper transition-transform duration-300 shrink-0">+</span>
+        </button>
+        <div class="faq-body">
+          <div class="overflow-hidden">
+            <p class="px-6 pb-6 text-slatex leading-relaxed">Loggers use non-overwriting industrial storage with auto-save on power failure and checksum verification, so records stay intact.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item glass-card rounded-2xl overflow-hidden" data-open="false">
+        <button type="button" class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-display font-semibold text-lg text-titanium" aria-expanded="false">
+          <span>Do you support regulated industries such as pharma?</span>
+          <span class="faq-plus font-mono text-2xl text-copper transition-transform duration-300 shrink-0">+</span>
+        </button>
+        <div class="faq-body">
+          <div class="overflow-hidden">
+            <p class="px-6 pb-6 text-slatex leading-relaxed">Yes. Our systems are 21 CFR Part 11 compliant and include audit trails, tamper-evident logging and calibration certificates. We also support NABL-accredited calibration of eligible instruments; scope is confirmed per instrument.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item glass-card rounded-2xl overflow-hidden" data-open="false">
+        <button type="button" class="faq-btn w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-display font-semibold text-lg text-titanium" aria-expanded="false">
+          <span>Who supports and calibrates the equipment?</span>
+          <span class="faq-plus font-mono text-2xl text-copper transition-transform duration-300 shrink-0">+</span>
+        </button>
+        <div class="faq-body">
+          <div class="overflow-hidden">
+            <p class="px-6 pb-6 text-slatex leading-relaxed">Our teams in Hyderabad and Bangalore provide technical support, with same-week calibration and replacement, so there are no overseas returns.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     SECTION 9: FINAL CTA BAND
+     ======================================================================== -->
+<section class="pb-16 sm:pb-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="kt-bottom-cta relative overflow-hidden">
+      <div class="absolute inset-0 opacity-30 pointer-events-none" style="background-image: radial-gradient(rgba(255,255,255,0.18) 1px, transparent 1px); background-size: 28px 28px;" aria-hidden="true"></div>
+      <div class="relative z-10 max-w-2xl mx-auto">
+        <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-white">Let’s make your next reading count</h2>
+        <p class="mt-4 text-base sm:text-lg text-slate-300">Tell us what you need to measure, where the process happens and what your team needs to see. We’ll help you find a practical next step.</p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3.5">
+          <a href="contact.html" class="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold text-sm sm:text-base btn-copper">Get a free consultation</a>
+          <a href="products.html" class="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold text-sm sm:text-base btn-hero-outline">Browse the product range</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ========================================================================
+     FOOTER
+     ======================================================================== -->
+<footer class="kt-site-footer">
+  <div class="container">
+    <div class="footer-cta">
+      <div>
+        <strong>Build a clearer view of your process.</strong>
+        <p>From data acquisition and monitoring to control and automation, we help you connect measurements to practical next steps.</p>
+      </div>
+      <a href="contact.html" class="footer-cta-btn">Talk to our team</a>
+    </div>
+    <div class="footer-grid">
+      <div>
+        <h3 class="footer-brand">Kynatron Technologies</h3>
+        <p class="footer-intro">Industrial data acquisition, monitoring, control and automation systems designed for real operating environments.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="products.html">Data acquisition</a></li>
+          <li><a href="products.html">Environmental monitoring</a></li>
+          <li><a href="products.html">Control &amp; automation</a></li>
+          <li><a href="dashboard-demo.html">Dashboard demo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><i class="fa-solid fa-envelope"></i> <a href="mailto:sales@kynatron.com">sales@kynatron.com</a></li>
+          <li><i class="fa-solid fa-phone"></i> <a href="tel:+919343509732">+91 9343509732</a></li>
+          <li><i class="fa-solid fa-location-dot"></i> Hyderabad and Bangalore, India</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Kynatron Technologies. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" class="back-to-top" aria-label="Back to top">▲</button>
+
+<script>
+(function () {
+  "use strict";
+
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => Array.prototype.slice.call(c.querySelectorAll(s));
+  const fmt = (n, d) => Number(n).toLocaleString('en-IN', { minimumFractionDigits: d, maximumFractionDigits: d });
+
+  /* ------------------------------------------------------------------
+     Scroll progress
+     ------------------------------------------------------------------ */
+  const progress = $('#scroll-progress');
+
+  function onScroll() {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    if (progress) progress.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ------------------------------------------------------------------
+     Word-by-word 3D heading reveal
+     ------------------------------------------------------------------ */
+  $$('.word-split').forEach(function (el) {
+    const words = (el.textContent || '').trim().split(/\s+/);
+    el.innerHTML = words.map(function (w, i) {
+      return '<span class="w-wrap"><span class="w-inner" style="--wi:' + i + '">' + w + '</span></span>';
+    }).join(' ');
+  });
+
+  const revealIO = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      if (e.target.classList.contains('rv-3d')) {
+        setTimeout(function () { e.target.classList.add('settled'); }, 1000);
+      }
+      revealIO.unobserve(e.target);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  $$('.word-split, .rv-3d').forEach(function (el) { revealIO.observe(el); });
+
+  /* ------------------------------------------------------------------
+     Animated stat counters
+     ------------------------------------------------------------------ */
+  const counterIO = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const to = parseFloat(el.dataset.to || '0');
+      const dec = parseInt(el.dataset.dec || '0', 10);
+      const suf = el.dataset.suf || '';
+      const dur = 1400;
+      let start = null;
+
+      function step(ts) {
+        if (start === null) start = ts;
+        const p = Math.min((ts - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(to * eased, dec) + suf;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      counterIO.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+
+  $$('#stats-row [data-to]').forEach(function (el) { counterIO.observe(el); });
+
+  /* ------------------------------------------------------------------
+     Marquee — duplicate the set for a seamless -50% loop
+     ------------------------------------------------------------------ */
+  ['marquee-track-1', 'marquee-track-2'].forEach(function (id) {
+    const track = document.getElementById(id);
+    if (!track) return;
+    Array.prototype.slice.call(track.children).forEach(function (child) {
+      const clone = child.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+  });
+
+  /* ------------------------------------------------------------------
+     3D isometric stack selector
+     ------------------------------------------------------------------ */
+  const isoLayers = $$('.iso-layer');
+  const stackTabs = $$('.stack-tab');
+  const stackInfo = $('#stack-info');
+  const stackText = [
+    'Field devices: sensors, transmitters and loggers capture temperature, humidity, pressure and process signals at the source.',
+    'Edge and control: gateways and controllers buffer data locally, run logic and keep operating if the network drops.',
+    'Kyna Cloud: every device, site and alarm in one console with history, audit trails and role-based access.',
+    'Apps and insights: dashboards, notifications and integrations that turn readings into decisions.'
+  ];
+
+  function selectLayer(i) {
+    isoLayers.forEach(function (l) {
+      l.classList.toggle('on', parseInt(l.dataset.layer, 10) === i);
+    });
+    stackTabs.forEach(function (t) {
+      const on = parseInt(t.dataset.idx, 10) === i;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', String(on));
+    });
+    if (stackInfo) stackInfo.textContent = stackText[i] || '';
+  }
+
+  stackTabs.forEach(function (t) {
+    t.addEventListener('click', function () { selectLayer(parseInt(t.dataset.idx, 10)); });
+    t.addEventListener('mouseenter', function () { selectLayer(parseInt(t.dataset.idx, 10)); });
+  });
+  isoLayers.forEach(function (l) {
+    l.addEventListener('click', function () { selectLayer(parseInt(l.dataset.layer, 10)); });
+  });
+  if (isoLayers.length) selectLayer(2);
+
+  /* ------------------------------------------------------------------
+     Solution configurator
+     ------------------------------------------------------------------ */
+  const industries = [
+    { name: 'Pharma & healthcare', desc: 'Cleanroom, cold-chain and controlled-storage monitoring with audit trails built for 21 CFR Part 11 reviews.', items: [['KynaShield', 'kynashield'], ['KynaSense', 'kynasense'], ['Kyna Cloud', 'kynacloud']] },
+    { name: 'Steel & manufacturing', desc: 'Multi-zone furnace and kiln monitoring with fast sampling and rugged enclosures for hot, dusty floors.', items: [['KynaCore', 'kynacore'], ['KynaLog', 'kynalog-series'], ['Kyna Cloud', 'kynacloud']] },
+    { name: 'Power & energy', desc: 'Thermal and process data acquisition for generation assets, with local buffering and SCADA integration.', items: [['KynaLog', 'kynalog-series'], ['KynaMeter', 'kynameter'], ['Kyna Cloud', 'kynacloud']] },
+    { name: 'Data centres', desc: 'Temperature, humidity and differential-pressure monitoring for server rooms and critical infrastructure.', items: [['KynaSense', 'kynasense'], ['KynaNode', 'kynanode'], ['Kyna Cloud', 'kynacloud']] },
+    { name: 'Oil, gas & petrochemicals', desc: 'Process instrumentation and remote telemetry for pipelines, equipment and plant-wide visibility.', items: [['KynaMeter', 'kynameter'], ['KynaNode', 'kynanode'], ['Kyna Cloud', 'kynacloud']] },
+    { name: 'Food & beverage', desc: 'Cold storage, processing and HACCP-friendly records with alarms that reach the right team.', items: [['KynaSense', 'kynasense'], ['KynaLog', 'kynalog-series'], ['Kyna Cloud', 'kynacloud']] }
+  ];
+
+  const finderOpts = $('#finder-opts');
+  const finderTitle = $('#finder-title');
+  const finderDesc = $('#finder-desc');
+  const finderLinks = $('#finder-links');
+  const finderRes = $('#finder-res');
+  const finderButtons = [];
+
+  function showFinder(i) {
+    const it = industries[i];
+    if (!it) return;
+    finderButtons.forEach(function (b, bi) { b.classList.toggle('active', bi === i); });
+    finderTitle.textContent = it.name;
+    finderDesc.textContent = it.desc;
+    finderLinks.innerHTML = it.items.map(function (p) {
+      return '<a class="finder-chip" href="products.html#' + p[1] + '">' + p[0] + ' →</a>';
+    }).join('');
+    finderRes.classList.remove('swap-anim');
+    void finderRes.offsetWidth;
+    finderRes.classList.add('swap-anim');
+  }
+
+  industries.forEach(function (it, i) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('role', 'tab');
+    b.className = 'finder-btn';
+    b.textContent = it.name;
+    b.addEventListener('click', function () { showFinder(i); });
+    finderOpts.appendChild(b);
+    finderButtons.push(b);
+  });
+  if (industries.length) showFinder(0);
+
+  /* ------------------------------------------------------------------
+     SCADA demo console
+     ------------------------------------------------------------------ */
+  const scadaSites = [
+    {
+      kpi: [
+        { l: 'Primary Temp', u: ' °C', c: 'text-copper' },
+        { l: 'Secondary Line', u: ' °C', c: 'text-navy-700' },
+        { l: 'Humidity / DP', u: ' %', c: 'text-emeraldx' }
+      ],
+      base: [1284, 962, 45.2],
+      varr: [6, 5, 0.4]
+    },
+    {
+      kpi: [
+        { l: 'Cleanroom Temp', u: ' °C', c: 'text-copper' },
+        { l: 'Relative Humidity', u: ' %', c: 'text-navy-700' },
+        { l: 'Pressure', u: ' Pa', c: 'text-emeraldx' }
+      ],
+      base: [22.4, 45.2, 12.6],
+      varr: [0.3, 0.4, 0.2]
+    },
+    {
+      kpi: [
+        { l: 'Kiln Zone 1', u: ' °C', c: 'text-copper' },
+        { l: 'Kiln Zone 2', u: ' °C', c: 'text-navy-700' },
+        { l: 'Draft', u: ' Pa', c: 'text-emeraldx' }
+      ],
+      base: [962, 918, -12],
+      varr: [5, 5, 0.5]
+    }
+  ];
+
+  const chart = $('#scada-chart');
+  const siteBtns = $$('.scada-site-btn');
+  let curSite = 0;
+  let series = [[], [], []];
+  let cctx = null;
+  const chartColors = ['#ea580c', '#1e3a5f', '#16a34a'];
+
+  function seedSeries() {
+    const s = scadaSites[curSite];
+    series = s.base.map(function (b, i) {
+      const arr = [];
+      for (let k = 0; k < 60; k++) arr.push(b + (Math.random() * 2 - 1) * s.varr[i]);
+      return arr;
+    });
+  }
+
+  function chartResize() {
+    if (!chart) return;
+    const dpr = window.devicePixelRatio || 1;
+    const w = chart.clientWidth || 300;
+    const h = chart.clientHeight || 180;
+    chart.width = w * dpr;
+    chart.height = h * dpr;
+    cctx = chart.getContext('2d');
+    cctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function drawChart() {
+    if (!cctx || !chart) return;
+    const w = chart.clientWidth || 300;
+    const h = chart.clientHeight || 180;
+    cctx.clearRect(0, 0, w, h);
+
+    cctx.strokeStyle = 'rgba(148,163,184,0.20)';
+    cctx.lineWidth = 1;
+    for (let g = 0; g <= 4; g++) {
+      const y = (g / 4) * (h - 4) + 2;
+      cctx.beginPath();
+      cctx.moveTo(0, y);
+      cctx.lineTo(w, y);
+      cctx.stroke();
+    }
+
+    series.forEach(function (arr, si) {
+      const min = Math.min.apply(null, arr);
+      const max = Math.max.apply(null, arr);
+      const range = (max - min) || 1;
+      cctx.beginPath();
+      arr.forEach(function (v, i) {
+        const x = (i / (arr.length - 1)) * w;
+        const y = h - 8 - ((v - min) / range) * (h - 16);
+        if (i === 0) cctx.moveTo(x, y); else cctx.lineTo(x, y);
+      });
+      cctx.strokeStyle = chartColors[si];
+      cctx.lineWidth = 2;
+      cctx.lineJoin = 'round';
+      cctx.stroke();
+    });
+  }
+
+  function paintKpis() {
+    const s = scadaSites[curSite];
+    for (let i = 0; i < 3; i++) {
+      const lab = document.getElementById('kpi-' + (i + 1) + '-label');
+      const val = document.getElementById('kpi-' + (i + 1) + '-val');
+      if (lab) lab.textContent = s.kpi[i].l;
+      if (val) {
+        const n = series[i][series[i].length - 1];
+        const dec = Math.abs(n) < 100 ? 1 : 0;
+        val.textContent = fmt(n, dec) + s.kpi[i].u;
+        val.className = 'block mt-1 font-mono text-base sm:text-xl font-bold tabular-nums ' + s.kpi[i].c;
+      }
+    }
+  }
+
+  function selectSite(i) {
+    curSite = i;
+    siteBtns.forEach(function (b, bi) { b.classList.toggle('active', bi === i); });
+    seedSeries();
+    paintKpis();
+    drawChart();
+  }
+
+  if (chart) {
+    chartResize();
+    seedSeries();
+    paintKpis();
+    drawChart();
+    window.addEventListener('resize', function () { chartResize(); drawChart(); });
+
+    setInterval(function () {
+      const s = scadaSites[curSite];
+      series.forEach(function (arr, i) {
+        arr.push(s.base[i] + (Math.random() * 2 - 1) * s.varr[i]);
+        arr.shift();
+      });
+      paintKpis();
+      drawChart();
+    }, 1200);
+
+    siteBtns.forEach(function (b) {
+      b.addEventListener('click', function () { selectSite(parseInt(b.dataset.site, 10)); });
+    });
+    selectSite(0);
+  }
+
+  /* Event stream */
+  const logEl = $('#scada-log');
+  const logPool = [
+    ['INFO', 'Sample block committed · 16 channels · CRC OK'],
+    ['AUDIT', 'User operator.01 acknowledged alarm A-104'],
+    ['INFO', 'MQTT uplink healthy · latency 42 ms'],
+    ['WARN', 'Zone B trend approaching high threshold'],
+    ['INFO', 'Nightly backup completed · 21 CFR Part 11 record sealed'],
+    ['INFO', 'Calibration certificate attached to device GM-DL-0417']
+  ];
+  let logIdx = 0;
+
+  function pushLog() {
+    if (!logEl) return;
+    const item = logPool[logIdx % logPool.length];
+    logIdx++;
+    const row = document.createElement('div');
+    row.className = 'flex items-start gap-2';
+    const time = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const tone = item[0] === 'WARN' ? 'text-amber-600' : item[0] === 'AUDIT' ? 'text-navy-700' : 'text-slatex';
+    row.innerHTML = '<span class="text-slate-400">' + time + '</span>' +
+                    '<span class="' + tone + ' font-semibold">' + item[0] + '</span>' +
+                    '<span class="text-slate-600">' + item[1] + '</span>';
+    logEl.insertBefore(row, logEl.firstChild);
+    while (logEl.children.length > 4) logEl.removeChild(logEl.lastChild);
+  }
+  if (logEl) {
+    pushLog(); pushLog(); pushLog();
+    setInterval(pushLog, 4200);
+  }
+
+  /* ------------------------------------------------------------------
+     Process pipeline reveal
+     ------------------------------------------------------------------ */
+  const procGrid = $('#proc-grid');
+  if (procGrid) {
+    const procIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          procGrid.classList.add('in');
+          procIO.unobserve(procGrid);
+        }
+      });
+    }, { threshold: 0.25 });
+    procIO.observe(procGrid);
+  }
+
+  /* ------------------------------------------------------------------
+     FAQ accordion
+     ------------------------------------------------------------------ */
+  $$('.faq-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const item = btn.closest('.faq-item');
+      if (!item) return;
+      const isOpen = item.dataset.open === 'true';
+      item.dataset.open = String(!isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  /* ------------------------------------------------------------------
+     Back to top
+     ------------------------------------------------------------------ */
+  const backTop = $('#back-to-top');
+  if (backTop) {
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 400) backTop.classList.add('show');
+      else backTop.classList.remove('show');
+    }, { passive: true });
+
+    backTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+})();
+</script>
+<script src="js/site-shell.js"></script>
+
+</body>
+</html>

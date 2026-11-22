@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%231e3a5f'/><text x='50' y='72' font-size='60' font-weight='800' fill='white' text-anchor='middle' font-family='Arial'>K</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | Kynatron Technologies — Join Our Team</title>
+    <meta name="description" content="Join Kynatron Technologies. Open positions and internships in embedded systems, electronics design, IoT, sales, and production. Hyderabad and Bangalore, India.">
+    <meta name="keywords" content="Kynatron Careers, embedded systems jobs, firmware engineer, Hyderabad, Bangalore, internships">
+    <meta property="og:title" content="Careers at Kynatron Technologies">
+    <meta property="og:description" content="Build what's next with Kynatron. Open roles and internships in embedded systems, hardware, IoT software, sales, and production.">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ============================================================
+           THEME CONSTANTS (mirrors css/style.css from About page)
+           ============================================================ */
+        :root{
+            --navy:        #1e3a5f;
+            --navy-900:    #0f2137;
+            --navy-700:    #2b5480;
+            --navy-50:     #eef3f9;
+            --orange:      #ea580c;
+            --orange-500:  #f97316;
+            --orange-50:   #fff7ed;
+            --blue:        #3b82f6;
+            --blue-50:     #eff6ff;
+            --green:       #16a34a;
+            --green-50:    #dcfce7;
+            --purple:      #7c3aed;
+            --purple-50:   #f3e8ff;
+
+            --ink:         #111827;
+            --muted:       #6b7280;
+            --line:        #e5e7eb;
+            --bg:          #ffffff;
+            --bg-gray:     #f9fafb;
+            --card:        #ffffff;
+
+            --radius-sm:   8px;
+            --radius-md:   12px;
+            --radius-lg:   16px;
+            --shadow-sm:   0 1px 2px rgba(17,24,39,.06), 0 4px 12px -8px rgba(17,24,39,.15);
+            --shadow-md:   0 2px 4px rgba(17,24,39,.06), 0 16px 32px -18px rgba(17,24,39,.30);
+            --shadow-lg:   0 24px 48px -24px rgba(17,24,39,.45);
+            --maxw:        1180px;
+
+            /* status colours */
+            --open-fg:     #067647;
+            --open-bg:     #dcfae6;
+            --open-line:   #abefc6;
+            --open-dot:    #17b26a;
+            --closed-fg:   #b42318;
+            --closed-bg:   #fee4e2;
+            --closed-line: #fecdca;
+            --closed-dot:  #f04438;
+        }
+
+        /* ============================================================
+           BASE
+           ============================================================ */
+        *,*::before,*::after{box-sizing:border-box}
+        html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+        body{
+            margin:0;
+            font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+            color:var(--ink);
+            background:var(--bg);
+            line-height:1.6;
+            -webkit-font-smoothing:antialiased;
+        }
+        body.modal-open{overflow:hidden}
+        a{color:inherit}
+        img{max-width:100%;display:block}
+        .container{max-width: var(--maxw, 1180px) !important;margin:0 auto;padding:0 24px}
+        .is-hidden{display:none !important}
+        .ico{width:15px;height:15px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+        /* scroll progress (top) */
+        .scroll-progress{
+            position:fixed;top:0;left:0;height:3px;width:0%;
+            background:linear-gradient(90deg,var(--orange),var(--navy));
+            z-index:120;transition:width .12s linear;
+        }
+
+        /* ============================================================
+           NAVBAR (from About page)
+           ============================================================ */
+        .navbar{
+            position:sticky;top:0;z-index:100;
+            background:#ffffff;
+            border-bottom:1px solid var(--line);
+            box-shadow:0 1px 2px rgba(17,24,39,.04);
+        }
+        .nav-container{
+            display:flex;align-items:center;justify-content:space-between;
+            height:70px;gap:20px;
+        }
+        .logo{
+            display:inline-flex;align-items:center;gap:10px;
+            text-decoration:none;flex:none;
+        }
+        .logo-mark-img{
+            width:38px;height:38px;border-radius:10px;flex:none;
+            background:linear-gradient(145deg,var(--navy-700),var(--navy-900));
+            color:#fff;font-weight:800;font-size:19px;
+            display:grid;place-items:center;
+            box-shadow:0 6px 16px -8px rgba(30,58,95,.9);
+        }
+        .logo-text{
+            font-weight:800;font-size:16px;letter-spacing:.06em;
+            color:var(--navy-900);
+        }
+        .nav-links{display:flex;align-items:center;gap:6px}
+        .nav-links a{
+            text-decoration:none;
+            font-size:14px;font-weight:600;color:#374151;
+            padding:9px 14px;border-radius:8px;
+            transition:color .18s,background .18s;
+        }
+        .nav-links a:hover{color:var(--navy);background:var(--navy-50)}
+        .nav-links a.active{
+            color:var(--navy);background:var(--navy-50);
+        }
+        .mobile-menu-btn{
+            display:none;appearance:none;border:1px solid var(--line);
+            background:#fff;border-radius:8px;cursor:pointer;
+            width:40px;height:40px;font-size:18px;color:var(--navy);
+        }
+
+        /* ============================================================
+           NEW CUSTOM HERO (matches screenshot)
+           ============================================================ */
+        .custom-hero {
+            position: relative;
+            background-color: #16233a;
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.25) 0%, transparent 50%),
+                radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+            background-size: 100% 100%, 32px 32px;
+            padding: 80px 0 90px;
+            color: #fff;
+            overflow: hidden;
+        }
+        .custom-hero::after {
+            content: "";
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: linear-gradient(90deg, #16233a 20%, transparent 80%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ▼ CHANGED — mirrors index.html hero container
+           (max-w-7xl = 80rem, px-4 → sm:px-6) so the badge, h1 and
+           paragraph start at the exact same left edge on every width.
+           !important is required because the base .container rule uses it. */
+        .custom-hero .container {
+            position: relative;
+            z-index: 1;
+            max-width: 80rem !important;   /* was 900px (ignored) / effectively 1180px */
+            padding-left: 1rem;            /* px-4  */
+            padding-right: 1rem;
+        }
+        @media (min-width: 640px) {
+            .custom-hero .container {
+                padding-left: 1.5rem;      /* sm:px-6 */
+                padding-right: 1.5rem;
+            }
+        }
+        /* ▲ END CHANGE */
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #d1d5db;
+            margin-bottom: 28px;
+        }
+        .hero-badge .dot {
+            width: 8px; height: 8px;
+            background-color: #34d399;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(52, 211, 153, 0.6);
+        }
+        .hero-title {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin: 0 0 20px;
+            color: #ffffff;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #60a5fa, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-p {
+            font-size: clamp(1rem, 1.4vw, 1.15rem);
+            color: #cbd5e1;
+            line-height: 1.65;
+            max-width: 780px;
+            margin: 0;
+        }
+        /* ============================================================
+           SECTIONS
+           ============================================================ */
+        .section{padding:56px 0}
+        .section-gray{background:var(--bg-gray)}
+        .section-header{text-align:center;max-width:680px;margin:0 auto 36px}
+        .section-header h2{
+            margin:0 0 8px;font-size:clamp(1.4rem,2.6vw,1.85rem);
+            letter-spacing:-.02em;font-weight:800;
+        }
+        .section-header p{margin:0;color:var(--muted);font-size:14.5px}
+
+        /* ============================================================
+           CAREERS TOOLBAR (view switch + filters)
+           ============================================================ */
+        .careers-toolbar{
+            display:flex;flex-wrap:wrap;align-items:center;gap:16px;
+            margin-bottom:24px;
+        }
+        .role-switch{
+            display:flex;gap:5px;
+            background:#e9eff7;border:1px solid #dde6f0;
+            padding:5px;border-radius:999px;
+        }
+        .switch-btn{
+            appearance:none;-webkit-appearance:none;border:0;cursor:pointer;
+            display:inline-flex;align-items:center;gap:8px;
+            padding:9px 18px;border-radius:999px;
+            font:inherit;font-size:13.5px;font-weight:650;
+            color:#41556d;background:transparent;
+            transition:background .18s,color .18s,box-shadow .18s;
+            white-space:nowrap;
+        }
+        .switch-btn:hover{color:var(--navy);background:rgba(255,255,255,.65)}
+        .switch-btn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+        .switch-btn.active{
+            background:#ffffff;color:var(--navy-900);
+            box-shadow:0 1px 2px rgba(18,36,58,.10), 0 8px 18px -12px rgba(30,58,95,.75);
+        }
+        .switch-btn.active:hover{background:#ffffff;color:var(--navy-900)}
+        .switch-btn .count{
+            font-size:11px;font-weight:700;line-height:1;
+            padding:4px 7px;border-radius:999px;
+            background:rgba(18,36,58,.08);color:#41556d;
+            transition:background .18s,color .18s;
+        }
+        .switch-btn.active .count{background:var(--navy);color:#fff}
+
+        .filters{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
+        .chip{
+            appearance:none;cursor:pointer;font:inherit;
+            font-size:13px;font-weight:600;color:#41556d;
+            background:#fff;border:1px solid var(--line);
+            padding:8px 16px;border-radius:999px;
+            transition:all .18s;
+        }
+        .chip:hover{border-color:#c3d6ea;color:var(--navy);transform:translateY(-1px)}
+        .chip.active{
+            background:var(--blue-50);border-color:#b6d7fb;
+            color:#1d5ea8;box-shadow:inset 0 0 0 1px rgba(59,142,234,.16);
+        }
+
+        /* ============================================================
+           JOB LIST + CARDS — one per row
+           ============================================================ */
+        .job-grid{
+            display:grid;gap:18px;align-items:start;
+            grid-template-columns:1fr;
+            animation:fadeUp .38s ease both;
+        }
+        @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+        .job-card{
+            position:relative;display:flex;flex-direction:column;gap:14px;
+            background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);
+            padding:24px 26px 20px;overflow:hidden;
+            box-shadow:var(--shadow-sm);
+            transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+        }
+        .job-card::before{
+            content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+            background:linear-gradient(180deg,var(--blue),var(--navy));
+            opacity:0;transition:opacity .22s;
+        }
+        .job-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:#cfdcea}
+        .job-card:hover::before{opacity:1}
+        .job-card[data-intern="true"]::before{background:linear-gradient(180deg,#7c5cf5,var(--purple))}
+
+        .job-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+        .job-top-left{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+        .dept-tag{
+            font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+            color:#1d5ea8;background:var(--blue-50);
+            padding:5px 10px;border-radius:6px;
+        }
+        .dept-tag.intern{color:var(--purple);background:var(--purple-50)}
+        .job-code{
+            font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+            font-size:11px;font-weight:700;letter-spacing:.05em;
+            color:#4b5b6e;background:#f1f5f9;border:1px solid #e3eaf2;
+            padding:4px 8px;border-radius:6px;
+        }
+
+        .badge{
+            font-size:11px;font-weight:750;letter-spacing:.06em;text-transform:uppercase;
+            padding:5px 11px;border-radius:999px;
+            display:inline-flex;align-items:center;gap:6px;
+            border:1px solid transparent;
+        }
+        .badge.open{color:var(--open-fg);background:var(--open-bg);border-color:var(--open-line)}
+        .badge.open::before{
+            content:"";width:6px;height:6px;border-radius:50%;
+            background:var(--open-dot);box-shadow:0 0 0 3px rgba(23,178,106,.18);
+        }
+        .badge.closed{color:var(--closed-fg);background:var(--closed-bg);border-color:var(--closed-line)}
+        .badge.closed::before{
+            content:"";width:6px;height:6px;border-radius:50%;
+            background:var(--closed-dot);box-shadow:0 0 0 3px rgba(240,68,56,.18);
+        }
+
+        .job-card h3{
+            margin:0;font-size:18.5px;font-weight:700;letter-spacing:-.015em;line-height:1.35;
+        }
+        .job-card h3 a{text-decoration:none}
+        .job-card h3 a:hover{color:var(--blue)}
+
+        .job-meta{
+            list-style:none;display:flex;flex-wrap:wrap;gap:7px 18px;
+            margin:0;padding:0;font-size:13px;color:var(--muted);
+        }
+        .job-meta li{display:inline-flex;align-items:center;gap:6px}
+        .job-desc{margin:0;font-size:14px;color:#556579;line-height:1.62;max-width:860px}
+
+        .job-foot{
+            display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:10px;
+            margin-top:auto;padding-top:16px;border-top:1px dashed var(--line);
+        }
+        .job-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+        .btn-apply{
+            display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+            font-size:13px;font-weight:650;color:#fff;
+            background:var(--navy);padding:9px 16px;border-radius:999px;
+            transition:background .18s,transform .18s,box-shadow .18s;
+        }
+        .btn-apply .ico{transition:transform .18s}
+        .btn-apply:hover{background:var(--navy-900);transform:translateY(-1px);box-shadow:0 10px 20px -12px rgba(30,58,95,.95)}
+        .btn-apply:hover .ico{transform:translateX(3px)}
+
+        .btn-details{
+            appearance:none;cursor:pointer;font:inherit;
+            display:inline-flex;align-items:center;gap:6px;
+            font-size:12.8px;font-weight:650;color:var(--navy);
+            background:#fff;border:1px solid #cddcec;
+            padding:8px 14px;border-radius:999px;
+            transition:all .18s;
+        }
+        .btn-details:hover{background:var(--blue-50);border-color:#b6d7fb;color:#1d5ea8}
+
+        .btn-notify{
+            display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+            font-size:13px;font-weight:650;color:var(--navy);
+            background:#fff;border:1px solid #cddcec;padding:9px 16px;border-radius:999px;
+            transition:all .18s;
+        }
+        .btn-notify:hover{background:var(--blue-50);border-color:#b6d7fb;color:#1d5ea8}
+
+        /* archived cards */
+        .job-card.archived{background:#fbfcfe;border-style:dashed;box-shadow:none}
+        .job-card.archived::before{background:linear-gradient(180deg,#b9c6d6,#8fa2b8)}
+        .job-card.archived h3{color:#41556d;font-weight:650}
+        .job-card.archived .job-code{background:#f4f6f9;color:#7b8ba0}
+        .job-card.archived:hover{transform:translateY(-2px);box-shadow:0 10px 26px -18px rgba(18,36,58,.5)}
+
+        /* empty state */
+        .empty{
+            display:flex;flex-direction:column;align-items:center;gap:8px;
+            text-align:center;padding:64px 24px;
+            background:#fff;border:1px dashed var(--line);border-radius:var(--radius-lg);
+            color:var(--muted);
+        }
+        .empty strong{color:var(--ink);font-size:15.5px}
+        .empty a{color:var(--navy);font-weight:600;text-decoration:none}
+        .empty a:hover{text-decoration:underline}
+
+        /* ============================================================
+           BUTTONS (from theme)
+           ============================================================ */
+        .btn{
+            display:inline-flex;align-items:center;gap:9px;
+            text-decoration:none;font-weight:650;font-size:14px;
+            padding:12px 24px;border-radius:999px;
+            transition:transform .18s,box-shadow .18s,background .18s,color .18s,border-color .18s;
+            border:1px solid transparent;cursor:pointer;
+        }
+        .btn-primary{
+            background:linear-gradient(145deg,var(--orange-500),var(--orange));
+            color:#fff;box-shadow:0 12px 24px -14px rgba(234,88,12,.95);
+        }
+        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 30px -14px rgba(234,88,12,1)}
+        .btn-outline{
+            background:transparent;color:#fff;
+            border-color:rgba(255,255,255,.55);
+        }
+        .btn-outline:hover{background:rgba(255,255,255,.12);border-color:#fff;transform:translateY(-2px)}
+
+        /* ============================================================
+           CTA section
+           ============================================================ */
+        .cta-section{
+            background:linear-gradient(130deg,#12243a,var(--navy) 62%,var(--navy-700));
+            color:#fff;text-align:center;padding:56px 24px;
+        }
+        .cta-section h2{margin:0 0 10px;font-size:clamp(1.4rem,2.6vw,1.9rem);letter-spacing:-.02em;font-weight:800}
+        .cta-section p{margin:0 auto 24px;max-width:620px;color:#bed2e6;font-size:14.5px}
+
+        /* ============================================================
+           FOOTER (from About page)
+           ============================================================ */
+        .footer{
+            background:#0f2137;color:#c6d3e2;
+            padding:56px 0 0;margin-top:0;
+        }
+        .footer-cta{
+            display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+            gap:20px;padding:26px 28px;margin-bottom:40px;
+            border-radius:var(--radius-lg);
+            background:linear-gradient(130deg,rgba(59,130,246,.18),rgba(30,58,95,.35));
+            border:1px solid rgba(255,255,255,.08);
+        }
+        .footer-cta strong{display:block;color:#fff;font-size:1.05rem;margin-bottom:4px}
+        .footer-cta p{margin:0;font-size:14px;color:#a9c3db;max-width:560px}
+        .footer-cta-btn{flex:none}
+
+        .footer-grid{
+            display:grid;
+            grid-template-columns:1.4fr 1fr 1fr 1.2fr;
+            gap:36px;
+            padding:0 0 40px;
+        }
+        .footer-brand{margin:0 0 10px;color:#fff;font-size:16px;letter-spacing:-.01em}
+        .footer-intro{margin:0;font-size:13.5px;color:#a9c3db;max-width:320px}
+        .footer-grid h4{
+            margin:0 0 14px;color:#fff;font-size:13px;
+            letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+        }
+        .footer-grid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+        .footer-grid ul li{font-size:13.5px;color:#a9c3db;display:flex;align-items:center;gap:8px}
+        .footer-grid ul li i{color:var(--orange-500);font-size:12px}
+        .footer-grid a{
+            color:#a9c3db;text-decoration:none;
+            transition:color .18s;
+        }
+        .footer-grid a:hover{color:#fff}
+        .footer-bottom{
+            border-top:1px solid rgba(255,255,255,.10);
+            padding:20px 0;text-align:center;
+            font-size:12.5px;color:#8aa2bd;
+        }
+
+        /* back to top */
+        .back-to-top{
+            position:fixed;right:22px;bottom:22px;z-index:90;
+            width:44px;height:44px;border-radius:50%;
+            background:var(--navy);color:#fff;border:0;cursor:pointer;
+            display:grid;place-items:center;font-size:15px;
+            box-shadow:0 12px 24px -12px rgba(30,58,95,.9);
+            opacity:0;visibility:hidden;transform:translateY(8px);
+            transition:opacity .25s,transform .25s,visibility .25s;
+        }
+        .back-to-top.show{opacity:1;visibility:visible;transform:none}
+        .back-to-top:hover{background:var(--navy-900)}
+
+        /* ============================================================
+           MODAL focus card
+           ============================================================ */
+        .modal-overlay{
+            position:fixed;inset:0;z-index:1000;
+            display:flex;align-items:center;justify-content:center;
+            padding:24px;
+            background:rgba(10,20,30,.55);
+            backdrop-filter:blur(4px);
+            -webkit-backdrop-filter:blur(4px);
+            visibility:hidden;opacity:0;pointer-events:none;
+            transition:opacity .25s ease,visibility .25s ease;
+        }
+        .modal-overlay.is-open{visibility:visible;opacity:1;pointer-events:auto}
+        .modal-card{
+            background:#fff;border-radius:20px;
+            max-width:720px;width:100%;max-height:85vh;overflow-y:auto;
+            box-shadow:0 30px 80px -20px rgba(0,0,0,.5);
+            padding:32px 32px 28px;position:relative;
+            transform:translateY(12px) scale(.98);
+            transition:transform .25s ease;
+        }
+        .modal-overlay.is-open .modal-card{transform:none}
+        .modal-close{
+            position:absolute;top:16px;right:16px;
+            width:36px;height:36px;border-radius:50%;
+            border:1px solid var(--line);background:#fff;
+            font-size:20px;line-height:1;cursor:pointer;
+            display:grid;place-items:center;color:var(--muted);
+            transition:background .18s,color .18s;
+        }
+        .modal-close:hover{background:var(--blue-50);color:var(--navy)}
+        .modal-body h2{
+            margin:0 0 8px;font-size:1.5rem;letter-spacing:-.02em;
+            font-weight:800;padding-right:40px;line-height:1.25;
+        }
+        .modal-meta{
+            font-size:13px;color:var(--muted);margin-bottom:18px;
+            display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;
+        }
+        .modal-meta span{display:inline-flex;align-items:center;gap:5px}
+        .modal-meta span+span::before{content:"·";margin-right:8px;color:#b0bfd0}
+        .modal-meta .modal-code{
+            font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+            font-size:11.5px;font-weight:700;letter-spacing:.05em;
+            color:#1d5ea8;background:var(--blue-50);
+            padding:3px 8px;border-radius:5px;
+        }
+        .modal-meta .modal-code::before{content:none !important;margin:0}
+        .modal-meta .modal-code + span::before{content:"·";margin-right:8px;color:#b0bfd0}
+        .modal-actions{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
+        .modal-actions .btn-apply{font-size:13.5px;padding:11px 20px}
+        .modal-actions .btn-notify{font-size:13.5px;padding:11px 18px}
+
+        .detail-body{font-size:13.6px;color:#4c5d72;line-height:1.68}
+        .detail-body h4{
+            margin:16px 0 4px;font-size:10.5px;font-weight:800;
+            letter-spacing:.11em;text-transform:uppercase;color:#7b8ba0;
+        }
+        .detail-body h4:first-child{margin-top:0}
+        .detail-body p{margin:0 0 4px}
+        .detail-body ul{
+            margin:0;padding-left:18px;
+            display:flex;flex-direction:column;gap:4px;
+        }
+        .detail-body li::marker{color:var(--blue)}
+        .detail-note{margin:14px 0 0;font-size:12.2px;font-weight:600;color:#8695a8}
+        .skill-pills{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 0}
+        .skill-pills span{
+            font-size:11.8px;font-weight:600;color:#41556d;
+            background:#f1f5f9;border:1px solid #e3eaf2;
+            padding:4px 10px;border-radius:999px;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width:960px){
+            .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
+        }
+        @media (max-width:860px){
+            .nav-links{
+                display:none;position:absolute;top:70px;left:0;right:0;
+                flex-direction:column;align-items:stretch;gap:2px;
+                background:#fff;border-bottom:1px solid var(--line);
+                padding:14px 18px;box-shadow:0 16px 24px -20px rgba(0,0,0,.35);
+            }
+            .nav-links.open{display:flex}
+            .nav-links a{padding:11px 12px}
+            .mobile-menu-btn{display:grid;place-items:center}
+            .careers-toolbar{gap:12px}
+            .filters{margin-left:0;width:100%}
+            .role-switch{width:100%}
+            .switch-btn{flex:1;justify-content:center;padding:9px 12px}
+        }
+        @media (max-width:640px){
+            .footer-grid{grid-template-columns:1fr}
+            .footer-cta{flex-direction:column;align-items:flex-start}
+            .job-card{padding:20px 18px 18px}
+            .job-foot{justify-content:stretch}
+            .job-actions{width:100%}
+            .btn-details,.btn-apply,.btn-notify{flex:1;justify-content:center}
+            .modal-card{padding:26px 20px 22px}
+            .custom-hero{padding:60px 0 70px;}
+        }
+        @media (prefers-reduced-motion:reduce){
+            *{animation:none !important;transition:none !important;scroll-behavior:auto}
+        }
+    </style>
+    <link rel="stylesheet" href="css/site-shell.css">
+</head>
+<body class="kt-page">
+
+<!-- progress bar -->
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- icon sprite (kept for job-card meta icons) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.3 7-11a7 7 0 1 0-14 0c0 5.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.4 2"/></symbol>
+    <symbol id="i-case" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2.2"/><path d="M8.5 8V6.2A2.2 2.2 0 0 1 10.7 4h2.6a2.2 2.2 0 0 1 2.2 2.2V8"/><path d="M3 13.2h18"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4.5 12h14"/><path d="M13 6.5 18.5 12 13 17.5"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 15.5V11a6 6 0 1 0-12 0v4.5L4.5 18h15L18 15.5Z"/><path d="M10 21h4"/></symbol>
+</svg>
+
+<!-- ============ NAVBAR ============ -->
+<header class="kt-site-header">
+    <nav class="kt-nav-inner" aria-label="Main navigation">
+        <a href="index.html" class="kt-brand" aria-label="Kynatron Technologies home">
+            <span class="kt-brand-mark" aria-hidden="true">K</span>
+            <span class="kt-brand-name">KYNATRON</span>
+        </a>
+        <div class="kt-nav-links" id="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="products.html">Products</a>
+            <a href="services.html">Services</a>
+            <a href="careers.html" aria-current="page">Careers</a>
+            <a href="contact.html">Contact</a>
+            <a href="dashboard-demo.html">Demo</a>
+        </div>
+        <button class="kt-menu-toggle" id="mobile-menu-btn" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">&#9776;</button>
+    </nav>
+</header>
+
+<!-- ============ NEW CUSTOM HERO (matches screenshot) ============ -->
+<section class="custom-hero careers-hero">
+    <div class="container">
+        <div class="hero-badge">
+            <span class="dot"></span>
+            We're hiring
+        </div>
+        <h1 class="hero-title">
+            Build what's next with <span class="gradient-text">KYNATRON</span>
+        </h1>
+        <p class="hero-p">
+            We design embedded systems, electronics, and industrial automation that power real factories and real products. If you like solving hard problems with good people, you'll feel at home here.
+        </p>
+    </div>
+</section>
+
+<!-- ============ CAREERS ============ -->
+<main class="section" id="openings" style="scroll-margin-top:88px">
+    <div class="container">
+
+        <div class="section-header">
+            <h2 id="listTitle">Current openings</h2>
+            <p id="listSub">Explore current openings across engineering, hardware, software, sales and production.</p>
+        </div>
+
+        <!-- toolbar: white-highlight switch + department filters -->
+        <div class="careers-toolbar">
+            <nav class="role-switch" id="roleSwitch" role="tablist" aria-label="Job role lists">
+                <button type="button" class="switch-btn active" data-view="active" role="tab" aria-selected="true" aria-controls="activeList">
+                    Active Roles <span class="count" data-count="active">8</span>
+                </button>
+                <button type="button" class="switch-btn" data-view="past" role="tab" aria-selected="false" aria-controls="pastList">
+                    Past Roles <span class="count" data-count="past">5</span>
+                </button>
+            </nav>
+
+            <div class="filters" id="filters" role="group" aria-label="Filter by department">
+                <button type="button" class="chip active" data-filter="all">All Departments</button>
+                <button type="button" class="chip" data-filter="engineering">Engineering</button>
+                <button type="button" class="chip" data-filter="hardware">Hardware</button>
+                <button type="button" class="chip" data-filter="iot">IoT / Software</button>
+                <button type="button" class="chip" data-filter="sales">Sales</button>
+                <button type="button" class="chip" data-filter="production">Production</button>
+                <button type="button" class="chip" data-filter="internship">Internships</button>
+            </div>
+        </div>
+
+        <!-- ---------- ACTIVE ROLES (8) ---------- -->
+        <div class="job-grid" id="activeList" role="tabpanel">
+
+            <!-- KT-2026-350 -->
+            <article class="job-card" data-dept="engineering">
+                <div class="job-top">
+                    <div class="job-top-left">
+                        <span class="dept-tag">Engineering</span>
+                        <span class="job-code">KT-2026-350</span>
+                    </div>
+                    <span class="badge open">Open</span>
+                </div>
+                <h3><a href="mailto:hire@kynatron.com?subject=Application%20–%20Senior%20Firmware%20Engineer%20%5BKT-2026-350%5D">Senior Firmware Engineer</a></h3>
+                <ul class="job-meta">
+                    <li><svg class="ico"><use href="#i-pin"/></svg> Bangalore, India</li>
+                    <li><svg class="ico"><use href="#i-clock"/></svg> Full-time</li>
+                    <li><svg class="ico"><use href="#i-case"/></svg> 5–8 years experience</li>
+                </ul>
+                <p class="job-desc">Architect firmware for next-generation industrial monitoring devices, mentoring junior engineers and owning the full embedded software lifecycle from bring-up to field diagnostics.</p>
+                <div class="job-foot">
+                    <div class="job-actions">
+                        <button type="button" class="btn-details" data-modal="modal-senior-firmware">More details</button>
+                        <a class="btn-apply" href="mailto:hire@kynatron.com?subject=Application%20–%20Senior%20Firmware%20Engineer%20%5BKT-2026-350%5D">Apply <svg class="ico"><use href="#i-arrow"/></svg></a>
+                    </div>
+                </div>
+                <div id="modal-senior-firmware" hidden>
+                    <h2>Senior Firmware Engineer</h2>
+                    <div class="modal-meta">
+                        <span class="modal-code">KT-2026-350</span><span>Engineering</span><span>Bangalore, India</span><span>Full-time</span><span>5–8 years experience</span>
+                    </div>
+                    <div class="detail-body">
+                        <h4>About the role</h4>
+                        <p>Architect firmware for next-generation industrial monitoring devices, mentoring junior engineers and owning the full embedded software lifecycle from bring-up to field diagnostics.</p>
+                        <h4>Key skills</h4>
+                        <div class="skill-pills">
+                            <span>Embedded C/C++</span><span>RTOS (FreeRTOS, Zephyr)</span><span>ARM Cortex-M</span><span>I2C / SPI / UART / CAN</span><span>Scope &amp; logic analyser debugging</span>
+                        </div>
+                        <p class="detail-note">Bangalore, India · Full-time · On-site</p>
+                    </div>
+                    <div class="modal-actions">
+                        <a class="btn-apply" href="mailto:hire@kynatron.com?subject=Application%20–%20Senior%20Firmware%20Engineer%20%5BKT-2026-350%5D">Apply for this role <svg class="ico"><use href="#i-arrow"/></svg></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- KT-2026-361 -->
+            <article class="job-card" data-dept="hardware">
+                <div class="job-top">
+                    <div class="job-top-left">
+                        <span class="dept-tag">Hardware</span>
+                        <span class="job-code">KT-2026-361</span>
+                    </div>
+                    <span class="badge open">Open</span>
+                </div>
+                <h3><a href="mailto:hire@kynatron.com?subject=Application%20–%20PCB%20Layout%20Engineer%20%5BKT-2026-361%5D">PCB Layout Engineer</a></h3>
+                <ul class="job-meta">
+                    <li><svg class="ico"><use href="#i-pin"/></svg> Hyderabad, India</li>
+                    <li><svg class="ico"><use href="#i-clock"/></svg> Full-time</li>
+                    <li><svg class="ico"><use href="#i-case"/></svg> 3–5 years experience</li>
+                </ul>
+                <p class="job-desc">Create multi-layer PCB layouts for mixed-signal industrial boards, ensuring signal integrity, thermal performance, and manufacturability for IP66-rated enclosures.</p>
+                <div class="job-foot">
+                    <div class="job-actions">
+                        <button type="button" class="btn-details" data-modal="modal-layout">More details</button>
+                        <a class="btn-apply" href="mailto:hire@kynatron.com?subject=Application%20–%20PCB%20Layout%20Engineer%20%5BKT-2026-361%5D">Apply <svg class="ico"><use href="#i-arrow"/></svg></a>
+                    </div>
+                </div>
+                <div id="modal-layout" hidden>
+                    <h2>PCB Layout Engineer</h2>
+                    <div class="modal-meta">
+                        <span class="modal-code">KT-2026-361</span><span>Hardware</span><span>Hyderabad, India</span><span>Full-time</span><span>3–5 years experience</span>
+                    </div>
+                    <div class="detail-body">
+                        <h4>About the role</h4>
+                        <p>Create multi-layer PCB layouts for mixed-signal industrial boards, ensuring signal integrity, thermal performance, and manufacturability for IP66-rated enclosures.</p>
+                        <h4>Key skills</h4>
+                        <div class="skill-pills">
+                            <span>Altium / KiCad</span><span>Multi-layer PCB design</span><span>Signal integrity</span><span>Thermal design</span><span>DFM</span>
+                        </div>
+                        <p class="detail-note">Hyderabad, India · Full-time · On-site</p>
+                    </div>
+                    <div class="modal-actions">
+                        <a class="btn-apply" href="mailto:hire@kynatron.com?subject=Application%20–%20PCB%20Layout%20Engineer%20%5BKT-2026-361%5D">Apply for this role <svg class="ico"><use href="#i-arrow"/></svg></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- KT-2026-378 -->
+            <article class="job-card" data-dept="iot">
+                <div class="job-top">
+                    <div class="job-top-left">
+                        <span class="dept-tag">IoT / Software</span>
+                        <span class="job-code">KT-2026-378</span>
+                    </div>
+                    <span class="badge open">Open</span>
+                </div>
+                <h3><a href="mailto:hire@kynatron.com?subject=Application%20–%20Backend%20Developer%20(IoT%20Data%20Platform)%20%5BKT-2026-378%5D">Backend Developer (IoT Data Platform)</a></h3>
+                <ul class="job-meta">
+                    <li><svg class="ico"><use href="#i-pin"/></svg> Bangalore, India</li>
+                    <li><svg class="ico"><use href="#i-clock"/></svg> Full-time</li>
+                    <li><svg class="ico"><use href="#i-case"/></svg> 3–5 years experience</li>
+                </ul>
+                <p class="job-desc">Build scalable backend services for ingesting, storing, and analysing time-series data from thousands of industrial loggers. Design REST APIs and event-driven pipelines.</p>
+                <div class="job-foot">
+                    <div class="job-actions">
+                        <button type="button" class="btn-details" data-modal="modal-backend">More details</button>
+                        <a class="btn-apply" href="mailto:hire@kynatron.com?subject=Application%20–%20Backend%20Developer%20(IoT%20Data%20Platform)%20%5BKT-2026-378%5D">Apply <svg class="ico"><use href="#i-arrow"/></svg></a>
+                    </div>
+                </div>
+                <div id="modal-backend" hidden>
+                    <h2>Backend Developer (IoT Data Platform)</h2>
+                    <div class="modal-meta">
+                        <span class="modal-code">KT-2026-378</span><span>IoT / Software</span><span>Bangalore, India</span><span>Full-time</span><span>3–5 years experience</span>
+                    </div>
+                    <div class="detail-body">
+                        <h4>About the role</h4>
+                        <p>Build scalable backend services for ingesting, storing, and analysing time-series data from thousands of industrial loggers. Design REST APIs and event-driven pipelines.</p>
+                        <h4>Key skills</h4>
+                        <div class="skill-pills">
+                            <span>Node.js / Python / Go</span><span>PostgreSQL / TimescaleDB</span><span>MQTT / Kafka</span><span>AWS (IoT Core, Lambda)</span><span>Docker</span>
+                        </div>
+                        <p class="detail-note">Bangalore, India · Full-time · Hybrid</p>
+                    </div>
+                    <div class="modal-actions">
+                        <a class="btn-apply" href="mailto:hire@kynatron.com?subject=Application%20–%20Backend%20Developer%20(IoT%20Data%20Platform)%20%5BKT-2026-378%5D">Apply for this role <svg class="ico"><use href="#i-arrow"/></svg></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- KT-2026-392 -->
+            <article class="job-card" data-dept="sales">
+                <div class="job-top">
+                    <div class="job-top-left">
+                        <span class="dept-tag">Sales</span>
+                        <span class="job-code">KT-2026-392</span>
+                    </div>
+                    <span class="badge open">Open</span>
+                </div>
+                <h3><a href="mailto:hire@kynatron.com?subject=Application%20–%20Regional%20Sales%20Manager%20(South%20India)%20%5BKT-2026-392%5D">Regional Sales Manager (South India)</a></h3>
+                <ul class="job-meta">
+                    <li><svg class="ico"><use href="#i-pin"/></svg> Bangalore, India</li>
+                    <li><svg class="ico"><use href="#i-clock"/></svg> Full-time</li>
+                    <li><svg class="ico"><use href="#i-case"/></svg> 7–10 years experience</li>
+                </ul>
+                <p class="job-desc">Own the South India territory for our industrial monitoring products. Build relationships with OEMs, system integrators, and end users to drive revenue growth.</p>
+                <div class="job-foot">
+                    <div class="job-actions">
+                        <button type="button" class="btn-details" data-modal="modal-regional-sales">More details</button>
+                        <a class="btn-apply" href="mailto:hire@kynatron.com?subject=Application%20–%20Regional%20Sales%20Manager%20(South%20India)%20%5BKT-2026-392%5D">Apply <svg class="ico"><use href="#i-arrow"/></svg></a>
+                    </div>
+                </div>
+                <div id="modal-regional-sales" hidden>
+                    <h2>Regional Sales Manager (South India)</h2>
+                    <div class="modal-meta">
+                        <span class="modal-code">KT-2026-392</span><span>Sales</span><span>Bangalore, India</span><span>Full-time</span><span>7–10 years experience</span>
+                    </div>
+                    <div class="detail-body">
+                        <h4>About the role</h4>
+                        <p>Own the South India territory for our industrial monitoring products. Build relationships with OEMs, system integrators, and end users to drive revenue growth.</p>
+                        <h4>Key skills</h4>
+                        <div class="skill-pills">
+                            <span>B2B industrial sales</span><span>Territory management</span><span>CRM (Salesforce / Zoho)</span><span>Technical consultation</span>
+                        </div>
+                        <p class="detail-note">Bangalore, India · Full-time · Field role</p>
+                    </div>
+                    <div class="modal-actions">
+                        <a class="btn-apply" href="mailto:hire@kynatron.com?subject=Application%20–%20Regional%20Sales%20Manager%20(South%20India)%20%5BKT-2026-392%5D">Apply for this role <svg class="ico"><use href="#i-arrow"/></svg></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- KT-2026-407 -->
+            <article class="job-card" data-dept="production">
+                <div class="job-top">
+                    <div class="job-top-left">
+                        <span class="dept-tag">Production</span>
+                        <span class="job-code">KT-2026-407</span>
+                    </div>
+                    <span class="badge open">Open</span>
+                </div>
+                <h3><a href="mailto:hire@kynatron.com?subject=Application%20–%20Quality%20Inspector%20(Electronics)%20%5BKT-2026-407%5D">Quality Inspector (Electronics)</a></h3>
+                <ul class="job-meta">
+                    <li><svg class="ico"><use href="#i-pin"/></svg> Hyderabad, India</li>
+                    <li><svg class="ico"><use href="#i-clock"/></svg> Full-time</li>
+                    <li><svg class="ico"><use href="#i-case"/></svg> 2–4 years experience</li>
+                </ul>
+                <p class="job-desc">Inspect incoming components, in-process assemblies, and finished units for our industrial data loggers. Maintain quality records and support continuous improvement.</p>
+                <div class="job-foot">
+                    <div class="job-actions">
+                        <button type="button" class="btn-details" data-modal="modal-quality">More details</button>
+                        <a class="btn-apply" href="mailto:hire@kynatron.com?subject=Application%20–%20Quality%20Inspector%20(Electronics)%20%5BKT-2026-407%5D">Apply <svg class="ico"><use href="#i-arrow"/></svg></a>
+                    </div>
+                </div>
+                <div id="modal-quality" hidden>
+                    <h2>Quality Inspector (Electronics)</h2>
+                    <div class="modal-meta">
+                        <span class="modal-code">KT-2026-407</span><span>Production</span><span>Hyderabad, India</span><span>Full-time</span><span>2–4 years experience</span>
+                    </div>
+                    <div class="detail-body">
+                        <h4>About the role</h4>
+                        <p>Inspect incoming components, in-process assemblies, and finished units for our industrial data loggers. Maintain quality records and support continuous improvement.</p>
+                        <h4>Key skills</h4>
+                        <div class="skill-pills">
+                            <span>Electronic inspection</span><span>Quality management systems</span><span>Measurement instruments</span><span>Documentation</span>
+                        </div>
+                        <p class="detail-note">Hyderabad, India · Full-time · On-site</p>
+                    </div>
+                    <div class="modal-actions">
+                        <a class="btn-apply" href="mailto:hire@kynatron.com?subject=Application%20–%20Quality%20Inspector%20(Electronics)%20%5BKT-2026-407%5D">Apply for this role <svg class="ico"><use href="#i-arrow"/></svg></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- KT-2026-418 (Internship) -->
+            <article class="job-card" data-dept="internship" data-intern="true">
+                <div class="job-top">
+                    <div class="job-top-left">
+                        <span class="dept-tag intern">Internship</span>
+                        <span class="job-code">KT-2026-418</span>
+                    </div>
+                    <span class="badge open">Open</span>
+                </div>
+                <h3><a href="mailto:hire@kynatron.com?subject=Application%20–%20Embedded%20Systems%20Intern%20%5BKT-2026-418%5D">Embedded Systems Intern</a></h3>
+                <ul class="job-meta">
+                    <li><svg class="ico"><use href="#i-pin"/></svg> Hyderabad, India</li>
+                    <li><svg class="ico"><use href="#i-clock"/></svg> Internship · 6 months</li>
+                    <li><svg class="ico"><use href="#i-case"/></svg> 0–1 years experience</li>
+                </ul>
+                <p class="job-desc">Work alongside our firmware team on real product tracks — writing C code on ARM Cortex-M development boards, wiring up sensors, and documenting lab test results.</p>
+                <div class="job-foot">
+                    <div class="job-actions">
+                        <button type="button" class="btn-details" data-modal="modal-intern-embedded">More details</button>
+                        <a class="btn-apply" href="mailto:hire@kynatron.com?subject=Application%20–%20Embedded%20Systems%20Intern%20%5BKT-2026-418%5D">Apply <svg class="ico"><use href="#i-arrow"/></svg></a>
+                    </div>
+                </div>
+                <div id="modal-intern-embedded" hidden>
+                    <h2>Embedded Systems Intern</h2>
+                    <div class="modal-meta">
+                        <span class="modal-code">KT-2026-418</span><span>Internship</span><span>Hyderabad, India</span><span>6 months</span><span>0–1 years experience</span>
+                    </div>
+                    <div class="detail-body">
+                        <h4>About the role</h4>
+                        <p>A six-month unpaid internship inside our embedded R&amp;D team, suited to students seeking hands-on industry experience. You'll work on real product tracks alongside senior engineers, from development boards to lab validation.</p>
+                        <h4>What you'll do</h4>
+                        <ul>
+                            <li>Write and test C firmware on ARM Cortex-M development boards</li>
+                            <li>Interface sensors over I2C, SPI and UART</li>
+                            <li>Build small test fixtures and keep lab documentation up to date</li>
+                            <li>Join weekly design reviews with the firmware team</li>
+                        </ul>
+                        <h4>Key skills</h4>
+                        <div class="skill-pills">
+                            <span>C programming</span><span>ARM Cortex-M basics</span><span>Basic electronics</span><span>Git</span><span>Debugging</span>
+                        </div>
+                        <p class="detail-note">Hyderabad, India · Internship · 6 months · Hybrid · Unpaid</p>
+                    </div>
+                    <div class="modal-actions">
+                        <a class="btn-apply" href="mailto:hire@kynatron.com?subject=Application%20–%20Embedded%20Systems%20Intern%20%5BKT-2026-418%5D">Apply for this internship <svg class="ico"><use href="#i-arrow"/></svg></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- KT-2026-426 (Internship) -->
+            <article class="job-card" data-dept="internship" data-intern="true">
+                <div class="job-top">
+                    <div class="job-top-left">
+                        <span class="dept-tag intern">Internship</span>
+                        <span class="job-code">KT-2026-426</span>
+                    </div>
+                    <span class="badge open">Open</span>
+                </div>
+                <h3><a href="mailto:hire@kynatron.com?subject=Application%20–%20Hardware%20Design%20Intern%20(PCB)%20%5BKT-2026-426%5D">Hardware Design Intern (PCB)</a></h3>
+                <ul class="job-meta">
+                    <li><svg class="ico"><use href="#i-pin"/></svg> Hyderabad, India</li>
+                    <li><svg class="ico"><use href="#i-clock"/></svg> Internship · 6 months</li>
+                    <li><svg class="ico"><use href="#i-case"/></svg> 0–1 years experience</li>
+                </ul>
+                <p class="job-desc">Support our hardware team through schematic capture, component research, and hands-on board bring-up for industrial data logger prototypes.</p>
+                <div class="job-foot">
+                    <div class="job-actions">
+                        <button type="button" class="btn-details" data-modal="modal-intern-hardware">More details</button>
+                        <a class="btn-apply" href="mailto:hire@kynatron.com?subject=Application%20–%20Hardware%20Design%20Intern%20(PCB)%20%5BKT-2026-426%5D">Apply <svg class="ico"><use href="#i-arrow"/></svg></a>
+                    </div>
+                </div>
+                <div id="modal-intern-hardware" hidden>
+                    <h2>Hardware Design Intern (PCB)</h2>
+                    <div class="modal-meta">
+                        <span class="modal-code">KT-2026-426</span><span>Internship</span><span>Hyderabad, India</span><span>6 months</span><span>0–1 years experience</span>
+                    </div>
+                    <div class="detail-body">
+                        <h4>About the role</h4>
+                        <p>A six-month unpaid internship with our hardware design team, supporting real PCB projects for industrial data acquisition products. Suited to students seeking practical industry exposure.</p>
+                        <h4>What you'll do</h4>
+                        <ul>
+                            <li>Assist with schematic capture and component selection</li>
+                            <li>Learn multi-layer PCB layout under senior guidance</li>
+                            <li>Help with board bring-up, soldering and rework</li>
+                            <li>Run simple circuit simulations and document results</li>
+                        </ul>
+                        <h4>Key skills</h4>
+                        <div class="skill-pills">
+                            <span>Altium / KiCad basics</span><span>Analog electronics</span><span>Soldering</span><span>Circuit simulation</span>
+                        </div>
+                        <p class="detail-note">Hyderabad, India · Internship · 6 months · Hybrid · Unpaid</p>
+                    </div>
+                    <div class="modal-actions">
+                        <a class="btn-apply" href="mailto:hire@kynatron.com?subject=Application%20–%20Hardware%20Design%20Intern%20(PCB)%20%5BKT-2026-426%5D">Apply for this internship <svg class="ico"><use href="#i-arrow"/></svg></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- KT-2026-435 (Internship) -->
+            <article class="job-card" data-dept="internship" data-intern="true">
+                <div class="job-top">
+                    <div class="job-top-left">
+                        <span class="dept-tag intern">Internship</span>
+                        <span class="job-code">KT-2026-435</span>
+                    </div>
+                    <span class="badge open">Open</span>
+                </div>
+                <h3><a href="mailto:hire@kynatron.com?subject=Application%20–%20IoT%20Software%20Intern%20%5BKT-2026-435%5D">IoT Software Intern</a></h3>
+                <ul class="job-meta">
+                    <li><svg class="ico"><use href="#i-pin"/></svg> Bangalore, India</li>
+                    <li><svg class="ico"><use href="#i-clock"/></svg> Internship · 6 months</li>
+                    <li><svg class="ico"><use href="#i-case"/></svg> 0–1 years experience</li>
+                </ul>
+                <p class="job-desc">Help build the dashboards and APIs behind our cloud monitoring platform — working with real time-series data streamed from connected industrial loggers.</p>
+                <div class="job-foot">
+                    <div class="job-actions">
+                        <button type="button" class="btn-details" data-modal="modal-intern-iot">More details</button>
+                        <a class="btn-apply" href="mailto:hire@kynatron.com?subject=Application%20–%20IoT%20Software%20Intern%20%5BKT-2026-435%5D">Apply <svg class="ico"><use href="#i-arrow"/></svg></a>
+                    </div>
+                </div>
+                <div id="modal-intern-iot" hidden>
+                    <h2>IoT Software Intern</h2>
+                    <div class="modal-meta">
+                        <span class="modal-code">KT-2026-435</span><span>Internship</span><span>Bangalore, India</span><span>6 months</span><span>0–1 years experience</span>
+                    </div>
+                    <div class="detail-body">
+                        <h4>About the role</h4>
+                        <p>A six-month unpaid internship with our IoT platform team, ideal for students seeking real-world software experience. You'll contribute to the web app that customers use to monitor their sites in real time.</p>
+                        <h4>What you'll do</h4>
+                        <ul>
+                            <li>Build UI components for real-time monitoring dashboards</li>
+                            <li>Help write and test REST API endpoints</li>
+                            <li>Work with streaming data from MQTT-connected devices</li>
+                            <li>Fix bugs and improve usability alongside the platform team</li>
+                        </ul>
+                        <h4>Key skills</h4>
+                        <div class="skill-pills">
+                            <span>JavaScript / TypeScript</span><span>React basics</span><span>Python or Node.js</span><span>REST APIs</span><span>Git</span>
+                        </div>
+                        <p class="detail-note">Bangalore, India · Internship · 6 months · Hybrid · Unpaid</p>
+                    </div>
+                    <div class="modal-actions">
+                        <a class="btn-apply" href="mailto:hire@kynatron.com?subject=Application%20–%20IoT%20Software%20Intern%20%5BKT-2026-435%5D">Apply for this internship <svg class="ico"><use href="#i-arrow"/></svg></a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- ---------- PAST / CLOSED ROLES (5) ---------- -->
+        <div class="job-grid is-hidden" id="pastList" role="tabpanel">
+
+            <!-- KT-2026-001 -->
+            <article class="job-card archived" data-dept="engineering">
+                <div class="job-top">
+                    <div class="job-top-left">
+                        <span class="dept-tag">Engineering</span>
+                        <span class="job-code">KT-2026-001</span>
+                    </div>
+                    <span class="badge closed">Closed</span>
+                </div>
+                <h3>Embedded Systems Engineer</h3>
+                <ul class="job-meta">
+                    <li><svg class="ico"><use href="#i-pin"/></svg> Hyderabad, India</li>
+                    <li><svg class="ico"><use href="#i-clock"/></svg> Full-time</li>
+                    <li><svg class="ico"><use href="#i-case"/></svg> 2–5 years experience</li>
+                </ul>
+                <p class="job-desc">Design and develop firmware for our industrial data loggers. You'll work on real-time data acquisition, sensor interfacing, communication protocols (MQTT, Modbus), and power management for IP66-rated devices.</p>
+                <div class="job-foot">
+                    <div class="job-actions">
+                        <button type="button" class="btn-details" data-modal="modal-embedded">More details</button>
+                        <a class="btn-notify" href="mailto:hire@kynatron.com?subject=Notify%20me%20–%20Embedded%20Systems%20Engineer%20%5BKT-2026-001%5D"><svg class="ico"><use href="#i-bell"/></svg> Notify me</a>
+                    </div>
+                </div>
+                <div id="modal-embedded" hidden>
+                    <h2>Embedded Systems Engineer</h2>
+                    <div class="modal-meta">
+                        <span class="modal-code">KT-2026-001</span><span>Engineering</span><span>Hyderabad, India</span><span>Full-time</span><span>2–5 years experience</span>
+                    </div>
+                    <div class="detail-body">
+                        <h4>About the role</h4>
+                        <p>Design and develop firmware for our industrial data loggers. You'll work on real-time data acquisition, sensor interfacing, communication protocols (MQTT, Modbus), and power management for IP66-rated devices.</p>
+                        <h4>Skills</h4>
+                        <div class="skill-pills">
+                            <span>C/C++ Embedded</span><span>ARM Cortex-M</span><span>FreeRTOS</span><span>SPI/I2C/UART</span><span>MQTT</span><span>PCB Bring-up</span>
+                        </div>
+                        <p class="detail-note">Hyderabad, India · Full-time · Closed</p>
+                    </div>
+                    <div class="modal-actions">
+                        <a class="btn-notify" href="mailto:hire@kynatron.com?subject=Notify%20me%20–%20Embedded%20Systems%20Engineer%20%5BKT-2026-001%5D"><svg class="ico"><use href="#i-bell"/></svg> Notify me when it reopens</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- KT-2026-002 -->
+            <article class="job-card archived" data-dept="hardware">
+                <div class="job-top">
+                    <div class="job-top-left">
+                        <span class="dept-tag">Hardware</span>
+                        <span class="job-code">KT-2026-002</span>
+                    </div>
+                    <span class="badge closed">Closed</span>
+                </div>
+                <h3>Electronics Design Engineer</h3>
+                <ul class="job-meta">
+                    <li><svg class="ico"><use href="#i-pin"/></svg> Hyderabad, India</li>
+                    <li><svg class="ico"><use href="#i-clock"/></svg> Full-time</li>
+                    <li><svg class="ico"><use href="#i-case"/></svg> 3–6 years experience</li>
+                </ul>
+                <p class="job-desc">Lead the hardware design of our next-gen data acquisition products. Analog front-end design for thermocouple/RTD inputs, mixed-signal PCB layout, EMI/EMC compliance, and design-for-manufacturing.</p>
+                <div class="job-foot">
+                    <div class="job-actions">
+                        <button type="button" class="btn-details" data-modal="modal-pcb">More details</button>
+                        <a class="btn-notify" href="mailto:hire@kynatron.com?subject=Notify%20me%20–%20Electronics%20Design%20Engineer%20%5BKT-2026-002%5D"><svg class="ico"><use href="#i-bell"/></svg> Notify me</a>
+                    </div>
+                </div>
+                <div id="modal-pcb" hidden>
+                    <h2>Electronics Design Engineer</h2>
+                    <div class="modal-meta">
+                        <span class="modal-code">KT-2026-002</span><span>Hardware</span><span>Hyderabad, India</span><span>Full-time</span><span>3–6 years experience</span>
+                    </div>
+                    <div class="detail-body">
+                        <h4>About the role</h4>
+                        <p>Lead the hardware design of our next-gen data acquisition products. Analog front-end design for thermocouple/RTD inputs, mixed-signal PCB layout, EMI/EMC compliance, and design-for-manufacturing.</p>
+                        <h4>Skills</h4>
+                        <div class="skill-pills">
+                            <span>Analog Circuit Design</span><span>Altium/KiCad</span><span>Mixed-Signal PCB</span><span>EMC/EMI Design</span><span>DFM/DFT</span><span>Thermocouple Circuits</span>
+                        </div>
+                        <p class="detail-note">Hyderabad, India · Full-time · Closed</p>
+                    </div>
+                    <div class="modal-actions">
+                        <a class="btn-notify" href="mailto:hire@kynatron.com?subject=Notify%20me%20–%20Electronics%20Design%20Engineer%20%5BKT-2026-002%5D"><svg class="ico"><use href="#i-bell"/></svg> Notify me when it reopens</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- KT-2026-003 -->
+            <article class="job-card archived" data-dept="iot">
+                <div class="job-top">
+                    <div class="job-top-left">
+                        <span class="dept-tag">IoT / Software</span>
+                        <span class="job-code">KT-2026-003</span>
+                    </div>
+                    <span class="badge closed">Closed</span>
+                </div>
+                <h3>Full Stack Developer (IoT Platform)</h3>
+                <ul class="job-meta">
+                    <li><svg class="ico"><use href="#i-pin"/></svg> Hyderabad, India (Hybrid)</li>
+                    <li><svg class="ico"><use href="#i-clock"/></svg> Full-time</li>
+                    <li><svg class="ico"><use href="#i-case"/></svg> 2–4 years experience</li>
+                </ul>
+                <p class="job-desc">Build our cloud-based monitoring platform — real-time dashboards, alarm engine, REST APIs, and device management for thousands of connected data loggers. You'll work across the entire stack.</p>
+                <div class="job-foot">
+                    <div class="job-actions">
+                        <button type="button" class="btn-details" data-modal="modal-fullstack">More details</button>
+                        <a class="btn-notify" href="mailto:hire@kynatron.com?subject=Notify%20me%20–%20Full%20Stack%20Developer%20%5BKT-2026-003%5D"><svg class="ico"><use href="#i-bell"/></svg> Notify me</a>
+                    </div>
+                </div>
+                <div id="modal-fullstack" hidden>
+                    <h2>Full Stack Developer (IoT Platform)</h2>
+                    <div class="modal-meta">
+                        <span class="modal-code">KT-2026-003</span><span>IoT / Software</span><span>Hyderabad, India (Hybrid)</span><span>Full-time</span><span>2–4 years experience</span>
+                    </div>
+                    <div class="detail-body">
+                        <h4>About the role</h4>
+                        <p>Build our cloud-based monitoring platform — real-time dashboards, alarm engine, REST APIs, and device management for thousands of connected data loggers. You'll work across the entire stack.</p>
+                        <h4>Skills</h4>
+                        <div class="skill-pills">
+                            <span>React / Vue.js</span><span>Node.js / Python</span><span>MQTT / WebSocket</span><span>PostgreSQL / TimescaleDB</span><span>AWS IoT Core</span><span>Docker</span>
+                        </div>
+                        <p class="detail-note">Hyderabad, India (Hybrid) · Full-time · Closed</p>
+                    </div>
+                    <div class="modal-actions">
+                        <a class="btn-notify" href="mailto:hire@kynatron.com?subject=Notify%20me%20–%20Full%20Stack%20Developer%20%5BKT-2026-003%5D"><svg class="ico"><use href="#i-bell"/></svg> Notify me when it reopens</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- KT-2026-004 -->
+            <article class="job-card archived" data-dept="sales">
+                <div class="job-top">
+                    <div class="job-top-left">
+                        <span class="dept-tag">Sales</span>
+                        <span class="job-code">KT-2026-004</span>
+                    </div>
+                    <span class="badge closed">Closed</span>
+                </div>
+                <h3>Sales &amp; Application Engineer</h3>
+                <ul class="job-meta">
+                    <li><svg class="ico"><use href="#i-pin"/></svg> Hyderabad, India</li>
+                    <li><svg class="ico"><use href="#i-clock"/></svg> Full-time</li>
+                    <li><svg class="ico"><use href="#i-case"/></svg> 1–3 years experience</li>
+                </ul>
+                <p class="job-desc">Be the bridge between customers and engineering. Understand client requirements, demonstrate our products, provide technical pre-sales support, and help configure solutions for industrial automation needs.</p>
+                <div class="job-foot">
+                    <div class="job-actions">
+                        <button type="button" class="btn-details" data-modal="modal-sales">More details</button>
+                        <a class="btn-notify" href="mailto:hire@kynatron.com?subject=Notify%20me%20–%20Sales%20%26%20Application%20Engineer%20%5BKT-2026-004%5D"><svg class="ico"><use href="#i-bell"/></svg> Notify me</a>
+                    </div>
+                </div>
+                <div id="modal-sales" hidden>
+                    <h2>Sales &amp; Application Engineer</h2>
+                    <div class="modal-meta">
+                        <span class="modal-code">KT-2026-004</span><span>Sales</span><span>Hyderabad, India</span><span>Full-time</span><span>1–3 years experience</span>
+                    </div>
+                    <div class="detail-body">
+                        <h4>About the role</h4>
+                        <p>Be the bridge between customers and engineering. Understand client requirements, demonstrate our products, provide technical pre-sales support, and help configure solutions for industrial automation needs.</p>
+                        <h4>Skills</h4>
+                        <div class="skill-pills">
+                            <span>Industrial Automation</span><span>Technical Sales</span><span>Instrumentation</span><span>Client Communication</span><span>B2B Sales</span>
+                        </div>
+                        <p class="detail-note">Hyderabad, India · Full-time · Closed</p>
+                    </div>
+                    <div class="modal-actions">
+                        <a class="btn-notify" href="mailto:hire@kynatron.com?subject=Notify%20me%20–%20Sales%20%26%20Application%20Engineer%20%5BKT-2026-004%5D"><svg class="ico"><use href="#i-bell"/></svg> Notify me when it reopens</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- KT-2026-005 -->
+            <article class="job-card archived" data-dept="production">
+                <div class="job-top">
+                    <div class="job-top-left">
+                        <span class="dept-tag">Production</span>
+                        <span class="job-code">KT-2026-005</span>
+                    </div>
+                    <span class="badge closed">Closed</span>
+                </div>
+                <h3>Production &amp; QC Technician</h3>
+                <ul class="job-meta">
+                    <li><svg class="ico"><use href="#i-pin"/></svg> Hyderabad, India</li>
+                    <li><svg class="ico"><use href="#i-clock"/></svg> Full-time</li>
+                    <li><svg class="ico"><use href="#i-case"/></svg> 1–3 years experience</li>
+                </ul>
+                <p class="job-desc">Assemble, test, and calibrate our industrial data loggers on the production line. Ensure every unit meets IP66 standards and passes functional testing before shipment.</p>
+                <div class="job-foot">
+                    <div class="job-actions">
+                        <button type="button" class="btn-details" data-modal="modal-production-qc">More details</button>
+                        <a class="btn-notify" href="mailto:hire@kynatron.com?subject=Notify%20me%20–%20Production%20%26%20QC%20Technician%20%5BKT-2026-005%5D"><svg class="ico"><use href="#i-bell"/></svg> Notify me</a>
+                    </div>
+                </div>
+                <div id="modal-production-qc" hidden>
+                    <h2>Production &amp; QC Technician</h2>
+                    <div class="modal-meta">
+                        <span class="modal-code">KT-2026-005</span><span>Production</span><span>Hyderabad, India</span><span>Full-time</span><span>1–3 years experience</span>
+                    </div>
+                    <div class="detail-body">
+                        <h4>About the role</h4>
+                        <p>Assemble, test, and calibrate our industrial data loggers on the production line. Ensure every unit meets IP66 standards and passes functional testing before shipment.</p>
+                        <h4>Skills</h4>
+                        <div class="skill-pills">
+                            <span>PCB Assembly</span><span>Soldering (SMD)</span><span>Calibration</span><span>Quality Control</span><span>Testing Instruments</span>
+                        </div>
+                        <p class="detail-note">Hyderabad, India · Full-time · Closed</p>
+                    </div>
+                    <div class="modal-actions">
+                        <a class="btn-notify" href="mailto:hire@kynatron.com?subject=Notify%20me%20–%20Production%20%26%20QC%20Technician%20%5BKT-2026-005%5D"><svg class="ico"><use href="#i-bell"/></svg> Notify me when it reopens</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- empty state -->
+        <div class="empty is-hidden" id="emptyState">
+            <strong>No roles in this department right now</strong>
+            <span>Try another filter, or send your CV to <a href="mailto:hire@kynatron.com">hire@kynatron.com</a>.</span>
+        </div>
+
+    </div>
+</main>
+
+<!-- ============ CTA ============ -->
+<section class="cta-section">
+    <div class="container">
+        <div class="kt-cta-copy">
+            <h2>Your experience may fit a future chapter</h2>
+            <p>If you care about building dependable industrial technology but don’t see the right opening, send us your CV and tell us what kind of work you’d like to do.</p>
+        </div>
+        <a href="mailto:hire@kynatron.com" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Send Your CV</a>
+    </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="kt-site-footer">
+    <div class="container">
+        <div class="footer-cta">
+            <div>
+                <strong>Build a clearer view of your process.</strong>
+                <p>From data acquisition and monitoring to control and automation, we help you connect measurements to practical next steps.</p>
+            </div>
+            <a href="contact.html" class="footer-cta-btn">Talk to our team</a>
+        </div>
+        <div class="footer-grid">
+            <div>
+                <h3 class="footer-brand">Kynatron Technologies</h3>
+                <p class="footer-intro">Industrial data acquisition, monitoring, control and automation systems designed for real operating environments.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="products.html">Data acquisition</a></li>
+                    <li><a href="products.html">Environmental monitoring</a></li>
+                    <li><a href="products.html">Control &amp; automation</a></li>
+                    <li><a href="dashboard-demo.html">Dashboard demo</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fa-solid fa-envelope"></i> <a href="mailto:hire@kynatron.com">hire@kynatron.com</a></li>
+                    <li><i class="fa-solid fa-phone"></i> <a href="tel:+919343509732">+91 9343509732</a></li>
+                    <li><i class="fa-solid fa-location-dot"></i> Hyderabad and Bangalore, India</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Kynatron Technologies. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<button id="back-to-top" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+<!-- ============ MODAL FOCUS CARD ============ -->
+<div class="modal-overlay" id="roleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-card">
+        <button type="button" class="modal-close" id="modalClose" aria-label="Close role details">&times;</button>
+        <div class="modal-body" id="modalBody"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    "use strict";
+
+    /* ---------- DOM refs ---------- */
+    const roleSwitch = document.getElementById('roleSwitch');
+    const activeList = document.getElementById('activeList');
+    const pastList   = document.getElementById('pastList');
+    const filters    = document.getElementById('filters');
+    const listTitle  = document.getElementById('listTitle');
+    const listSub    = document.getElementById('listSub');
+    const emptyState = document.getElementById('emptyState');
+    const modal      = document.getElementById('roleModal');
+    const modalBody  = document.getElementById('modalBody');
+    const modalClose = document.getElementById('modalClose');
+
+    let lastFocused = null;
+
+    /* ---------- Sync the switch highlight (single source of truth) ---------- */
+    function syncSwitchUI(view) {
+        roleSwitch.querySelectorAll('.switch-btn').forEach(function (btn) {
+            const isActive = btn.getAttribute('data-view') === view;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+    }
+
+    /* ---------- Keep counters in sync with rendered cards ---------- */
+    const activeCountEl = document.querySelector('[data-count="active"]');
+    const pastCountEl   = document.querySelector('[data-count="past"]');
+    if (activeCountEl) activeCountEl.textContent = activeList.querySelectorAll('.job-card').length;
+    if (pastCountEl)   pastCountEl.textContent   = pastList.querySelectorAll('.job-card').length;
+
+    /* ---------- View switcher ---------- */
+    function setView(view, opts) {
+        opts = opts || {};
+        const isPast = view === 'past';
+
+        syncSwitchUI(view);
+
+        activeList.classList.toggle('is-hidden', isPast);
+        pastList.classList.toggle('is-hidden', !isPast);
+        filters.classList.toggle('is-hidden', isPast);
+        emptyState.classList.add('is-hidden');
+
+        listTitle.textContent = isPast ? 'Past Roles' : 'Current openings';
+        listSub.textContent = isPast
+            ? 'A look at positions we have closed recently.'
+            : 'Explore current openings across engineering, hardware, software, sales and production.';
+
+        const grid = isPast ? pastList : activeList;
+        grid.style.animation = 'none';
+        void grid.offsetWidth;
+        grid.style.animation = '';
+
+        try {
+            history.replaceState(null, '', isPast ? '#past-roles' : '#active-roles');
+        } catch (e) { /* ignore */ }
+
+        if (opts.scroll) {
+            const target = document.getElementById('openings');
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        closeModal();
+    }
+
+    /* ---------- Top switch — delegation ---------- */
+    roleSwitch.addEventListener('click', function (e) {
+        const btn = e.target.closest('.switch-btn');
+        if (!btn || !roleSwitch.contains(btn)) return;
+        e.preventDefault();
+        setView(btn.getAttribute('data-view'), { scroll: false });
+    });
+
+    /* ---------- Department filters ---------- */
+    const chips = document.querySelectorAll('.chip');
+    chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+            chips.forEach(function (c) { c.classList.remove('active'); });
+            chip.classList.add('active');
+
+            const filter = chip.getAttribute('data-filter');
+            let shown = 0;
+
+            activeList.querySelectorAll('.job-card').forEach(function (card) {
+                const match = filter === 'all' || card.getAttribute('data-dept') === filter;
+                card.classList.toggle('is-hidden', !match);
+                if (match) shown++;
+            });
+
+            emptyState.classList.toggle('is-hidden', shown > 0);
+        });
+    });
+
+    /* ---------- Modal focus card ---------- */
+    function openModal(sourceId) {
+        const source = document.getElementById(sourceId);
+        if (!source) return;
+
+        lastFocused = document.activeElement;
+        modalBody.innerHTML = source.innerHTML;
+
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+        modalClose.focus();
+    }
+
+    function closeModal() {
+        if (!modal.classList.contains('is-open')) return;
+
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+        modalBody.innerHTML = '';
+
+        if (lastFocused && typeof lastFocused.focus === 'function') {
+            lastFocused.focus();
+            lastFocused = null;
+        }
+    }
+
+    document.querySelectorAll('.btn-details').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            openModal(btn.getAttribute('data-modal'));
+        });
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeModal();
+    });
+
+    /* ---------- Deep link support ---------- */
+    if (location.hash === '#past-roles') {
+        setView('past', { scroll: false });
+    } else {
+        syncSwitchUI('active');
+    }
+
+    /* ============================================================
+       THEME SCRIPTS
+       ============================================================ */
+    const progress = document.querySelector('.scroll-progress');
+    function updateProgress() {
+        const h = document.documentElement;
+        const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+        if (progress) progress.style.width = (scrolled || 0) + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    const backTop = document.getElementById('back-to-top');
+    if (backTop) {
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 400) backTop.classList.add('show');
+            else backTop.classList.remove('show');
+        }, { passive: true });
+        backTop.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+})();
+</script>
+<script src="js/site-shell.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%231e3a5f'/><text x='50' y='72' font-size='60' font-weight='800' fill='white' text-anchor='middle' font-family='Arial'>K</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | Data Loggers, Environmental Monitoring & Instrumentation — Kynatron Technologies</title>
+    <meta name="description" content="Explore Kynatron's KynaLog data loggers, KynaSense environmental monitoring, KynaCore system solutions, KynaMeter instruments, and KynaNode field devices.">
+    <meta property="og:title" content="Kynatron Products — Measurement, Monitoring & Control">
+    <meta property="og:description" content="Explore KynaLog, KynaSense, KynaCore, KynaMeter, and KynaNode products for industrial measurement, monitoring, and control.">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ============================================================
+           THEME CONSTANTS
+           ============================================================ */
+        :root{
+            --navy:        #1e3a5f;
+            --navy-900:    #0f2137;
+            --navy-700:    #2b5480;
+            --navy-50:     #eef3f9;
+            --orange:      #ea580c;
+            --orange-500:  #f97316;
+            --orange-50:   #fff7ed;
+            --blue:        #3b82f6;
+            --blue-50:     #eff6ff;
+            --green:       #16a34a;
+            --green-50:    #dcfce7;
+            --purple:      #7c3aed;
+            --purple-50:   #f3e8ff;
+
+            --ink:         #111827;
+            --muted:       #6b7280;
+            --line:        #e5e7eb;
+            --bg:          #ffffff;
+            --bg-gray:     #f9fafb;
+            --card:        #ffffff;
+
+            --radius-sm:   8px;
+            --radius-md:   12px;
+            --radius-lg:   16px;
+            --shadow-sm:   0 1px 2px rgba(17,24,39,.06), 0 4px 12px -8px rgba(17,24,39,.15);
+            --shadow-md:   0 2px 4px rgba(17,24,39,.06), 0 16px 32px -18px rgba(17,24,39,.30);
+            --shadow-lg:   0 24px 48px -24px rgba(17,24,39,.45);
+            --maxw:        1180px;
+        }
+
+        /* ============================================================
+           BASE
+           ============================================================ */
+        *,*::before,*::after{box-sizing:border-box}
+        html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+        body{
+            margin:0;
+            font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+            color:var(--ink);
+            background:var(--bg);
+            line-height:1.6;
+            -webkit-font-smoothing:antialiased;
+        }
+        a{color:inherit}
+        img{max-width:100%;display:block}
+        .container{max-width: var(--maxw, 1180px) !important;margin:0 auto;padding:0 24px}
+
+        /* scroll progress */
+        .scroll-progress{
+            position:fixed;top:0;left:0;height:3px;width:0%;
+            background:linear-gradient(90deg,var(--orange),var(--navy));
+            z-index:120;transition:width .12s linear;
+        }
+
+        /* ============================================================
+           NAVBAR
+           ============================================================ */
+        .navbar{
+            position:sticky;top:0;z-index:100;
+            background:#ffffff;
+            border-bottom:1px solid var(--line);
+            box-shadow:0 1px 2px rgba(17,24,39,.04);
+        }
+        .nav-container{
+            display:flex;align-items:center;justify-content:space-between;
+            height:70px;gap:20px;
+        }
+        .logo{
+            display:inline-flex;align-items:center;gap:10px;
+            text-decoration:none;flex:none;
+        }
+        .logo-mark-img{
+            width:38px;height:38px;border-radius:10px;flex:none;
+            background:linear-gradient(145deg,var(--navy-700),var(--navy-900));
+            color:#fff;font-weight:800;font-size:19px;
+            display:grid;place-items:center;
+            box-shadow:0 6px 16px -8px rgba(30,58,95,.9);
+        }
+        .logo-text{
+            font-weight:800;font-size:16px;letter-spacing:.06em;
+            color:var(--navy-900);
+        }
+        .nav-links{display:flex;align-items:center;gap:6px}
+        .nav-links a{
+            text-decoration:none;
+            font-size:14px;font-weight:600;color:#374151;
+            padding:9px 14px;border-radius:8px;
+            transition:color .18s,background .18s;
+        }
+        .nav-links a:hover{color:var(--navy);background:var(--navy-50)}
+        .nav-links a.active{
+            color:var(--navy);background:var(--navy-50);
+        }
+        .mobile-menu-btn{
+            display:none;appearance:none;border:1px solid var(--line);
+            background:#fff;border-radius:8px;cursor:pointer;
+            width:40px;height:40px;font-size:18px;color:var(--navy);
+        }
+
+        /* ============================================================
+           CUSTOM HERO — full-width, height matches careers page
+           ============================================================ */
+        .custom-hero {
+            position: relative;
+            background-color: #16233a;
+            background-image:
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.25) 0%, transparent 50%),
+                radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+            background-size: 100% 100%, 32px 32px;
+            padding: 72px 0 68px;
+            color: #fff;
+            overflow: hidden;
+        }
+        .custom-hero::after {
+            content: "";
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: linear-gradient(90deg, #16233a 20%, transparent 80%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ▼ CHANGED — mirrors index.html hero container
+           (max-w-7xl = 80rem, px-4 → sm:px-6) so the badge, h1 and
+           paragraph start at the exact same left edge on every width.
+           !important is required because the base .container rule uses it. */
+        .custom-hero .container {
+            position: relative;
+            z-index: 1;
+            max-width: 80rem !important;   /* was 900px (ignored) / effectively 1180px */
+            padding-left: 1rem;            /* px-4  */
+            padding-right: 1rem;
+        }
+        @media (min-width: 640px) {
+            .custom-hero .container {
+                padding-left: 1.5rem;      /* sm:px-6 */
+                padding-right: 1.5rem;
+            }
+        }
+        /* ▲ END CHANGE */
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #d1d5db;
+            margin-bottom: 24px;
+        }
+        .hero-badge .dot {
+            width: 8px; height: 8px;
+            background-color: #34d399;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(52, 211, 153, 0.6);
+        }
+        .hero-title {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin: 0 0 18px;
+            color: #ffffff;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #60a5fa, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-p {
+            font-size: clamp(1rem, 1.4vw, 1.15rem);
+            color: #cbd5e1;
+            line-height: 1.65;
+            max-width: 780px;
+            margin: 0;
+        }
+
+        /* ---- Hero CTA buttons + feature tags ---- */
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 28px 0 0;
+        }
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 13px 26px;
+            border-radius: 999px;
+            font-weight: 650;
+            font-size: 14.5px;
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+            cursor: pointer;
+        }
+        .hero-btn i { font-size: 13px; }
+        .hero-btn-primary {
+            background: linear-gradient(145deg, var(--orange-500), var(--orange));
+            color: #ffffff;
+            box-shadow: 0 14px 28px -14px rgba(234,88,12,.95), inset 0 1px 0 rgba(255,255,255,.25);
+        }
+        .hero-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 34px -14px rgba(234,88,12,1);
+        }
+        .hero-btn-light {
+            background: #ffffff;
+            color: var(--navy-900);
+            border-color: #ffffff;
+            box-shadow: 0 14px 28px -18px rgba(255,255,255,.6);
+        }
+        .hero-btn-light i { color: var(--orange-500); }
+        .hero-btn-light:hover {
+            transform: translateY(-2px);
+            background: #f8fafc;
+            box-shadow: 0 20px 34px -16px rgba(255,255,255,.85);
+        }
+        .hero-btn-ghost {
+            background: rgba(255,255,255,.06);
+            border-color: rgba(255,255,255,.45);
+            color: #ffffff;
+        }
+        .hero-btn-ghost:hover {
+            background: rgba(255,255,255,.14);
+            border-color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 28px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(255,255,255,.10);
+        }
+        .hero-tags span {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            font-size: 12.5px;
+            font-weight: 600;
+            letter-spacing: .02em;
+            color: #cbd5e1;
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.14);
+            transition: border-color .2s ease, background .2s ease;
+        }
+        .hero-tags span:hover {
+            background: rgba(255,255,255,.10);
+            border-color: rgba(255,255,255,.28);
+        }
+        .hero-tags i { color: var(--orange-500); font-size: 12px; }
+
+        /* ============================================================
+           STICKY FILTER BAR — color-coded pill tabs
+           ============================================================ */
+        .pf-bar {
+            position: sticky;
+            top: 70px;
+            z-index: 90;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+            box-shadow: 0 4px 12px -10px rgba(0,0,0,0.1);
+        }
+        .pf-bar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 14px 24px;
+        }
+        .pf-tabs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 2px;
+        }
+        .pf-tabs::-webkit-scrollbar { display: none; }
+
+        .tab {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            padding: 9px 18px;
+            border-radius: 999px;
+            font-size: 13.5px;
+            font-weight: 650;
+            cursor: pointer;
+            transition: all .22s ease;
+            border: 1px solid transparent;
+            background: var(--tab-tint, #f1f5f9);
+            color: var(--tab-color, #475569);
+        }
+        .tab i { font-size: 12px; opacity: .9; }
+        .tab:hover {
+            border-color: var(--tab-color);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px -8px var(--tab-color);
+        }
+        .tab.on {
+            background: var(--tab-color);
+            color: #ffffff;
+            border-color: var(--tab-color);
+            box-shadow: 0 10px 20px -12px var(--tab-color), inset 0 1px 0 rgba(255,255,255,.18);
+        }
+        .tab.on i { opacity: 1; }
+
+        .tab[data-cat="all"]         { --tab-color: #1e3a5f; --tab-tint: #e6edf6; }
+        .tab[data-cat="logger"]      { --tab-color: #2563eb; --tab-tint: #e2ecfe; }
+        .tab[data-cat="environment"] { --tab-color: #16a34a; --tab-tint: #ddf5e6; }
+        .tab[data-cat="system"]      { --tab-color: #7c3aed; --tab-tint: #ede2fe; }
+        .tab[data-cat="instrument"]  { --tab-color: #ea580c; --tab-tint: #fce7d5; }
+        .tab[data-cat="field"]       { --tab-color: #0891b2; --tab-tint: #d8f4fb; }
+
+        .pf-count {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            background: var(--navy-50);
+            color: var(--navy);
+            font-size: 12.5px;
+            font-weight: 700;
+            border: 1px solid rgba(30,58,95,0.14);
+            white-space: nowrap;
+        }
+        .pf-count::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 0 3px rgba(22,163,74,0.16);
+        }
+
+        /* ============================================================
+           PRODUCT GRID
+           ============================================================ */
+        .pf-main { background: var(--bg-gray); padding: 48px 0 80px; }
+        .pf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: #cfdcea;
+        }
+        .product-card[hidden] { display: none; }
+
+        .product-image {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 240px;
+            padding: 24px;
+            background: linear-gradient(160deg, #ffffff, #f1f5f9);
+            border-bottom: 1px solid var(--line);
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform .35s ease;
+        }
+        .product-card:hover .product-image img { transform: scale(1.05); }
+
+        .qv {
+            position: absolute;
+            right: 16px;
+            bottom: 16px;
+            background: var(--navy-900);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 999px;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: all .25s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .product-card:hover .qv,
+        .product-image:focus-visible .qv {
+            opacity: 1;
+            transform: none;
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 24px;
+        }
+        .product-title-row {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            margin: 0 0 8px;
+        }
+        .product-title-row h3 {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy-900);
+        }
+        .product-category {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: var(--blue-50);
+            color: #1d5ea8;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            order: -1;
+        }
+        .subtitle {
+            font-weight: 600;
+            color: var(--blue);
+            margin: 0 0 12px;
+            font-size: 14px;
+        }
+        .product-info > p:not(.subtitle) {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0 0 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .product-card ul {
+            list-style: none;
+            margin: 0 0 20px;
+            padding: 16px 0 0;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .product-card li {
+            position: relative;
+            padding-left: 22px;
+            font-size: 13.5px;
+            line-height: 1.45;
+            color: #4b5563;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .product-card li:nth-child(n+4) { display: none; }
+        .product-card li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 11px;
+            color: var(--green);
+        }
+
+        .pf-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+        }
+        .pf-actions button,
+        .pf-actions a {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13.5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all .2s;
+            border: 1px solid transparent;
+        }
+        .pf-actions .view {
+            background: #ffffff;
+            color: var(--navy);
+            border-color: #c5d3e6;
+        }
+        .pf-actions .view:hover {
+            background: var(--navy-50);
+            border-color: var(--navy);
+        }
+        .pf-actions .product-link {
+            background: var(--navy);
+            color: #ffffff;
+        }
+        .pf-actions .product-link:hover {
+            background: var(--navy-900);
+            box-shadow: 0 4px 12px rgba(15,33,55,0.3);
+        }
+
+        /* Empty State */
+        .pf-empty {
+            display: none;
+            text-align: center;
+            padding: 64px 24px;
+            background: #ffffff;
+            border: 1px dashed #b9c7da;
+            border-radius: var(--radius-lg);
+            color: var(--muted);
+        }
+        .pf-empty h3 { color: var(--navy-900); margin: 0 0 8px; font-size: 1.2rem; }
+        .pf-empty button {
+            margin-top: 16px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 0;
+            background: var(--navy);
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background .2s;
+        }
+        .pf-empty button:hover { background: var(--navy-900); }
+
+        /* Help CTA */
+        .pf-help {
+            margin-top: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+            background: linear-gradient(135deg, var(--navy-900), var(--navy-700));
+            color: #fff;
+            border-radius: var(--radius-lg);
+            padding: 36px 40px;
+            box-shadow: var(--shadow-md);
+        }
+        .pf-help h2 { margin: 0 0 8px; font-size: 1.4rem; color: #fff; }
+        .pf-help p { margin: 0; color: #a9c3db; font-size: 14.5px; }
+        .pf-help-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+        .pf-help-actions a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 999px;
+            font-weight: 650;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all .2s;
+            background: #ffffff;
+            color: var(--navy-900);
+            border: 1px solid #ffffff;
+        }
+        .pf-help-actions a:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
+        .pf-help-actions a.ghost {
+            background: transparent;
+            color: #ffffff;
+            border-color: rgba(255,255,255,0.4);
+        }
+        .pf-help-actions a.ghost:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #ffffff;
+        }
+
+        /* ============================================================
+           MODAL DIALOG — flex column, info panel scrolls
+           ============================================================ */
+        dialog.product-detail-dialog {
+            margin: auto;
+            padding: 0;
+            border: none;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6);
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            background: #ffffff;
+            overflow: hidden;
+            position: relative;
+        }
+        dialog.product-detail-dialog[open] {
+            display: flex;
+            flex-direction: column;
+        }
+        dialog::backdrop {
+            background: rgba(10, 20, 30, 0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .product-detail-close {
+            position: absolute;
+            top: 16px; right: 16px;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--line);
+            background: #ffffff;
+            font-size: 20px;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            color: var(--muted);
+            transition: background .18s, color .18s;
+            z-index: 10;
+        }
+        .product-detail-close:hover {
+            background: var(--navy-50);
+            color: var(--navy);
+        }
+        .product-detail-image {
+            flex: 0 0 auto;
+            width: 100%;
+            height: 280px;
+            max-height: 38vh;
+            background: linear-gradient(160deg, #ffffff, #f1f5f9);
+            padding: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--line);
+        }
+        .product-detail-image img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        .product-detail-info {
+            flex: 1 1 auto;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 28px 32px 32px;
+            overscroll-behavior: contain;
+        }
+        .product-detail-info::-webkit-scrollbar { width: 8px; }
+        .product-detail-info::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 999px;
+        }
+        .product-detail-info::-webkit-scrollbar-track { background: transparent; }
+
+        .product-detail-info h2 {
+            margin: 0 0 8px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--navy-900);
+            line-height: 1.2;
+        }
+        .product-detail-category { margin-bottom: 12px; }
+        .product-detail-description {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.65;
+            margin: 0 0 20px;
+        }
+        .product-detail-info ul {
+            list-style: none;
+            padding: 20px 0 0;
+            margin: 0 0 28px;
+            border-top: 1px solid var(--line);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .product-detail-info li {
+            position: relative;
+            padding-left: 28px;
+            font-size: 14.5px;
+            color: #374151;
+            line-height: 1.5;
+        }
+        .product-detail-info li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 12px;
+            color: var(--green);
+        }
+        .product-detail-info .product-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 999px;
+            background: var(--navy);
+            color: #ffffff;
+            font-weight: 650;
+            font-size: 14.5px;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .product-detail-info .product-link:hover {
+            background: var(--navy-900);
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer{
+            background:#0f2137;color:#c6d3e2;
+            padding:56px 0 0;margin-top:0;
+        }
+        .footer-cta{
+            display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+            gap:20px;padding:26px 28px;margin-bottom:40px;
+            border-radius:var(--radius-lg);
+            background:linear-gradient(130deg,rgba(59,130,246,.18),rgba(30,58,95,.35));
+            border:1px solid rgba(255,255,255,.08);
+        }
+        .footer-cta strong{display:block;color:#fff;font-size:1.05rem;margin-bottom:4px}
+        .footer-cta p{margin:0;font-size:14px;color:#a9c3db;max-width:560px}
+        .footer-cta-btn{
+            display:inline-flex;align-items:center;gap:9px;
+            text-decoration:none;font-weight:650;font-size:14px;
+            padding:12px 24px;border-radius:999px;
+            transition:transform .18s,box-shadow .18s,background .18s,color .18s,border-color .18s;
+            border:1px solid rgba(255,255,255,.55);background:transparent;color:#fff;
+        }
+        .footer-cta-btn:hover{background:rgba(255,255,255,.12);border-color:#fff;transform:translateY(-2px)}
+
+        .footer-grid{
+            display:grid;
+            grid-template-columns:1.4fr 1fr 1fr 1.2fr;
+            gap:36px;
+            padding:0 0 40px;
+        }
+        .footer-brand{margin:0 0 10px;color:#fff;font-size:16px;letter-spacing:-.01em}
+        .footer-intro{margin:0 0 16px;font-size:13.5px;color:#a9c3db;max-width:320px}
+        .footer-certifications{display:flex;flex-direction:column;gap:8px}
+        .footer-certifications span{font-size:12.5px;color:#8aa2bd;display:flex;align-items:center;gap:6px}
+
+        .footer-grid h4{
+            margin:0 0 14px;color:#fff;font-size:13px;
+            letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+        }
+        .footer-grid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+        .footer-grid ul li{font-size:13.5px;color:#a9c3db;display:flex;align-items:center;gap:8px}
+        .footer-grid ul li i{color:var(--orange-500);font-size:12px}
+        .footer-grid a{
+            color:#a9c3db;text-decoration:none;
+            transition:color .18s;
+        }
+        .footer-grid a:hover{color:#fff}
+        .footer-bottom{
+            border-top:1px solid rgba(255,255,255,.10);
+            padding:20px 0;text-align:center;
+            font-size:12.5px;color:#8aa2bd;
+        }
+
+        /* back to top */
+        .back-to-top{
+            position:fixed;right:22px;bottom:22px;z-index:90;
+            width:44px;height:44px;border-radius:50%;
+            background:var(--navy);color:#fff;border:0;cursor:pointer;
+            display:grid;place-items:center;font-size:15px;
+            box-shadow:0 12px 24px -12px rgba(30,58,95,.9);
+            opacity:0;visibility:hidden;transform:translateY(8px);
+            transition:opacity .25s,transform .25s,visibility .25s;
+        }
+        .back-to-top.show{opacity:1;visibility:visible;transform:none}
+        .back-to-top:hover{background:var(--navy-900)}
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width:1000px){
+            .pf-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width:960px){
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+        }
+        @media (max-width:860px){
+            .nav-links{
+                display:none;position:absolute;top:70px;left:0;right:0;
+                flex-direction:column;align-items:stretch;gap:2px;
+                background:#fff;border-bottom:1px solid var(--line);
+                padding:14px 18px;box-shadow:0 16px 24px -20px rgba(0,0,0,.35);
+            }
+            .nav-links.open{display:flex}
+            .nav-links a{padding:11px 12px}
+            .mobile-menu-btn{display:grid;place-items:center}
+            .pf-bar .container { flex-direction: column; align-items: stretch; }
+            .pf-tabs { padding-bottom: 4px; }
+            .pf-count { align-self: flex-start; }
+        }
+        @media (max-width:640px){
+            .pf-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-cta { flex-direction: column; align-items: flex-start; }
+            .custom-hero { padding: 56px 0 60px; }
+            .hero-actions { gap: 10px; }
+            .hero-btn { padding: 12px 18px; font-size: 14px; justify-content: center; }
+            .hero-btn-primary { flex: 1 1 100%; }
+            .hero-btn-light,
+            .hero-btn-ghost { flex: 1 1 calc(50% - 5px); }
+            .pf-help { padding: 26px 22px; }
+            dialog.product-detail-dialog { width: 95%; max-height: 92vh; }
+            .product-detail-image { height: 200px; padding: 16px; }
+            .product-detail-info { padding: 22px 22px 26px; }
+        }
+        @media (prefers-reduced-motion:reduce){
+            *{animation:none !important;transition:none !important;scroll-behavior:auto}
+        }
+    </style>
+    <link rel="stylesheet" href="css/site-shell.css">
+</head>
+<body class="kt-page">
+
+<!-- progress bar -->
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- ============ NAVBAR ============ -->
+<header class="kt-site-header">
+    <nav class="kt-nav-inner" aria-label="Main navigation">
+        <a href="index.html" class="kt-brand" aria-label="Kynatron Technologies home">
+            <span class="kt-brand-mark" aria-hidden="true">K</span>
+            <span class="kt-brand-name">KYNATRON</span>
+        </a>
+        <div class="kt-nav-links" id="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="products.html" aria-current="page">Products</a>
+            <a href="services.html">Services</a>
+            <a href="careers.html">Careers</a>
+            <a href="contact.html">Contact</a>
+            <a href="dashboard-demo.html">Demo</a>
+        </div>
+        <button class="kt-menu-toggle" id="mobile-menu-btn" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">&#9776;</button>
+    </nav>
+</header>
+
+<!-- ============ CUSTOM HERO ============ -->
+<section class="custom-hero">
+    <div class="container">
+        <div class="hero-badge">
+            <span class="dot"></span>
+            Our Products
+        </div>
+        <h1 class="hero-title">
+            Find the right tools for <span class="gradient-text">the work ahead</span>
+        </h1>
+        <p class="hero-p">
+            Start with the process you need to understand. Explore data loggers, environmental monitors, control systems, instruments and field devices built for demanding industrial settings.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="hero-actions">
+            <a href="#pf-products" class="hero-btn hero-btn-primary">
+                Browse products <i class="fa-solid fa-arrow-down"></i>
+            </a>
+            <a href="images/kynatron-brochure.pdf" download="Kynatron-Brochure.pdf" class="hero-btn hero-btn-light">
+                <i class="fa-solid fa-file-arrow-down"></i> Download brochure
+            </a>
+            <a href="contact.html" class="hero-btn hero-btn-ghost">
+                <i class="fa-regular fa-comments"></i> Talk to an engineer
+            </a>
+        </div>
+
+        <!-- Quick feature tags -->
+        <div class="hero-tags" aria-label="Product highlights">
+            <span><i class="fa-solid fa-layer-group"></i> 6 product families</span>
+            <span><i class="fa-solid fa-shield-halved"></i> IP66 · 21 CFR Part 11</span>
+            <span><i class="fa-solid fa-location-dot"></i> Made in India</span>
+        </div>
+    </div>
+</section>
+
+<!-- ============ STICKY FILTER BAR ============ -->
+<div class="pf-bar">
+    <div class="container">
+        <div class="pf-tabs" role="tablist" aria-label="Product categories">
+            <button class="tab on" data-cat="all"><i class="fa-solid fa-layer-group"></i> All products</button>
+            <button class="tab" data-cat="logger"><i class="fa-solid fa-database"></i> Data Loggers</button>
+            <button class="tab" data-cat="environment"><i class="fa-solid fa-leaf"></i> Environmental</button>
+            <button class="tab" data-cat="system"><i class="fa-solid fa-microchip"></i> Systems</button>
+            <button class="tab" data-cat="instrument"><i class="fa-solid fa-gauge-high"></i> Instrumentation</button>
+            <button class="tab" data-cat="field"><i class="fa-solid fa-broadcast-tower"></i> Field Devices</button>
+        </div>
+        <span class="pf-count" id="pf-count" aria-live="polite"></span>
+    </div>
+</div>
+
+<!-- ============ PRODUCT GRID ============ -->
+<main class="pf-main" id="pf-products">
+    <div class="container">
+        <div class="pf-grid">
+            <!-- Product 1 -->
+            <article class="product-card" id="kynalog-series" data-cat="logger">
+                <button class="product-image product-image-trigger" type="button" aria-label="View KynaLog Series details">
+                    <img src="images/gm-dl-pro.png" alt="GM-DL Pro industrial data logger" loading="lazy">
+                    <span class="qv"><i class="fa-solid fa-expand"></i> Quick view</span>
+                </button>
+                <div class="product-info">
+                    <div class="product-title-row">
+                        <h3>KynaLog Series</h3>
+                        <span class="product-category">Data Logger</span>
+                    </div>
+                    <p class="subtitle">Scalable Multi-Channel Data Acquisition</p>
+                    <p>Next-generation data acquisition designed for precision and flexibility, with scalable 4-, 8-, and 16-channel configurations to fit different facility requirements.</p>
+                    <ul>
+                        <li>Universal RTD, PT100, thermocouple, 4–20 mA, and 0–10 V inputs</li>
+                        <li>7-inch or 10-inch high-resolution touchscreen with customizable UI</li>
+                        <li>Precision 16-bit ADCs and high-stability real-time clocks</li>
+                        <li>Powder-coated MS, extruded aluminium, or industrial-grade PC enclosures</li>
+                    </ul>
+                    <div class="pf-actions">
+                        <button class="view" type="button" data-open><i class="fa-regular fa-eye"></i> Details</button>
+                        <a href="contact.html" class="product-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 2 -->
+            <article class="product-card" id="kynasense" data-cat="environment">
+                <button class="product-image product-image-trigger" type="button" aria-label="View KynaSense details">
+                    <img src="images/Kynasense.jpg" alt="KynaSense Pro 700 temperature and humidity monitoring device" loading="lazy">
+                    <span class="qv"><i class="fa-solid fa-expand"></i> Quick view</span>
+                </button>
+                <div class="product-info">
+                    <div class="product-title-row">
+                        <h3>KynaSense</h3>
+                        <span class="product-category">Environmental Monitoring</span>
+                    </div>
+                    <p class="subtitle">GMP-Compliant Environmental Monitoring</p>
+                    <p>Environmental monitoring for cleanrooms, print facilities, warehouses, and laboratories, designed to protect critical environments with reliable measurement and monitoring.</p>
+                    <ul>
+                        <li>7-inch touchscreen with real-time trends, alarms, and standalone setup</li>
+                        <li>Sensirion SHT4x probe: ±0.2°C temperature and ±1.8% RH accuracy</li>
+                        <li>Up to 32 battery-powered wireless nodes across 300 m line-of-sight</li>
+                        <li>Browser-based local monitor, Wi-Fi/USB sync, and up to 5 years of MicroSD storage</li>
+                        <li>Flush-mounted stainless steel enclosure, with alternative housing options</li>
+                    </ul>
+                    <div class="pf-actions">
+                        <button class="view" type="button" data-open><i class="fa-regular fa-eye"></i> Details</button>
+                        <a href="contact.html" class="product-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 3 -->
+            <article class="product-card" id="kynacore" data-cat="system">
+                <button class="product-image product-image-trigger" type="button" aria-label="View KynaCore details">
+                    <img src="images/fmcs.png" alt="Kynatron furnace monitoring and control system" loading="lazy">
+                    <span class="qv"><i class="fa-solid fa-expand"></i> Quick view</span>
+                </button>
+                <div class="product-info">
+                    <div class="product-title-row">
+                        <h3>KynaCore</h3>
+                        <span class="product-category">System Solution</span>
+                    </div>
+                    <p class="subtitle">End-to-End Automation System Solution</p>
+                    <p>Bring furnace measurements and control together in a system designed to manage temperature zones and protect the process.</p>
+                    <ul>
+                        <li>Independent 3-zone PID control up to 1600°C with ±0.1% accuracy</li>
+                        <li>7-inch industrial HMI</li>
+                        <li>Dedicated high-limit autocut protection</li>
+                        <li>IP65-rated; RS-485/Modbus and optional MQTT</li>
+                    </ul>
+                    <div class="pf-actions">
+                        <button class="view" type="button" data-open><i class="fa-regular fa-eye"></i> Details</button>
+                        <a href="contact.html" class="product-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 4 (KynaShield — image path fixed) -->
+            <article class="product-card" id="kynashield" data-cat="environment">
+                <button class="product-image product-image-trigger" type="button" aria-label="View KynaShield details">
+                    <img src="images/Clean_room_monitor.png" alt="Kynatron clean room monitoring and control system" loading="lazy">
+                    <span class="qv"><i class="fa-solid fa-expand"></i> Quick view</span>
+                </button>
+                <div class="product-info">
+                    <div class="product-title-row">
+                        <h3>KynaShield</h3>
+                        <span class="product-category">Critical Monitoring System</span>
+                    </div>
+                    <p class="subtitle">Precision Environmental Intelligence for Critical Facilities</p>
+                    <p>Keep critical cleanroom conditions in view with a local display for temperature, humidity, differential pressure and dew point.</p>
+                    <ul>
+                        <li>Quad-Parameter 7-inch Dashboard: Tracks Temperature, Humidity, Differential Pressure, and Dew Point simultaneously</li>
+                        <li>At-a-Glance Compliance: Clear visual status alerts ("NORMAL" / "OK") ensure quick room audits.</li>
+                        <li>Real-Time Visual Trends: Built-in live graph instantly maps data shifts over time.</li>
+                        <li>Active Data Logging: Automated tracking with simple touch navigation for graphs, logs, and settings.</li>
+                    </ul>
+                    <div class="pf-actions">
+                        <button class="view" type="button" data-open><i class="fa-regular fa-eye"></i> Details</button>
+                        <a href="contact.html" class="product-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 5 -->
+            <article class="product-card" id="kynanode" data-cat="field">
+                <button class="product-image product-image-trigger" type="button" aria-label="View KynaNode details">
+                    <img src="images/sensors.png" alt="Kynatron industrial temperature sensors and probes" loading="lazy">
+                    <span class="qv"><i class="fa-solid fa-expand"></i> Quick view</span>
+                </button>
+                <div class="product-info">
+                    <div class="product-title-row">
+                        <h3>KynaNode</h3>
+                        <span class="product-category">Field Device</span>
+                    </div>
+                    <p class="subtitle">Compact Edge Sensors &amp; Transmitters</p>
+                    <p>Capture process signals close to the source with compact sensors and transmitters designed for connected industrial use.</p>
+                    <ul>
+                        <li>Dual-core edge processing and signal conditioning</li>
+                        <li>Wi-Fi, Bluetooth LE, and LoRaWAN connectivity</li>
+                        <li>Low power use, battery backup, and power-loss memory protection</li>
+                        <li>IP65/IP67 enclosure options in MS, aluminium, PLA, or PC</li>
+                    </ul>
+                    <div class="pf-actions">
+                        <button class="view" type="button" data-open><i class="fa-regular fa-eye"></i> Details</button>
+                        <a href="contact.html" class="product-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 6 -->
+            <article class="product-card" id="kynameter" data-cat="instrument">
+                <button class="product-image product-image-trigger" type="button" aria-label="View KynaMeter details">
+                    <img src="images/digital_pressure_guage.png" alt="Kynatron digital pressure gauge" loading="lazy">
+                    <span class="qv"><i class="fa-solid fa-expand"></i> Quick view</span>
+                </button>
+                <div class="product-info">
+                    <div class="product-title-row">
+                        <h3>KynaMeter</h3>
+                        <span class="product-category">Instrumentation</span>
+                    </div>
+                    <p class="subtitle">Industrial Measurement &amp; Control Instruments</p>
+                    <p>Make measurements locally and share signals with the wider system using industrial displays and communication outputs.</p>
+                    <ul>
+                        <li>High-performance converters for fast response and signal clarity</li>
+                        <li>OLED/TFT displays for local readings</li>
+                        <li>Galvanically isolated 4–20 mA and Modbus RTU/TCP outputs</li>
+                        <li>MS, die-cast aluminium, or flame-retardant PC housing options</li>
+                    </ul>
+                    <div class="pf-actions">
+                        <button class="view" type="button" data-open><i class="fa-regular fa-eye"></i> Details</button>
+                        <a href="contact.html" class="product-link">Enquire <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- Empty State -->
+        <div class="pf-empty" id="pf-empty">
+            <h3>No products in this category</h3>
+            <p>Try another category, or tell us your application and we'll recommend one.</p>
+            <button type="button" id="pf-reset">Show all products</button>
+        </div>
+
+        <!-- Help CTA -->
+        <div class="pf-help">
+            <div>
+                <h2>Not sure where to start?</h2>
+                <p>Tell us what you need to measure, the conditions on site and how your team will use the data. We’ll help narrow down the options.</p>
+            </div>
+            <div class="pf-help-actions">
+                <a href="contact.html">Get a recommendation</a>
+                <a class="ghost" href="images/kynatron-brochure.pdf" download="Kynatron-Brochure.pdf"><i class="fa-solid fa-file-arrow-down"></i> Brochure</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- ============ MODAL DIALOG ============ -->
+<dialog class="product-detail-dialog" aria-labelledby="product-detail-title">
+    <button class="product-detail-close" type="button" aria-label="Close product details">&times;</button>
+    <div class="product-detail-image">
+        <img src="" alt="">
+    </div>
+    <div class="product-detail-info">
+        <h2 id="product-detail-title"></h2>
+        <span class="product-category product-detail-category"></span>
+        <p class="subtitle"></p>
+        <p class="product-detail-description"></p>
+        <ul></ul>
+        <a href="contact.html" class="product-link">Enquire about this product <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+</dialog>
+
+<!-- ============ FOOTER ============ -->
+<footer class="kt-site-footer">
+    <div class="container">
+        <div class="footer-cta">
+            <div>
+                <strong>Build a clearer view of your process.</strong>
+                <p>From data acquisition and monitoring to control and automation, we help you connect measurements to practical next steps.</p>
+            </div>
+            <a href="contact.html" class="footer-cta-btn">Talk to our team</a>
+        </div>
+        <div class="footer-grid">
+            <div>
+                <h3 class="footer-brand">Kynatron Technologies</h3>
+                <p class="footer-intro">Industrial data acquisition, monitoring, control and automation systems designed for real operating environments.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="products.html">Data acquisition</a></li>
+                    <li><a href="products.html">Environmental monitoring</a></li>
+                    <li><a href="products.html">Control &amp; automation</a></li>
+                    <li><a href="dashboard-demo.html">Dashboard demo</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fa-solid fa-envelope"></i> <a href="mailto:sales@kynatron.com">sales@kynatron.com</a></li>
+                    <li><i class="fa-solid fa-phone"></i> <a href="tel:+919343509732">+91 9343509732</a></li>
+                    <li><i class="fa-solid fa-location-dot"></i> Hyderabad and Bangalore, India</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Kynatron Technologies. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<button id="back-to-top" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+<script>
+(function () {
+    "use strict";
+
+    /* ============================================================
+       THEME SCRIPTS
+       ============================================================ */
+    const progress = document.querySelector('.scroll-progress');
+    function updateProgress() {
+        const h = document.documentElement;
+        const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+        if (progress) progress.style.width = (scrolled || 0) + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    const backTop = document.getElementById('back-to-top');
+    if (backTop) {
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 400) backTop.classList.add('show');
+            else backTop.classList.remove('show');
+        }, { passive: true });
+        backTop.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    /* ============================================================
+       PRODUCT FILTERING LOGIC (category tabs only)
+       ============================================================ */
+    var cards = [].slice.call(document.querySelectorAll('.pf-grid .product-card')),
+        tabs = [].slice.call(document.querySelectorAll('.tab')),
+        count = document.getElementById('pf-count'),
+        empty = document.getElementById('pf-empty'),
+        cat = 'all';
+
+    function applyFilters() {
+        var n = 0;
+        cards.forEach(function(c) {
+            var ok = (cat === 'all' || c.dataset.cat === cat);
+            c.hidden = !ok;
+            if (ok) n++;
+        });
+        count.textContent = n + (n === 1 ? ' product' : ' products');
+        empty.style.display = n ? 'none' : 'block';
+    }
+
+    tabs.forEach(function(b) {
+        b.onclick = function() {
+            cat = b.dataset.cat;
+            tabs.forEach(function(x) { x.classList.toggle('on', x === b); });
+            applyFilters();
+        };
+    });
+
+    document.getElementById('pf-reset').onclick = function() {
+        cat = 'all';
+        tabs.forEach(function(x, i) { x.classList.toggle('on', i === 0); });
+        applyFilters();
+    };
+
+    applyFilters();
+
+    /* ============================================================
+       PRODUCT DETAIL MODAL LOGIC
+       ============================================================ */
+    const dialog = document.querySelector('.product-detail-dialog');
+    const closeBtn = dialog.querySelector('.product-detail-close');
+
+    function openModal(card) {
+        const title = card.querySelector('h3').textContent;
+        const category = card.querySelector('.product-category').textContent;
+        const subtitle = card.querySelector('.subtitle').textContent;
+        const desc = card.querySelector('.product-info > p:not(.subtitle)').textContent;
+        const imgSrc = card.querySelector('img').src;
+        const imgAlt = card.querySelector('img').alt;
+
+        const features = Array.from(card.querySelectorAll('ul li')).map(li => li.textContent);
+
+        dialog.querySelector('#product-detail-title').textContent = title;
+        dialog.querySelector('.product-detail-category').textContent = category;
+        dialog.querySelector('.subtitle').textContent = subtitle;
+        dialog.querySelector('.product-detail-description').textContent = desc;
+
+        const imgEl = dialog.querySelector('.product-detail-image img');
+        imgEl.src = imgSrc;
+        imgEl.alt = imgAlt;
+
+        const ul = dialog.querySelector('ul');
+        ul.innerHTML = '';
+        features.forEach(f => {
+            const li = document.createElement('li');
+            li.textContent = f;
+            ul.appendChild(li);
+        });
+
+        dialog.showModal();
+
+        const infoPanel = dialog.querySelector('.product-detail-info');
+        if (infoPanel) infoPanel.scrollTop = 0;
+
+        document.body.style.overflow = 'hidden';
+    }
+
+    document.querySelectorAll('.product-image-trigger').forEach(btn => {
+        btn.addEventListener('click', () => openModal(btn.closest('.product-card')));
+    });
+    document.querySelectorAll('[data-open]').forEach(btn => {
+        btn.addEventListener('click', () => openModal(btn.closest('.product-card')));
+    });
+
+    closeBtn.addEventListener('click', () => {
+        dialog.close();
+        document.body.style.overflow = '';
+    });
+
+    dialog.addEventListener('click', (e) => {
+        if (e.target === dialog) {
+            dialog.close();
+            document.body.style.overflow = '';
+        }
+    });
+
+    dialog.addEventListener('close', () => {
+        document.body.style.overflow = '';
+    });
+
+})();
+</script>
+<script src="js/site-shell.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%231e3a5f'/><text x='50' y='72' font-size='60' font-weight='800' fill='white' text-anchor='middle' font-family='Arial'>K</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Industrial Automation & Monitoring — Kynatron Technologies</title>
+    <meta name="description" content="Data acquisition, SCADA monitoring, alarm management, PLC automation, IoT cloud platforms, and custom hardware manufacturing. Hyderabad and Bangalore, India.">
+    <meta name="keywords" content="industrial automation services India, SCADA system design, PLC programming, IoT gateway development, custom data logger">
+    <meta property="og:title" content="Kynatron Services — Industrial Monitoring & Automation">
+    <meta property="og:description" content="End-to-end industrial solutions: data logging, SCADA, alarm systems, IoT platforms, and custom hardware.">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ============================================================
+           THEME CONSTANTS
+           ============================================================ */
+        :root{
+            --navy:        #1e3a5f;
+            --navy-900:    #0f2137;
+            --navy-700:    #2b5480;
+            --navy-50:     #eef3f9;
+            --orange:      #ea580c;
+            --orange-500:  #f97316;
+            --orange-50:   #fff7ed;
+            --blue:        #3b82f6;
+            --blue-50:     #eff6ff;
+            --green:       #16a34a;
+            --green-50:    #dcfce7;
+            --purple:      #7c3aed;
+            --purple-50:   #f3e8ff;
+
+            --ink:         #111827;
+            --muted:       #6b7280;
+            --line:        #e5e7eb;
+            --bg:          #ffffff;
+            --bg-gray:     #f9fafb;
+            --card:        #ffffff;
+
+            --radius-sm:   8px;
+            --radius-md:   12px;
+            --radius-lg:   16px;
+            --shadow-sm:   0 1px 2px rgba(17,24,39,.06), 0 4px 12px -8px rgba(17,24,39,.15);
+            --shadow-md:   0 2px 4px rgba(17,24,39,.06), 0 16px 32px -18px rgba(17,24,39,.30);
+            --shadow-lg:   0 24px 48px -24px rgba(17,24,39,.45);
+            --maxw:        1180px;
+        }
+
+        /* ============================================================
+           BASE
+           ============================================================ */
+        *,*::before,*::after{box-sizing:border-box}
+        html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+        body{
+            margin:0;
+            font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+            color:var(--ink);
+            background:var(--bg);
+            line-height:1.6;
+            -webkit-font-smoothing:antialiased;
+        }
+        a{color:inherit}
+        img{max-width:100%;display:block}
+        .container{max-width: var(--maxw, 1180px) !important;margin:0 auto;padding:0 24px}
+        .ico{width:15px;height:15px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+        /* scroll progress */
+        .scroll-progress{
+            position:fixed;top:0;left:0;height:3px;width:0%;
+            background:linear-gradient(90deg,var(--orange),var(--navy));
+            z-index:120;transition:width .12s linear;
+        }
+
+        /* ============================================================
+           NAVBAR
+           ============================================================ */
+        .navbar{
+            position:sticky;top:0;z-index:100;
+            background:#ffffff;
+            border-bottom:1px solid var(--line);
+            box-shadow:0 1px 2px rgba(17,24,39,.04);
+        }
+        .nav-container{
+            display:flex;align-items:center;justify-content:space-between;
+            height:70px;gap:20px;
+        }
+        .logo{
+            display:inline-flex;align-items:center;gap:10px;
+            text-decoration:none;flex:none;
+        }
+        .logo-mark-img{
+            width:38px;height:38px;border-radius:10px;flex:none;
+            background:linear-gradient(145deg,var(--navy-700),var(--navy-900));
+            color:#fff;font-weight:800;font-size:19px;
+            display:grid;place-items:center;
+            box-shadow:0 6px 16px -8px rgba(30,58,95,.9);
+        }
+        .logo-text{
+            font-weight:800;font-size:16px;letter-spacing:.06em;
+            color:var(--navy-900);
+        }
+        .nav-links{display:flex;align-items:center;gap:6px}
+        .nav-links a{
+            text-decoration:none;
+            font-size:14px;font-weight:600;color:#374151;
+            padding:9px 14px;border-radius:8px;
+            transition:color .18s,background .18s;
+        }
+        .nav-links a:hover{color:var(--navy);background:var(--navy-50)}
+        .nav-links a.active{
+            color:var(--navy);background:var(--navy-50);
+        }
+        .mobile-menu-btn{
+            display:none;appearance:none;border:1px solid var(--line);
+            background:#fff;border-radius:8px;cursor:pointer;
+            width:40px;height:40px;font-size:18px;color:var(--navy);
+        }
+
+        /* ============================================================
+           CUSTOM HERO
+           ============================================================ */
+        .custom-hero {
+            position: relative;
+            background-color: #16233a;
+            background-image: 
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.25) 0%, transparent 50%),
+                radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+            background-size: 100% 100%, 32px 32px;
+            padding: 80px 0 90px;
+            color: #fff;
+            overflow: hidden;
+        }
+        .custom-hero::after {
+            content: "";
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: linear-gradient(90deg, #16233a 20%, transparent 80%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ▼ CHANGED — mirrors index.html hero container
+           (max-w-7xl = 80rem, px-4 → sm:px-6) so the badge, h1 and
+           paragraph start at the exact same left edge on every width.
+           !important is required because the base .container rule uses it. */
+        .custom-hero .container {
+            position: relative;
+            z-index: 1;
+            max-width: 80rem !important;   /* was 900px (ignored) / effectively 1180px */
+            padding-left: 1rem;            /* px-4  */
+            padding-right: 1rem;
+        }
+        @media (min-width: 640px) {
+            .custom-hero .container {
+                padding-left: 1.5rem;      /* sm:px-6 */
+                padding-right: 1.5rem;
+            }
+        }
+        /* ▲ END CHANGE */
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #d1d5db;
+            margin-bottom: 28px;
+        }
+        .hero-badge .dot {
+            width: 8px; height: 8px;
+            background-color: #34d399;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(52, 211, 153, 0.6);
+        }
+        .hero-title {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin: 0 0 20px;
+            color: #ffffff;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #60a5fa, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-p {
+            font-size: clamp(1rem, 1.4vw, 1.15rem);
+            color: #cbd5e1;
+            line-height: 1.65;
+            max-width: 780px;
+            margin: 0;
+        }
+
+        /* ============================================================
+           SECTIONS & LAYOUT
+           ============================================================ */
+        .section{padding:64px 0}
+        .section-gray{background:var(--bg-gray)}
+        .section-header{text-align:center;max-width:680px;margin:0 auto 42px}
+        .section-header h2{
+            margin:0 0 8px;font-size:clamp(1.5rem,2.8vw,2rem);
+            letter-spacing:-.02em;font-weight:800;
+        }
+        .section-header p{margin:0;color:var(--muted);font-size:15px}
+
+        /* ============================================================
+           SERVICES GRID
+           ============================================================ */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        .service-card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--blue);
+            opacity: 0;
+            transition: opacity .22s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: #cfdcea;
+        }
+        .service-card:hover::before { opacity: 1; }
+        
+        .service-card:nth-child(2)::before { background: var(--green); }
+        .service-card:nth-child(3)::before { background: var(--orange); }
+        .service-card:nth-child(4)::before { background: var(--purple); }
+        .service-card:nth-child(5)::before { background: var(--navy); }
+        .service-card:nth-child(6)::before { background: var(--green); }
+
+        .service-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .service-icon.blue { background: var(--blue-50); color: var(--blue); }
+        .service-icon.green { background: var(--green-50); color: var(--green); }
+        .service-icon.orange { background: var(--orange-50); color: var(--orange); }
+        .service-icon.purple { background: var(--purple-50); color: var(--purple); }
+        .service-icon.navy { background: var(--navy-50); color: var(--navy); }
+
+        .service-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--navy-900);
+        }
+        .service-card > p {
+            margin: 0 0 20px;
+            font-size: 14.5px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .service-list li {
+            position: relative;
+            padding-left: 24px;
+            font-size: 13.8px;
+            color: #4b5563;
+        }
+        .service-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 11px;
+            color: var(--blue);
+        }
+        .service-card:nth-child(2) .service-list li::before { color: var(--green); }
+        .service-card:nth-child(3) .service-list li::before { color: var(--orange); }
+        .service-card:nth-child(4) .service-list li::before { color: var(--purple); }
+        .service-card:nth-child(5) .service-list li::before { color: var(--navy); }
+        .service-card:nth-child(6) .service-list li::before { color: var(--green); }
+
+        /* ============================================================
+           INDUSTRIES
+           ============================================================ */
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+        .industry-card {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            align-self: start;
+            min-width: 0;
+            min-height: 170px;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--line);
+            background: var(--card);
+            box-shadow: var(--shadow-md);
+            transition: transform .2s ease, box-shadow .2s ease;
+            animation: industryReveal .65s both;
+        }
+        .industry-card:nth-child(2) { animation-delay: .06s; }
+        .industry-card:nth-child(3) { animation-delay: .12s; }
+        .industry-card:nth-child(4) { animation-delay: .18s; }
+        .industry-card:nth-child(5) { animation-delay: .24s; }
+        .industry-card:nth-child(6) { animation-delay: .3s; }
+        .industry-card:nth-child(7) { animation-delay: .36s; }
+        .industry-card:nth-child(8) { animation-delay: .42s; }
+        @keyframes industryReveal {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .industry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .industry-image {
+            position: relative;
+            flex: 0 0 auto;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--navy-700), var(--orange-50));
+        }
+        .industry-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .5s ease;
+        }
+        .industry-card:hover .industry-image img {
+            transform: scale(1.06);
+        }
+        .industry-content {
+            width: 100%;
+            padding: clamp(14px, 1.8vw, 22px);
+            background: var(--card);
+        }
+        .industry-card h4 {
+            margin: 0 0 6px;
+            font-size: clamp(15px, 1.4vw, 20px);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--navy-900);
+        }
+        .industry-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 12.5px;
+            line-height: 1.45;
+        }
+        .industry-applications {
+            display: block;
+            margin-top: 10px;
+            padding: 9px 10px;
+            border-left: 3px solid var(--navy-700);
+            border-radius: 0 8px 8px 0;
+            background: var(--navy-50);
+        }
+        .industry-applications-label {
+            display: block;
+            margin-bottom: 3px;
+            color: var(--navy-700);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            line-height: 1.3;
+            text-transform: uppercase;
+        }
+        .industry-tag {
+            display: block;
+            color: var(--navy-900);
+            font-size: 11px;
+            font-weight: 650;
+            line-height: 1.5;
+        }
+        /* ============================================================
+           PROCESS TIMELINE
+           ============================================================ */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+        }
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .process-number {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 16px;
+            background: var(--navy-900);
+            color: #fff;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 18px;
+            font-weight: 800;
+            border: 4px solid var(--bg);
+            box-shadow: 0 0 0 1px var(--line);
+        }
+        .process-step h4 {
+            margin: 0 0 8px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--navy-900);
+        }
+        .process-step p {
+            margin: 0;
+            font-size: 13.5px;
+            color: var(--muted);
+            line-height: 1.6;
+            max-width: 220px;
+            margin-inline: auto;
+        }
+        /* Connecting Line (Desktop) */
+        .process-grid::before {
+            content: "";
+            position: absolute;
+            top: 24px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: dashed 2px var(--line);
+            z-index: 0;
+        }
+
+        /* ============================================================
+           DEMO CTA SECTION
+           ============================================================ */
+        .demo-cta {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .demo-cta h2 {
+            margin: 0 0 12px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--navy-900);
+        }
+        .demo-cta p {
+            margin: 0 auto 28px;
+            color: var(--muted);
+            max-width: 520px;
+            font-size: 15px;
+        }
+
+        /* ============================================================
+           BUTTONS
+           ============================================================ */
+        .btn{
+            display:inline-flex;align-items:center;justify-content:center;gap:9px;
+            text-decoration:none;font-weight:650;font-size:14px;
+            padding:12px 24px;border-radius:999px;
+            transition:transform .18s,box-shadow .18s,background .18s,color .18s,border-color .18s;
+            border:1px solid transparent;cursor:pointer;
+        }
+        .btn-primary{
+            background:linear-gradient(145deg,var(--orange-500),var(--orange));
+            color:#fff;box-shadow:0 12px 24px -14px rgba(234,88,12,.95);
+        }
+        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 30px -14px rgba(234,88,12,1)}
+        .btn-dark{
+            background:var(--navy-900);color:#fff;
+            box-shadow:0 12px 24px -14px rgba(15,33,55,.95);
+        }
+        .btn-dark:hover{transform:translateY(-2px);background:var(--navy);box-shadow:0 18px 30px -14px rgba(15,33,55,1)}
+        .btn-outline{
+            background:transparent;color:#fff;
+            border-color:rgba(255,255,255,.55);
+        }
+        .btn-outline:hover{background:rgba(255,255,255,.12);border-color:#fff;transform:translateY(-2px)}
+
+        /* ============================================================
+           CTA SECTION
+           ============================================================ */
+        .cta-section{
+            background:linear-gradient(130deg,#12243a,var(--navy) 62%,var(--navy-700));
+            color:#fff;text-align:center;padding:64px 24px;
+        }
+        .cta-section h2{margin:0 0 12px;font-size:clamp(1.5rem,2.8vw,2rem);letter-spacing:-.02em;font-weight:800}
+        .cta-section p{margin:0 auto 28px;max-width:620px;color:#bed2e6;font-size:15px}
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer{
+            background:#0f2137;color:#c6d3e2;
+            padding:56px 0 0;margin-top:0;
+        }
+        .footer-cta{
+            display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+            gap:20px;padding:26px 28px;margin-bottom:40px;
+            border-radius:var(--radius-lg);
+            background:linear-gradient(130deg,rgba(59,130,246,.18),rgba(30,58,95,.35));
+            border:1px solid rgba(255,255,255,.08);
+        }
+        .footer-cta strong{display:block;color:#fff;font-size:1.05rem;margin-bottom:4px}
+        .footer-cta p{margin:0;font-size:14px;color:#a9c3db;max-width:560px}
+        .footer-cta-btn{flex:none}
+
+        .footer-grid{
+            display:grid;
+            grid-template-columns:1.4fr 1fr 1fr 1.2fr;
+            gap:36px;
+            padding:0 0 40px;
+        }
+        .footer-brand{margin:0 0 10px;color:#fff;font-size:16px;letter-spacing:-.01em}
+        .footer-intro{margin:0;font-size:13.5px;color:#a9c3db;max-width:320px}
+        .footer-grid h4{
+            margin:0 0 14px;color:#fff;font-size:13px;
+            letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+        }
+        .footer-grid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+        .footer-grid ul li{font-size:13.5px;color:#a9c3db;display:flex;align-items:center;gap:8px}
+        .footer-grid ul li i{color:var(--orange-500);font-size:12px}
+        .footer-grid a{
+            color:#a9c3db;text-decoration:none;
+            transition:color .18s;
+        }
+        .footer-grid a:hover{color:#fff}
+        .footer-bottom{
+            border-top:1px solid rgba(255,255,255,.10);
+            padding:20px 0;text-align:center;
+            font-size:12.5px;color:#8aa2bd;
+        }
+
+        /* back to top */
+        .back-to-top{
+            position:fixed;right:22px;bottom:22px;z-index:90;
+            width:44px;height:44px;border-radius:50%;
+            background:var(--navy);color:#fff;border:0;cursor:pointer;
+            display:grid;place-items:center;font-size:15px;
+            box-shadow:0 12px 24px -12px rgba(30,58,95,.9);
+            opacity:0;visibility:hidden;transform:translateY(8px);
+            transition:opacity .25s,transform .25s,visibility .25s;
+        }
+        .back-to-top.show{opacity:1;visibility:visible;transform:none}
+        .back-to-top:hover{background:var(--navy-900)}
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width:960px){
+            .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
+            .process-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 24px; }
+            .process-grid::before { display: none; }
+        }
+        @media (max-width:860px){
+            .nav-links{
+                display:none;position:absolute;top:70px;left:0;right:0;
+                flex-direction:column;align-items:stretch;gap:2px;
+                background:#fff;border-bottom:1px solid var(--line);
+                padding:14px 18px;box-shadow:0 16px 24px -20px rgba(0,0,0,.35);
+            }
+            .nav-links.open{display:flex}
+            .nav-links a{padding:11px 12px}
+            .mobile-menu-btn{display:grid;place-items:center}
+        }
+        @media (max-width:640px){
+            .footer-grid{grid-template-columns:1fr}
+            .footer-cta{flex-direction:column;align-items:flex-start}
+            .custom-hero{padding:60px 0 70px;}
+            .process-grid { grid-template-columns: 1fr; }
+            .industries-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+            .industry-content { padding: 14px; }
+            .industry-card h4 { font-size: 15px; }
+            .industry-card p { font-size: 11.5px; }
+            .industry-applications { padding: 8px; }
+            .industry-tag { font-size: 10px; }
+            .demo-cta { padding: 32px 24px; }
+        }
+        @media (prefers-reduced-motion:reduce){
+            *{animation:none !important;transition:none !important;scroll-behavior:auto}
+        }
+    </style>
+    <link rel="stylesheet" href="css/site-shell.css">
+</head>
+<body class="kt-page">
+
+<!-- progress bar -->
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- ============ NAVBAR ============ -->
+<header class="kt-site-header">
+    <nav class="kt-nav-inner" aria-label="Main navigation">
+        <a href="index.html" class="kt-brand" aria-label="Kynatron Technologies home">
+            <span class="kt-brand-mark" aria-hidden="true">K</span>
+            <span class="kt-brand-name">KYNATRON</span>
+        </a>
+        <div class="kt-nav-links" id="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="products.html">Products</a>
+            <a href="services.html" aria-current="page">Services</a>
+            <a href="careers.html">Careers</a>
+            <a href="contact.html">Contact</a>
+            <a href="dashboard-demo.html">Demo</a>
+        </div>
+        <button class="kt-menu-toggle" id="mobile-menu-btn" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">&#9776;</button>
+    </nav>
+</header>
+
+<!-- ============ CUSTOM HERO ============ -->
+<section class="custom-hero">
+    <div class="container">
+        <div class="hero-badge">
+            <span class="dot"></span>
+            Our Services
+        </div>
+        <h1 class="hero-title">
+            Reliable automation for <span class="gradient-text">your plant</span>
+        </h1>
+        <p class="hero-p">
+            From data loggers and SCADA to cloud-based platforms, we build practical, connected solutions for industry. We help you capture reliable field data, monitor and control operations, and bring it all together in the cloud—so your teams gain the visibility to make faster, better-informed decisions.
+        </p>
+    </div>
+</section>
+
+<!-- ============ INDUSTRIES ============ -->
+<section class="section section-gray" id="industries">
+    <div class="container">
+        <div class="section-header">
+            <h2>Industries we support</h2>
+            <p>From a single machine to plant-wide systems, we shape monitoring and automation around the work each sector needs to do.</p>
+        </div>
+
+        <div class="industries-grid">
+            <div class="industry-card">
+                <div class="industry-image">
+                    <img src="assets/industries/industrial_automation_robotics.jpg" alt="Industrial automation and robotics" loading="lazy">
+                </div>
+                <div class="industry-content">
+                    <h4>Industrial automation</h4>
+                    <p>Intelligent monitoring and control for machines and production lines.</p>
+                    <div class="industry-applications">
+                        <span class="industry-applications-label">Applications</span>
+                        <span class="industry-tag">PLC / DCS · Machine monitoring</span>
+                    </div>
+                </div>
+            </div>
+            <div class="industry-card">
+                <div class="industry-image">
+                    <img src="assets/industries/server_and_Cloud_facility.jpg" alt="Data centres and cloud facilities" loading="lazy">
+                </div>
+                <div class="industry-content">
+                    <h4>Data centres and cloud</h4>
+                    <p>Environmental monitoring for server rooms and critical infrastructure.</p>
+                    <div class="industry-applications">
+                        <span class="industry-applications-label">Applications</span>
+                        <span class="industry-tag">Temperature · Humidity</span>
+                    </div>
+                </div>
+            </div>
+            <div class="industry-card">
+                <div class="industry-image">
+                    <img src="assets/industries/power_house_and_thermal_plants.jpg" alt="Power houses and thermal plants" loading="lazy">
+                </div>
+                <div class="industry-content">
+                    <h4>Power and energy</h4>
+                    <p>Thermal monitoring and data acquisition for generation and energy systems.</p>
+                    <div class="industry-applications">
+                        <span class="industry-applications-label">Applications</span>
+                        <span class="industry-tag">Thermal monitoring · SCADA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="industry-card">
+                <div class="industry-image">
+                    <img src="assets/industries/heavy_manufacturing_and_steel.jpg" alt="Heavy manufacturing and steel" loading="lazy">
+                </div>
+                <div class="industry-content">
+                    <h4>Steel and manufacturing</h4>
+                    <p>Process temperature measurement for demanding environments.</p>
+                    <div class="industry-applications">
+                        <span class="industry-applications-label">Applications</span>
+                        <span class="industry-tag">Furnace monitoring · Process data</span>
+                    </div>
+                </div>
+            </div>
+            <div class="industry-card">
+                <div class="industry-image">
+                    <img src="assets/industries/pharma_and_health_care.jpg" alt="Pharma and healthcare" loading="lazy">
+                </div>
+                <div class="industry-content">
+                    <h4>Pharma and healthcare</h4>
+                    <p>Monitoring for cleanrooms, controlled spaces and critical storage.</p>
+                    <div class="industry-applications">
+                        <span class="industry-applications-label">Applications</span>
+                        <span class="industry-tag">Cleanroom · Pressure monitoring</span>
+                    </div>
+                </div>
+            </div>
+            <div class="industry-card">
+                <div class="industry-image">
+                    <img src="assets/industries/dams_and_hydero_projects.jpg" alt="Dams and hydropower projects" loading="lazy">
+                </div>
+                <div class="industry-content">
+                    <h4>Dams and hydropower</h4>
+                    <p>Remote measurement for water infrastructure and critical equipment.</p>
+                    <div class="industry-applications">
+                        <span class="industry-applications-label">Applications</span>
+                        <span class="industry-tag">Remote telemetry · Level monitoring</span>
+                    </div>
+                </div>
+            </div>
+            <div class="industry-card">
+                <div class="industry-image">
+                    <img src="assets/industries/petrolium_and_gas.jpg" alt="Oil, gas and petrochemicals" loading="lazy">
+                </div>
+                <div class="industry-content">
+                    <h4>Oil, gas and petrochemicals</h4>
+                    <p>Process instrumentation for pipelines, equipment and plants.</p>
+                    <div class="industry-applications">
+                        <span class="industry-applications-label">Applications</span>
+                        <span class="industry-tag">Process monitoring · Instrumentation</span>
+                    </div>
+                </div>
+            </div>
+            <div class="industry-card">
+                <div class="industry-image">
+                    <img src="assets/industries/cement.jpg" alt="Cement and building materials" loading="lazy">
+                </div>
+                <div class="industry-content">
+                    <h4>Cement and building materials</h4>
+                    <p>Temperature and equipment monitoring across kilns and production lines.</p>
+                    <div class="industry-applications">
+                        <span class="industry-applications-label">Applications</span>
+                        <span class="industry-tag">Kiln monitoring · Process control</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ CORE SERVICES ============ -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Start with the challenge. Build the right response.</h2>
+            <p>From capturing a dependable reading to helping your team act on it, each service supports a step in the same journey.</p>
+        </div>
+        
+        <div class="services-grid">
+            
+            <!-- Service 1 -->
+            <div class="service-card">
+                <div class="service-icon blue">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <h3>Data Acquisition & Logging</h3>
+                <p>First, capture the measurements your process depends on with accurate, reviewable data logging.</p>
+                <ul class="service-list">
+                    <li>Multi-channel temperature monitoring</li>
+                    <li>Custom sensor integration (TC, RTD, 4-20mA)</li>
+                    <li>High-speed sampling up to 1 sec intervals</li>
+                    <li>CFR 21 Part 11 compliant data formats</li>
+                    <li>50+ year retention without data overwrite</li>
+                </ul>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-card">
+                <div class="service-icon green">
+                    <i class="fa-solid fa-desktop"></i>
+                </div>
+                <h3>Industrial Monitoring Solutions</h3>
+                <p>Then make readings easier to follow with live dashboards, trends and views tailored to your operation.</p>
+                <ul class="service-list">
+                    <li>Live sensor dashboards (web-based, zero install)</li>
+                    <li>Multi-zone temperature & humidity monitoring</li>
+                    <li>Trend analysis and historical data viewing</li>
+                    <li>Remote monitoring via WiFi/4G/Cloud</li>
+                    <li>Custom KPI dashboards for management</li>
+                </ul>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-card">
+                <div class="service-icon orange">
+                    <i class="fa-solid fa-bell"></i>
+                </div>
+                <h3>Alarm & Control Systems</h3>
+                <p>When conditions change, configurable alarms and control logic help the right people respond.</p>
+                <ul class="service-list">
+                    <li>Programmable alarm thresholds (high/low/rate)</li>
+                    <li>Multi-level alarm escalation (screen, buzzer, SMS, email)</li>
+                    <li>Equipment ON/OFF control via relays</li>
+                    <li>PID loop control for process regulation</li>
+                    <li>Setpoint remote configuration</li>
+                </ul>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="service-card">
+                <div class="service-icon purple">
+                    <i class="fa-solid fa-cloud"></i>
+                </div>
+                <h3>IoT & Cloud Platform</h3>
+                <p>Connect devices and teams with cloud access, integrations and records that support day-to-day oversight.</p>
+                <ul class="service-list">
+                    <li>MQTT / REST API for cloud integration</li>
+                    <li>Embedded web server (HTML5 HMI)</li>
+                    <li>Mobile-friendly dashboards</li>
+                    <li>Cloud data backup & sync</li>
+                    <li>Role-based access control & audit trail</li>
+                </ul>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="service-card">
+                <div class="service-icon navy">
+                    <i class="fa-solid fa-gears"></i>
+                </div>
+                <h3>Industrial Automation</h3>
+                <p>Where a process needs more, we can design PLC, HMI and SCADA control around the equipment already in place.</p>
+                <ul class="service-list">
+                    <li>PLC/SCADA system design & programming</li>
+                    <li>HMI development & panel building</li>
+                    <li>Process optimization & control loops</li>
+                    <li>Legacy system upgrades & migration</li>
+                    <li>Modbus, OPC-UA, Ethernet/IP protocols</li>
+                </ul>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="service-card">
+                <div class="service-icon green">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <h3>Hardware Design & Manufacturing</h3>
+                <p>And when the solution calls for custom hardware, firmware or enclosures, our team can take it from design through build and calibration.</p>
+                <ul class="service-list">
+                    <li>PCB design & fabrication</li>
+                    <li>Industrial enclosure design (IP66/IP67)</li>
+                    <li>Firmware & embedded systems development</li>
+                    <li>Assembly, testing & calibration</li>
+                    <li>OEM & white-label manufacturing</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>From your first question to day-to-day support</h2>
+            <p>We work with your team at each step, so the system is understood before it is built and supported after it is installed.</p>
+        </div>
+        
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="process-number">1</div>
+                <h4>Consult</h4>
+                <p>We learn how your site operates, what you need to measure and which requirements matter most.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">2</div>
+                <h4>Design</h4>
+                <p>We shape the hardware, firmware and dashboard plan with you before moving into the build.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">3</div>
+                <h4>Build & Test</h4>
+                <p>We assemble and test the system, then document calibration and quality checks for the agreed scope.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">4</div>
+                <h4>Deploy & Support</h4>
+                <p>We bring the system on site, help operators get familiar with it and provide support as it becomes part of your workflow.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ DASHBOARD DEMO ============ -->
+<section class="section section-gray">
+    <div class="container">
+        <div class="demo-cta">
+            <h2>See what the day-to-day view can look like</h2>
+            <p>Explore a simulated monitoring workspace and follow readings, trends, alarms and control actions from one screen.</p>
+            <a href="dashboard-demo.html" class="btn btn-dark" target="_blank">Launch Dashboard Demo <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta-section">
+    <div class="container">
+        <div class="kt-cta-copy">
+            <h2>Ready to map your process?</h2>
+            <p>Share what you need to measure, the environment you work in and what your team needs to see. We’ll help define a practical way forward.</p>
+        </div>
+        <a href="contact.html" class="btn btn-primary">Start a Conversation</a>
+    </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="kt-site-footer">
+    <div class="container">
+        <div class="footer-cta">
+            <div>
+                <strong>Build a clearer view of your process.</strong>
+                <p>From data acquisition and monitoring to control and automation, we help you connect measurements to practical next steps.</p>
+            </div>
+            <a href="contact.html" class="footer-cta-btn">Talk to our team</a>
+        </div>
+        <div class="footer-grid">
+            <div>
+                <h3 class="footer-brand">Kynatron Technologies</h3>
+                <p class="footer-intro">Industrial data acquisition, monitoring, control and automation systems designed for real operating environments.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="products.html">Data acquisition</a></li>
+                    <li><a href="products.html">Environmental monitoring</a></li>
+                    <li><a href="products.html">Control &amp; automation</a></li>
+                    <li><a href="dashboard-demo.html">Dashboard demo</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fa-solid fa-envelope"></i> <a href="mailto:sales@kynatron.com">sales@kynatron.com</a></li>
+                    <li><i class="fa-solid fa-phone"></i> <a href="tel:+919343509732">+91 9343509732</a></li>
+                    <li><i class="fa-solid fa-location-dot"></i> Hyderabad and Bangalore, India</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Kynatron Technologies. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<button id="back-to-top" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+<script>
+(function () {
+    "use strict";
+
+    /* ============================================================
+       THEME SCRIPTS
+       ============================================================ */
+    const progress = document.querySelector('.scroll-progress');
+    function updateProgress() {
+        const h = document.documentElement;
+        const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+        if (progress) progress.style.width = (scrolled || 0) + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    const backTop = document.getElementById('back-to-top');
+    if (backTop) {
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 400) backTop.classList.add('show');
+            else backTop.classList.remove('show');
+        }, { passive: true });
+        backTop.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+})();
+</script>
+<script src="js/site-shell.js"></script>
+
+</body>
+</html>
